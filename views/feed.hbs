@@ -1,0 +1,274 @@
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav" style="height: 50px;">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">Charity App</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#vAll">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- About Section -->
+  <section id="vAll" class="vAll-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Helping is caring</h2>
+          <p class="text-white-50">The best way to not feel hopeless is to get up and do something. Don’t wait for good things to happen to you. If you go out and make some good things happen, you will fill the world with hope, you will fill yourself with hope.<br>- Barack Obama</p>
+        </div>
+      </div>
+      <img src="img/ipad.png" class="img-fluid" alt="">
+    </div>
+  </section>
+
+  <section id="projects">
+    <div id="columns" style="text-align: left;">
+      </div>
+  </section>	
+
+  <!-- Login Section -->
+  <section id="login" class="login-section">
+  <script>
+		var database = [];
+
+		let dummy1 = new User("Jacob_Salazar","dlsu1234", "Jacob_Salazar@gmail.com"  );
+		let dummy2 = new User("admin","admin", "enrico_cuison@gmail.com" );
+		let dummy3 = new User("jazzmine07","12345", "jazzmine_ilagan@yahoo.com");
+		let dummy4 = new User("Boy_Abunda","dlsu1234","Boy_Abunda@gmail.com");
+		let dummy5 = new User("Unisse_Chua","dlsu1234","Unisse_Chua@gmail.com");
+
+
+		function User(username, password, email){
+			this.username = username;
+			this.password = password;
+			this.email = email;
+		}
+
+		function validate() {
+			var un = $("#logusername").val();
+			var pw = $("#logpassword").val();
+			var valid = false;
+			var invalid = true;
+
+			database[0] = dummy1;
+			database[1] = dummy2;
+			database[2] = dummy3;
+			database[3] = dummy4;
+			database[4] = dummy5;
+
+			for (var i=0; i <database.length; i++) 
+			{
+				if ((un == database[i].username ) && (pw == database[i].password)){
+					valid = true;
+				}
+			}
+			if (valid){
+				pageRedirect();
+				return false;
+			}
+			else if (invalid){
+				alert ("Access Denied");
+				return true;
+			}
+		}
+
+		function pageRedirect(){
+			window.location.replace("registereduserhome.html");
+		}    
+
+        function checkForm() {
+            var usernameField = document.getElementById("username");
+			var emailField = document.getElementById("email");
+			var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			var password1Field = document.getElementById("password1");
+			var password2Field = document.getElementById("password2");
+			var checker = true;
+				
+			if(usernameField.value == ""){
+				usernameField.style.backgroundColor = "red";
+				checker = false;
+			}
+			if(emailField.value == ""){
+				emailField.style.backgroundColor = "red";
+				checker = false;
+			}
+			if(password1Field.value == ""){
+				password1Field.style.backgroundColor = "red";
+				checker = false;
+			}
+			if(password2Field.value == ""){
+					password2Field.style.backgroundColor = "red";
+				checker = false;
+			}
+			if(usernameField.value == "" && emailField.value == "" && password1Field.value == "" && password2Field.value == ""){
+				var noInput = alert("Please fill up form.");
+				checker = false;
+			}
+			if(usernameField.value != "" && emailField.value != "" && password1Field.value == "" && password2Field.value == ""){
+				var noPassword = alert("Please enter password.");
+				checker = false;
+			}
+			if(emailField.value != "" && !emailFormat.test(emailField.value)){
+				var incorrectEmail = alert("Invalid email address! Try again.");
+				checker = false;
+			}
+			if(password1Field.value != password2Field.value && password1Field.value != "" && password2Field.value != ""){
+				var incorrectPassword = alert("Password does not match! Try again.");
+				checker = false;
+			}
+					
+            if (checker == true)
+            {
+                let dummyVar = new User(usernameField.value,password1Field.value,emailField.value)
+                database.push(dummyVar);
+                //check if it is saved in array datbase
+                for (var i=0; i <database.length; i++) 
+                {
+					if ((dummyVar.username == database[i].username ) && (dummyVar.password == database[i].password)) 
+					{
+						alert("Added to the database: Hello" + " " + dummyVar.username + " email: " + dummyVar.email + " password: " + dummyVar.password);
+						pageRedirect();
+					}
+                }
+                return false;
+            }
+        }
+    </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+		  <img src = "img/login.png" style="width:50px;height:50px;"></img>
+          <h2 class="text-white mb-5">Login</h2>
+
+          <form class="form-inline d-flex flex-column" onsubmit="return validate()" >
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logusername" placeholder="Username">
+            <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logpassword" placeholder="Password">
+            <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Login</button>
+          </form>
+
+          <p data-toggle="modal" data-target="#myModal" style="color: azure;" id="reg">No account yet? Click me.</p>
+                <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    
+                    <h4 class="modal-title">Registration</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form-inline d-flex flex-column" onsubmit="return checkForm()">
+                      <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="Username">
+                      <input type="email" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="email" placeholder="Email">
+                      <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password1" placeholder="Password">
+                      <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password2" placeholder="Confirm Password">
+                      <button type="submit" class ="btn btn-primary btn-space mx-auto">Register</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+
+          <form class="form-inline d-flex">
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
+            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section bg-black" id="contact">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Enrico Luis Cuison</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> enrico_cuison@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Mari Jazzmine Ilagan</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> mari_ilagan@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Jacob Israel Salazar</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> jacob_salazar@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+	  
+    </div>
+  </section>
+</body>
