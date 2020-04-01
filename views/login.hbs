@@ -61,14 +61,18 @@
 				return false;
 			}
 			else if (invalid){
-				alert ("Access Denied");
-				return true;
+        $("#errmsg").empty();
+        $("#errmsg").append("<p>Incorrect username or password</p>");
+        $("#logusername").val("");
+        $("#logpassword").val("");
+				return false;
 			}
 		}
 
 		function pageRedirect(){
-			window.location.replace("/user");
+			window.location.replace("/myprofile");
 		}    
+      
 
         function checkForm() {
             var usernameField = document.getElementById("username");
@@ -139,6 +143,9 @@
             <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logusername" placeholder="Username">
             <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logpassword" placeholder="Password">
             <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Login</button>
+            <div id="errmsg">
+              
+            </div>
           </form>
 
           <p type="button" data-toggle="modal" data-target="#regmodal" style="color: azure;" id="reg" >No account yet? Click here.</p>

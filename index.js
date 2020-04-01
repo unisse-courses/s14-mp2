@@ -97,6 +97,11 @@ app.get('/login', function(req, res) {
   res.render('login');
 });
 
+// Profile Page (Logged in)
+app.get('/myprofile', function(req, res) {
+  res.render('myprofile');
+});
+
 
 
 
