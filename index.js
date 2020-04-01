@@ -101,6 +101,10 @@ app.get('/login', function(req, res) {
 app.get('/myprofile', function(req, res) {
   res.render('myprofile');
 });
+// Profile Page (Logged in)
+app.get('/donate', function(req, res) {
+  res.render('donate');
+});
 
 
 

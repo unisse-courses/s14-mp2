@@ -22,7 +22,7 @@
   </nav>
 
   <!-- Login Section -->
-  <section id="login" class="login-section" style="height: 1000px;">
+  <section id="login" class="login-section" style="height: 1200px;">
 	<script>
 		var database = [];
 
@@ -134,8 +134,9 @@
     </script>
 	
     <div class="container">
+      <!-- LOGIN Section -->
       <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto text-center">
+        <div class="col-md-10 col-lg-8 mx-auto  text-center">
           <img src = "img/login.png" style="width:50px;height:50px;"></img>
           <h2 class="text-white mb-5">Login</h2>
 
@@ -146,35 +147,27 @@
             <div id="errmsg">
               
             </div>
-          </form>
+          </form> 
+        </div>
 
-          <p type="button" data-toggle="modal" data-target="#regmodal" style="color: azure;" id="reg" >No account yet? Click here.</p>
-                <!-- Modal -->
-            <div id="regmodal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
+        
+        
+      </div>
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    
-                    <h4 class="modal-title">Registration</h4>
-					<img src = "pics/register.png" style="width:50px;height:50px;"></img>
-                  </div>
-                  <div class="modal-body">
-                    <form class="form-inline d-flex flex-column" onsubmit="return checkForm()">
-                      <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="Username">
-                      <input type="email" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="email" placeholder="Email">
-                      <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password1" placeholder="Password">
-                      <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password2" placeholder="Confirm Password">
-                      <button type="submit" class ="btn btn-primary btn-space mx-auto">Register</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!-- REGISTER Section -->
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto  text-center" style="margin-top: 10rem;margin-bottom:auto;">
+          <img src = "img/register.png" style="width:75px;height:75px;"></img>
+          <h2 class="text-white mb-5">Register</h2>
+
+          <form class="form-inline d-flex flex-column" onsubmit="return validate()" >
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regemail" placeholder="Email">
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regusername" placeholder="Username">
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regpassword" placeholder="Password">
+            <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regConfpassword" placeholder="Confirm Password">
+            <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Register</button>
+          </form>          
+               
         </div>
       </div>
     </div>
