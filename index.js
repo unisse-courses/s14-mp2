@@ -8,26 +8,37 @@ const app = express();
 const port = 3000;
 const hostname = 'localhost';
 
-const mongodb = require('mongodb');
-const mongoClient = mongodb.MongoClient;
-const dbURL = "mongodb://localhost:27017/";
-const dbName = "charitydb";
 // additional connection options
 const options = { useUnifiedTopology: true };
 
 // Creating Collection [Featured]
-mongoClient.connect(dbURL, function(err, database){
-  if(err) throw err;
-  // dbo = database object
-  const dbo = database.db("charitydb"); // retrieving database
+const userModel = require('./models/user');
+const postModel = require('./models/post');
 
-  // Creating collection (table)
-  dbo.createCollection("featured", function(err, res){
-    if(err) throw err;
-    console.log("Featured Posts collection created!");
-    database.close;
-  });
-});
+
+var userArray = [
+  {
+    email: 'Jacob_salazar@dlsu.edu.ph',
+    username: 'Jacob_salazar',
+    password: 'dlsu1234'
+  },
+  {
+    email: 'jazzmine_ilagan@yahoo.com',
+    username: 'jazzmine07',
+    password: 'dlsu1234'
+  },
+  {
+    email: 'Enrico_Cuison@gmail.com',
+    username: 'Enrico_cuison',
+    password:  'dlsu1234'
+  },
+  {
+    email: 'admin@dlsu.edu.ph',
+    username: 'admin',
+    password: 'admin'
+  }
+]
+
 
 var postArray = [
 	{
@@ -70,16 +81,62 @@ var postArray = [
 ];
 
 // Insert postArray to DB
-mongoClient.connect(dbURL, options, function(err, database) {
-  const dbo = database.db(dbName);
-  dbo.collection("featured").insertMany(postArray, function(err, res){
+
+  userModel.collection.insertMany(userArray, function(err, res){
     if(err) throw err;
-    console.log("InsertMany Successful!");
-    console.log(res);
-    console.log("AFTER INSERTING RESPONSE");
-    database.close;
+    console.log("Insert Users Successful!");
   });
-});
+
+
+function add(){
+  for (i=0;i<postArray.length;i++){
+    if (i<=2){
+    const id_owner = userModel.collection.find({ "username": "Jacob_salazar" });
+    const post = new postModel({
+      img: postArray[i].img,
+      header: postArray[i].header,
+      caption: postArray[i].caption,
+      tags: postArray[i].tags,
+      owner: id_owner._id 
+    });
+  post.save(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
+    }else if (i>2 && i<=5){
+      const id_owner = userModel.collection.find({ "username": "Enrico_cuison" });
+    const post = new postModel({
+      img: postArray[i].img,
+      header: postArray[i].header,
+      caption: postArray[i].caption,
+      tags: postArray[i].tags,
+      owner: id_owner._id 
+    });
+  post.save(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  });      
+    }else{
+    const id_owner = userModel.collection.find({ "username": "jazzmine07" });
+    const post = new postModel({
+      img: postArray[i].img,
+      header: postArray[i].header,
+      caption: postArray[i].caption,
+      tags: postArray[i].tags,
+      owner: id_owner._id 
+    });
+  post.save(function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
+    }
+  }
+}
+
+add();
+
+
+
 
 app.engine('hbs', exphbs({
     extname: 'hbs', 
@@ -96,39 +153,29 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Home
 app.get('/', function(req, res) {
-  mongoClient.connect(dbURL, options, function(err, database) {
-    if(err) throw err;
-    const dbo = database.db(dbName);
-
-    dbo.collection("featured").find({}).toArray(function(err, result) {
+  
+    postModel.collection.find({}).toArray(function(err, result) {
       if(err) throw err;
       console.log("Read Successful!");
-      database.close();
 
       res.render('home', {
         item: result,
       });
     });
-  });
 });
 
 // View All Post
 app.get('/feed', function(req, res) { 
-  mongoClient.connect(dbURL, options, function(err, database) {
-    if(err) throw err;
-    const dbo = database.db(dbName);
-
-    dbo.collection("featured").find({}).toArray(function(err, result) {
+ 
+    postModel.collection.find({}).toArray(function(err, result) {
       if(err) throw err;
       console.log("Read Successful!");
-      database.close();
 
       res.render('feed', {
         item: result,
       });
     });
   });
-});
 
 
 
@@ -155,4 +202,4 @@ app.use(express.static('public'));
 
 app.listen(port, function() { 
     console.log(`Server running at http://${hostname}:${port}/`); 
-})
+});
