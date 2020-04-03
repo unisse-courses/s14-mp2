@@ -140,11 +140,7 @@ $(document).ready(function (){
 		parentDiv.append(figDiv);    
     }
 
-    $.get('putFeaturedhead', function(data, status){
-        var studentListContainer = $('#try');
-        addFeatured(studentListContainer);
-		
-	});
+  
 	
 	
   

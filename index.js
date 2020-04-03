@@ -4,15 +4,32 @@ const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
 const bodyParser = require('body-parser');
 
-
 const app = express();
 const port = 3000;
 const hostname = 'localhost';
 
+const mongodb = require('mongodb');
+const mongoClient = mongodb.MongoClient;
+const dbURL = "mongodb://localhost:27017/";
+const dbName = "charitydb";
+// additional connection options
+const options = { useUnifiedTopology: true };
 
+// Creating Collection [Featured]
+mongoClient.connect(dbURL, function(err, database){
+  if(err) throw err;
+  // dbo = database object
+  const dbo = database.db("charitydb"); // retrieving database
+
+  // Creating collection (table)
+  dbo.createCollection("featured", function(err, res){
+    if(err) throw err;
+    console.log("Featured Posts collection created!");
+    database.close;
+  });
+});
 
 var postArray = [
-
 	{
 	  img: 'img/taal_volcano.jpg',
 	  header: 'Eruption of Taal 2020',
@@ -49,10 +66,20 @@ var postArray = [
 	  caption: "According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 million people are facing severe food shortages, with women and children bearing the brunt of the crisis. Half of the population of Zimbabwe or 7.7 million people are facing its worst hunger emergency in a decade. Let us help the people who are starving, let us share our blessings to them. Donate now.",
 	  tags: "#famine #Africa #HelpAfrica", 
   }
+  // TO DO insert remaing post -- limit featured post to 6
 ];
 
-
-
+// Insert postArray to DB
+mongoClient.connect(dbURL, options, function(err, database) {
+  const dbo = database.db(dbName);
+  dbo.collection("featured").insertMany(postArray, function(err, res){
+    if(err) throw err;
+    console.log("InsertMany Successful!");
+    console.log(res);
+    console.log("AFTER INSERTING RESPONSE");
+    database.close;
+  });
+});
 
 app.engine('hbs', exphbs({
     extname: 'hbs', 
@@ -69,28 +96,45 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Home
 app.get('/', function(req, res) {
-   res.render('home', { item: postArray });
+  mongoClient.connect(dbURL, options, function(err, database) {
+    if(err) throw err;
+    const dbo = database.db(dbName);
+
+    dbo.collection("featured").find({}).toArray(function(err, result) {
+      if(err) throw err;
+      console.log("Read Successful!");
+      database.close();
+
+      res.render('home', {
+        item: result,
+      });
+    });
+  });
 });
 
 // View All Post
 app.get('/feed', function(req, res) { 
-    res.render('feed');
+  mongoClient.connect(dbURL, options, function(err, database) {
+    if(err) throw err;
+    const dbo = database.db(dbName);
+
+    dbo.collection("featured").find({}).toArray(function(err, result) {
+      if(err) throw err;
+      console.log("Read Successful!");
+      database.close();
+
+      res.render('feed', {
+        item: result,
+      });
+    });
+  });
 });
 
 
-app.get('/putFeaturedhead', function(req, res) {
-    // TODO
+
+app.get('/PostList', function(req, res) {
     res.status(200).send(postArray);
-  });
-
-
-  app.get('/PostList', function(req, res) {
-    // TODO
-    res.status(200).send(postArray);
-  });
-
-
-
+});
 
 // Login
 app.get('/login', function(req, res) {
@@ -101,13 +145,11 @@ app.get('/login', function(req, res) {
 app.get('/myprofile', function(req, res) {
   res.render('myprofile');
 });
+
 // Profile Page (Logged in)
 app.get('/donate', function(req, res) {
   res.render('donate');
 });
-
-
-
 
 app.use(express.static('public'));
 
