@@ -12,33 +12,7 @@ const hostname = 'localhost';
 const options = { useUnifiedTopology: true };
 
 // Creating Collection [Featured]
-const userModel = require('./models/user');
-const postModel = require('./models/post');
-
-
-var userArray = [
-  {
-    email: 'Jacob_salazar@dlsu.edu.ph',
-    username: 'Jacob_salazar',
-    password: 'dlsu1234'
-  },
-  {
-    email: 'jazzmine_ilagan@yahoo.com',
-    username: 'jazzmine07',
-    password: 'dlsu1234'
-  },
-  {
-    email: 'Enrico_Cuison@gmail.com',
-    username: 'Enrico_cuison',
-    password:  'dlsu1234'
-  },
-  {
-    email: 'admin@dlsu.edu.ph',
-    username: 'admin',
-    password: 'admin'
-  }
-]
-
+const postModel = require('./models/users');
 
 var postArray = [
 	{
@@ -82,61 +56,11 @@ var postArray = [
 
 // Insert postArray to DB
 
-  userModel.collection.insertMany(userArray, function(err, res){
+  postModel.collection.insertMany(postArray, function(err, res){
     if(err) throw err;
-    console.log("Insert Users Successful!");
+    console.log("InsertMany Successful!");
+    console.log(res);
   });
-
-
-function add(){
-  for (i=0;i<postArray.length;i++){
-    if (i<=2){
-    const id_owner = userModel.collection.find({ "username": "Jacob_salazar" });
-    const post = new postModel({
-      img: postArray[i].img,
-      header: postArray[i].header,
-      caption: postArray[i].caption,
-      tags: postArray[i].tags,
-      owner: id_owner._id 
-    });
-  post.save(function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
-    }else if (i>2 && i<=5){
-      const id_owner = userModel.collection.find({ "username": "Enrico_cuison" });
-    const post = new postModel({
-      img: postArray[i].img,
-      header: postArray[i].header,
-      caption: postArray[i].caption,
-      tags: postArray[i].tags,
-      owner: id_owner._id 
-    });
-  post.save(function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });      
-    }else{
-    const id_owner = userModel.collection.find({ "username": "jazzmine07" });
-    const post = new postModel({
-      img: postArray[i].img,
-      header: postArray[i].header,
-      caption: postArray[i].caption,
-      tags: postArray[i].tags,
-      owner: id_owner._id 
-    });
-  post.save(function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
-    }
-  }
-}
-
-add();
-
-
-
 
 app.engine('hbs', exphbs({
     extname: 'hbs', 
@@ -202,4 +126,4 @@ app.use(express.static('public'));
 
 app.listen(port, function() { 
     console.log(`Server running at http://${hostname}:${port}/`); 
-});
+})

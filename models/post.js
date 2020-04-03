@@ -12,16 +12,14 @@ const options = { useNewUrlParser: true,
 
 mongoose.connect(databaseURL, options);
 
-const postSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
 	
-	img: { type:String,required:true },
-  header: { type:String, required: true, min:1, max:15  },
-  owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
-	caption: { type:String, required: true, min:1, max:250 },
-  tag: {type:String, required: false, min: 1, max:100},
-
+	email: { type:String,required:true },
+	username: { type:String, required: true, min:1, max:15  },
+    password: { type:String, required: true, min:1, max:250 },
+    
 });
 /** README **
   Export the model as the main content of this module.
 **/
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('User', userSchema);
