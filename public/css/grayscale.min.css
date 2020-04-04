@@ -104,7 +104,7 @@
     min-height:35rem;
     padding:15rem 0;
     background:linear-gradient(to bottom,rgba(22,22,22,.3) 0,rgba(22,22,22,.7) 75%,#161616 100%),
-    url(../img/bg-masthead.jpeg);
+    url(../img/bg-colorful.jpg);
     background-position:center;
     background-repeat:no-repeat;
     background-attachment:scroll;
@@ -191,7 +191,7 @@
 .vAll-section
 {
     padding-top:10rem; padding-bottom: 5rem;
-    background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/bg-masthead.jpeg);}
+    background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/bg-colorful.jpg);}
 .vAll-section p
 {
     margin-bottom:5rem
@@ -220,7 +220,7 @@
 }
 .signup-section
 {
-    padding:10rem 0;background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/bg-signup.jpg);
+    padding:10rem 0;background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/bg-colorful.jpg);
     background-position:center;background-repeat:no-repeat;background-attachment:scroll;background-size:cover
 }
 .signup-section .form-inline input
@@ -297,7 +297,7 @@ footer
 .login-section
 {
     padding:8rem 0;
-    background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/bg-signup.jpg);
+    background:linear-gradient(to bottom,rgba(22,22,22,.1) 0,rgba(22,22,22,.5) 75%,#161616 100%),url(../img/bg-colorful.jpg);
     background-position:center;
     background-repeat:no-repeat;
     background-attachment:scroll;

@@ -153,9 +153,7 @@ app.post('/searchPost', function(req, res) {
   postModel.find({ header: { $regex: search } }, function(err, result) {
     if(err) throw err;
     console.log(result);
-    res.render('feed', {
-      item: result,
-    });
+    res.send(result); 
   });
 });
 
