@@ -15,7 +15,7 @@ const options = { useUnifiedTopology: true };
 const userModel = require('./models/user');
 const postModel = require('./models/post');
 
-
+// Users
 var userArray = [
   {
     email: 'Jacob_salazar@dlsu.edu.ph',
@@ -25,7 +25,7 @@ var userArray = [
   {
     email: 'jazzmine_ilagan@yahoo.com',
     username: 'jazzmine07',
-    password: 'dlsu1234'
+    password: 'animeislife'
   },
   {
     email: 'Enrico_Cuison@gmail.com',
@@ -39,7 +39,7 @@ var userArray = [
   }
 ]
 
-
+// Posts
 var postArray = [
 	{
 	  img: 'img/taal_volcano.jpg',
@@ -60,7 +60,7 @@ var postArray = [
 	  tags: "#australiabushfire #bushfire #fire #SaveAustralia"
   }, 
   {
-	  img: "img/famine.jpg",
+	  img: "img/elderly.jpg",
 	  header:  "Home for the Aged",
 	  caption: "According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 million people are facing severe food shortages, with women and children bearing the brunt of the crisis. Half of the population of Zimbabwe or 7.7 million people are facing its worst hunger emergency in a decade. Let us help the people who are starving, let us share our blessings to them. Donate now.",
 	  tags: "#famine #Africa #HelpAfrica"
@@ -79,21 +79,20 @@ var postArray = [
   }
 ];
 
-// Insert postArray to DB
+// Inserting to DB
+userModel.collection.insertMany(userArray, function(err, res){
+  if(err) throw err;
+  console.log("Insert Users Successful!");
 
-  userModel.collection.insertMany(userArray, function(err, res){
-    if(err) throw err;
-    console.log("Insert Users Successful!");
-
-  for (i =0 ;i<postArray.length;i++){
-// assigns different post for different users... posts are distributed to the predefined users
+  for (i =0 ; i<postArray.length;i ++){
+  // assigns different post for different users... posts are distributed to the predefined users
     if(i<3)
-    var owner_id = res.insertedIds[0];
+      var owner_id = res.insertedIds[0];
     else if (i>=3 && i<5)
-    var owner_id = res.insertedIds[1];
+      var owner_id = res.insertedIds[1];
     else
-    var owner_id = res.insertedIds[2];
-    
+      var owner_id = res.insertedIds[2];
+  
     const post = new postModel({
       img: postArray[i].img,
       header: postArray[i].header,
@@ -101,13 +100,13 @@ var postArray = [
       tags: postArray[i].tags,
       owner: owner_id
     });
+
     post.save(function (err, result) {
       if (err) throw err;
       console.log(result);
     });      
   }
 });
-
 
 app.engine('hbs', exphbs({
     extname: 'hbs', 
@@ -124,10 +123,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Home
 app.get('/', function(req, res) {
-  
     postModel.collection.find({}).toArray(function(err, result) {
       if(err) throw err;
-      console.log("Read Successful!");
+      console.log("Read Home Successful!");
 
       res.render('home', {
         item: result,
@@ -137,33 +135,75 @@ app.get('/', function(req, res) {
 
 // View All Post
 app.get('/feed', function(req, res) { 
- 
-    postModel.collection.find({}).toArray(function(err, result) {
-      if(err) throw err;
-      console.log("Read Successful!");
+  postModel.collection.find({}).toArray(function(err, result) {
+    if(err) throw err;
+    console.log("Read View All Post Successful!");
 
-      res.render('feed', {
-        item: result,
-      });
+    res.render('feed', {
+      item: result,
     });
   });
+});
 
+// Search A Post
+app.post('/searchPost', function(req, res) {
+  //var title = "^" + req.body.;
+  //console.log(title);
+  //console.log("after reading search input");
+/*
+header
+name
+searchTitle
+header
+  postModel.find({ name: { $regex: title } }, function(err, result) {
+    if(err) throw err;
+    console.log();
+    
+    res.render('feed', {
+      item: result,
+    });
+    
+    var pattern = "^" + req.body.name;
 
+    studentModel.find({ name: { $regex: pattern } }, function(err, students) {
+      console.log(students);
+      res.send(students);
+    });
+  });
+*/
+});
 
+/*
 app.get('/PostList', function(req, res) {
     res.status(200).send(postArray);
 });
+*/
 
 // Login
 app.get('/login', function(req, res) {
+  /*
+  var username = "^" + req.body.logusername;
+  var password = "^" + req.body.logpassword;
+
+  console.log("BEFORE READING USER & PASS");
+  console.log(username);
+  console.log(password);
+  console.log("AFTER READING USER & PASS");
+  
+  userModel.find({ username: { $regex: username } }, function(err, result) {
+    if(err) throw err;
+    console.log(username);
+  });
+
+  userModel.find({ password: { $regex: password } }, function(err, result) {
+    if(err) throw err;
+    console.log(password);
+  });
+  */
   res.render('login');
 });
 
-
-
 app.post('/addUser', function(req, res) {
-
-  
   var user = new userModel({
     email: req.body.email,
     username: req.body.username,
@@ -186,22 +226,8 @@ app.post('/addUser', function(req, res) {
 
       res.send(result);
     }
- 
   });
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Profile Page (Logged in)
 app.get('/myprofile', function(req, res) {

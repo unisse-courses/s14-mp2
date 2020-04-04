@@ -25,7 +25,6 @@
   <section id="login" class="login-section" style="height: 1200px;">
 	<script>
 		var database = [];
-
 		let dummy1 = new User("Jacob_Salazar","dlsu1234", "Jacob_Salazar@gmail.com"  );
 		let dummy2 = new User("admin","admin", "Enrico_Cuison@gmail.com" );
 		let dummy3 = new User("jazzmine07","12345", "jazzmine_ilagan@yahoo.com");
@@ -50,14 +49,14 @@
 			database[3] = dummy4;
 			database[4] = dummy5;
 
-			for (var i=0; i <database.length; i++) 
+			for (var i=0; i < database.length; i++) 
 			{
 				if ((un == database[i].username ) && (pw == database[i].password)){
 					valid = true;
 				}
 			}
-			if (valid){
-				pageRedirect();
+			  if (valid){
+				  pageRedirect();
 				return false;
 			}
 			else if (invalid){
@@ -72,100 +71,93 @@
 		function pageRedirect(){
 			window.location.replace("/myprofile");
 		}    
-      
-
-        function checkForm() {
-            var usernameField = document.getElementById("username");
-			var emailField = document.getElementById("email");
-			var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-			var password1Field = document.getElementById("password1");
-			var password2Field = document.getElementById("password2");
-			var checker = true;
+    
+    function checkForm() {
+    var usernameField = document.getElementById("username");
+		var emailField = document.getElementById("email");
+		var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var password1Field = document.getElementById("password1");
+		var password2Field = document.getElementById("password2");
+		var checker = true;
 				
-			if(usernameField.value == ""){
-				usernameField.style.backgroundColor = "red";
-				checker = false;
-			}
-			if(emailField.value == ""){
-				emailField.style.backgroundColor = "red";
-				checker = false;
-			}
-			if(password1Field.value == ""){
-				password1Field.style.backgroundColor = "red";
-				checker = false;
-			}
-			if(password2Field.value == ""){
-					password2Field.style.backgroundColor = "red";
-				checker = false;
-			}
-			if(usernameField.value == "" && emailField.value == "" && password1Field.value == "" && password2Field.value == ""){
-				var noInput = alert("Please fill up form.");
-				checker = false;
-			}
-			if(usernameField.value != "" && emailField.value != "" && password1Field.value == "" && password2Field.value == ""){
-				var noPassword = alert("Please enter password.");
-				checker = false;
-			}
-			if(emailField.value != "" && !emailFormat.test(emailField.value)){
-				var incorrectEmail = alert("Invalid email address! Try again.");
-				checker = false;
-			}
-			if(password1Field.value != password2Field.value && password1Field.value != "" && password2Field.value != ""){
-				var incorrectPassword = alert("Password does not match! Try again.");
-				checker = false;
-			}
-					
-            if (checker == true)
-            {
-                let dummyVar = new User(usernameField.value,password1Field.value,emailField.value)
-                database.push(dummyVar);
-                //check if it is saved in array datbase
-                for (var i=0; i <database.length; i++) 
-                {
-					if ((dummyVar.username == database[i].username ) && (dummyVar.password == database[i].password)) 
-					{
-						alert("Added to the database: Hello" + " " + dummyVar.username + " email: " + dummyVar.email + " password: " + dummyVar.password);
-						pageRedirect();
-					}
-                }
-                return false;
-            }
-        }
-    </script>
+		if(usernameField.value == ""){
+			usernameField.style.backgroundColor = "red";
+			checker = false;
+		}
+		if(emailField.value == ""){
+			emailField.style.backgroundColor = "red";
+			checker = false;
+		}
+		if(password1Field.value == ""){
+			password1Field.style.backgroundColor = "red";
+			checker = false;
+		}
+		if(password2Field.value == ""){
+			password2Field.style.backgroundColor = "red";
+			checker = false;
+		}
+		if(usernameField.value == "" && emailField.value == "" && password1Field.value == "" && password2Field.value == ""){
+			var noInput = alert("Please fill up form.");
+			checker = false;
+		}
+		if(usernameField.value != "" && emailField.value != "" && password1Field.value == "" && password2Field.value == ""){
+			var noPassword = alert("Please enter password.");
+			checker = false;
+		}
+		if(emailField.value != "" && !emailFormat.test(emailField.value)){
+			var incorrectEmail = alert("Invalid email address! Try again.");
+			checker = false;
+		}
+		if(password1Field.value != password2Field.value && password1Field.value != "" && password2Field.value != ""){
+			var incorrectPassword = alert("Password does not match! Try again.");
+			checker = false;
+		}		
+    if (checker == true)
+    {
+      let dummyVar = new User(usernameField.value,password1Field.value,emailField.value)
+      database.push(dummyVar);
+      //check if it is saved in array datbase
+      for (var i=0; i <database.length; i++) {
+			  if ((dummyVar.username == database[i].username ) && (dummyVar.password == database[i].password)) 
+				{
+					alert("Added to the database: Hello" + " " + dummyVar.username + " email: " + dummyVar.email + " password: " + dummyVar.password);
+					pageRedirect();
+				}
+      }
+      return false;
+    }
+  }
+  </script>
 	
-    <div class="container">
-      <!-- LOGIN Section -->
-      <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto  text-center">
-          <img src = "img/login.png" style="width:50px;height:50px;"></img>
-          <h2 class="text-white mb-5">Login</h2>
+  <div class="container">
+    <!-- LOGIN Section -->
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-auto  text-center">
+        <img src = "img/login.png" style="width:50px;height:50px;"></img>
+        <h2 class="text-white mb-5">Login</h2>
 
-          <form class="form-inline d-flex flex-column" onsubmit="return validate()" >
-            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logusername" placeholder="USERNAME">
-            <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logpassword" placeholder="PASSWORD">
+        <form class="form-inline d-flex flex-column" onsubmit="return validate()" >
+            <input name = "logusername" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logusername" placeholder="USERNAME">
+            <input name = "logpassword" type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="logpassword" placeholder="PASSWORD">
             <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Login</button>
             <div id="errmsg">
-              
             </div>
-          </form> 
-        </div>
-
-        
-        
+        </form> 
       </div>
+    </div>
 
-<!-- REGISTER Section -->
+    <!-- REGISTER Section -->
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto  text-center" style="margin-top: 10rem;margin-bottom:auto;">
           <img src = "img/register.png" style="width:75px;height:75px;"></img>
           <h2 class="text-white mb-5">Register</h2>
 
-          <form class="form-inline d-flex flex-column" onsubmit="" >
-            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="email" placeholder="Email">
-            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="Username">
-            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password" placeholder="Password">
+          <form class="form-inline d-flex flex-column" onsubmit="return validate()" >
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regemail" placeholder="Email">
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regusername" placeholder="Username">
+            <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regpassword" placeholder="Password">
             <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="regConfpassword" placeholder="Confirm Password">
-            <button type="submit" id = "Register" class ="btn btn-primary btn-space mx-auto" value="submit">Register</button>
+            <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Register</button>
           </form>          
                
         </div>

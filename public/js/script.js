@@ -12,23 +12,42 @@ $(document).ready(function (){
 		};
 	
 		$.post('addUser', newUser, function(data, status) {
-		  console.log(data);
-	
-		  if (data.success) {
-			$('#msg').text(data.message);
-			$('#msg').removeClass('fail');
-			$('#msg').addClass('success');
-	
-			$('#name').val('');
-			$('#idnum').val('');
-			$("input[name='gender']:checked").prop("checked", false);
-		  } else {
-			$('#msg').text(data.message);
-			$('#msg').removeClass('success');
-			$('#msg').addClass('fail');
-		  }
+			console.log(data);
+			if (data.success) {
+				$('#msg').text(data.message);
+				$('#msg').removeClass('fail');
+				$('#msg').addClass('success');
+		
+				$('#name').val('');
+				$('#idnum').val('');
+				$("input[name='gender']:checked").prop("checked", false);
+		  	} else {
+				$('#msg').text(data.message);
+				$('#msg').removeClass('success');
+				$('#msg').addClass('fail');
+		  	}
 		});
-	  });
+	});
 
+	// POST call
+	$('#searchPost').click(function() {
+		var title = $('#searchTitle').val();
+	
+		$.post('searchPost', { title: title }, function(data, status) {
+			console.log(data);
+	
+			var postList = $('#postList');
+			postList.empty(); // refresh results
+	
+			
+		/*
+			var studentListContainer = $('#studentList');
+      		studentListContainer.empty(); // clear children every time (refresh results)
 
+     		data.forEach((item, i) => {
+        		addStudentDiv(item, studentListContainer);
+			  });
+		*/
+		});
+	});
 });

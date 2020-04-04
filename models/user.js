@@ -8,11 +8,9 @@ const options = { useNewUrlParser: true,
 mongoose.connect(databaseURL, options);
 
 const userSchema = new mongoose.Schema({
-	
-	email: { type:String,required:true },
+	email: { type:String, required:true },
 	username: { type:String, required: true, min:1, max:15  },
   password: { type:String, required: true, min:1, max:250 },
-    
 });
 
 module.exports = mongoose.model('User', userSchema);
