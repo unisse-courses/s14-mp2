@@ -1,18 +1,17 @@
 $(document).ready(function (){
 
     $('#Register').click(function() {
-		// Get the data from the form
-		var name = $('#name').val();
-		var idnum = $('#idnum').val();
-		var gender = $("input[name='gender']:checked").val();
+		var email = $('#email').val();
+		var username = $('#username').val();
+		var password = $('#password').val();
 	
-		var newStudent = {
-		  name: name,
-		  id: idnum,
-		  gender: gender
+		var newUser = {
+		  email: email,
+		  username: username,
+		  password: password
 		};
 	
-		$.post('addStudent', newStudent, function(data, status) {
+		$.post('addUser', newUser, function(data, status) {
 		  console.log(data);
 	
 		  if (data.success) {
@@ -28,7 +27,6 @@ $(document).ready(function (){
 			$('#msg').removeClass('success');
 			$('#msg').addClass('fail');
 		  }
-	
 		});
 	  });
 

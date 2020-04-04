@@ -12,7 +12,33 @@ const hostname = 'localhost';
 const options = { useUnifiedTopology: true };
 
 // Creating Collection [Featured]
-const postModel = require('./models/users');
+const userModel = require('./models/user');
+const postModel = require('./models/post');
+
+
+var userArray = [
+  {
+    email: 'Jacob_salazar@dlsu.edu.ph',
+    username: 'Jacob_salazar',
+    password: 'dlsu1234'
+  },
+  {
+    email: 'jazzmine_ilagan@yahoo.com',
+    username: 'jazzmine07',
+    password: 'dlsu1234'
+  },
+  {
+    email: 'Enrico_Cuison@gmail.com',
+    username: 'Enrico_cuison',
+    password:  'dlsu1234'
+  },
+  {
+    email: 'admin@dlsu.edu.ph',
+    username: 'admin',
+    password: 'admin'
+  }
+]
+
 
 var postArray = [
 	{
@@ -51,16 +77,37 @@ var postArray = [
 	  caption: "According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 million people are facing severe food shortages, with women and children bearing the brunt of the crisis. Half of the population of Zimbabwe or 7.7 million people are facing its worst hunger emergency in a decade. Let us help the people who are starving, let us share our blessings to them. Donate now.",
 	  tags: "#famine #Africa #HelpAfrica", 
   }
-  // TO DO insert remaing post -- limit featured post to 6
 ];
 
 // Insert postArray to DB
 
-  postModel.collection.insertMany(postArray, function(err, res){
+  userModel.collection.insertMany(userArray, function(err, res){
     if(err) throw err;
-    console.log("InsertMany Successful!");
-    console.log(res);
-  });
+    console.log("Insert Users Successful!");
+
+  for (i =0 ;i<postArray.length;i++){
+// assigns different post for different users... posts are distributed to the predefined users
+    if(i<3)
+    var owner_id = res.insertedIds[0];
+    else if (i>=3 && i<5)
+    var owner_id = res.insertedIds[1];
+    else
+    var owner_id = res.insertedIds[2];
+    
+    const post = new postModel({
+      img: postArray[i].img,
+      header: postArray[i].header,
+      caption: postArray[i].caption,
+      tags: postArray[i].tags,
+      owner: owner_id
+    });
+    post.save(function (err, result) {
+      if (err) throw err;
+      console.log(result);
+    });      
+  }
+});
+
 
 app.engine('hbs', exphbs({
     extname: 'hbs', 
@@ -112,6 +159,50 @@ app.get('/login', function(req, res) {
   res.render('login');
 });
 
+
+
+app.post('/addUser', function(req, res) {
+
+  
+  var user = new userModel({
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  user.save(function(err, user) {
+    var result;
+
+    if (err) {
+      console.log(err.errors);
+
+      result = { success: false, message: "User was not created!" }
+      res.send(result);
+    } else {
+      console.log("Successfully added a new USER!");
+      console.log(user); 
+     
+      result = { success: true, message: "User created!" }
+
+      res.send(result);
+    }
+ 
+  });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Profile Page (Logged in)
 app.get('/myprofile', function(req, res) {
   res.render('myprofile');
@@ -126,4 +217,4 @@ app.use(express.static('public'));
 
 app.listen(port, function() { 
     console.log(`Server running at http://${hostname}:${port}/`); 
-})
+});
