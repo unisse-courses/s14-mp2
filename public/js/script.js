@@ -59,10 +59,5 @@ $(document).ready(function (){
 		$.post('veriifyLogin', { user: user, pass: pass }, function(data, status) {
 			console.log(data);
 		});
-		/*
-		$.post('veriifyLogin', { pass: pass }, function(data, status) {
-			console.log(data);
-		});
-		*/
 	});
 });

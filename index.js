@@ -167,22 +167,32 @@ app.get('/login', function(req, res) {
 });
 
 app.post('/veriifyLogin', function(req, res){
+  // getting data from form
   var user = req.body.user;
   var pass = req.body.pass;
 
   userModel.find({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
-    console.log("Result:")
+
     console.log(result);
+    /*
+    console.log(user);
+    console.log(pass);
+    console.log(userModel.username);
+    console.log(userModel.password);
+    
+    if(result.username == user && result.password == pass) {
+      res.render('login');
+    }
+    */
   });
 
-  /*
+  
   // List of users checker 
   userModel.collection.find({}).toArray(function(err, result) {
   if(err) throw err;
   console.log("List of users");
   console.log(result);
   });
-  */
 });
 
 app.post('/addUser', function(req, res) {
