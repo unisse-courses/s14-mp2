@@ -172,21 +172,22 @@ app.post('/veriifyLogin', function(req, res){
   var pass = req.body.pass;
 
   userModel.find({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
-
+    
     console.log(result);
     /*
-    console.log(user);
-    console.log(pass);
-    console.log(userModel.username);
-    console.log(userModel.password);
-    
-    if(result.username == user && result.password == pass) {
-      res.render('login');
-    }
+    console.log("BEFORE RESULT[0]");
+    console.log(result[0].username);
+    console.log(result[0].password);
     */
+
+    if(result[0].username == user && result[0].password == pass) {
+      console.log("INSIDE IF STATEMENT");
+    }
+    app.get('/myprofile', function(req, res) {
+      res.render('myprofile');
+    });
   });
 
-  
   // List of users checker 
   userModel.collection.find({}).toArray(function(err, result) {
   if(err) throw err;
@@ -195,6 +196,7 @@ app.post('/veriifyLogin', function(req, res){
   });
 });
 
+// Adding user from form (Registration)
 app.post('/addUser', function(req, res) {
   var user = new userModel({
     email: req.body.email,
