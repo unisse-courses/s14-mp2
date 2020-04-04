@@ -147,30 +147,16 @@ app.get('/feed', function(req, res) {
 
 // Search A Post
 app.post('/searchPost', function(req, res) {
-  //var title = "^" + req.body.;
-  //console.log(title);
-  //console.log("after reading search input");
-/*
-header
-name
-searchTitle
-header
-  postModel.find({ name: { $regex: title } }, function(err, result) {
+  var search = req.body.title;
+  console.log(search);
+
+  postModel.find({ header: { $regex: search } }, function(err, result) {
     if(err) throw err;
-    console.log();
-    
+    console.log(result);
     res.render('feed', {
       item: result,
     });
-    
-    var pattern = "^" + req.body.name;
-
-    studentModel.find({ name: { $regex: pattern } }, function(err, students) {
-      console.log(students);
-      res.send(students);
-    });
   });
-*/
 });
 
 /*
