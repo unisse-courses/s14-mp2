@@ -152,39 +152,37 @@ app.post('/searchPost', function(req, res) {
 
   postModel.find({ header: { $regex: search } }, function(err, result) {
     if(err) throw err;
-    console.log(result);
-    res.send(result); 
+    console.log(result);  // checker,del after
+    /*
+    res.render('feed', {
+      item: result,
+    });
+    */
   });
 });
-
-/*
-app.get('/PostList', function(req, res) {
-    res.status(200).send(postArray);
-});
-*/
 
 // Login
 app.get('/login', function(req, res) {
-  /*
-  var username = "^" + req.body.logusername;
-  var password = "^" + req.body.logpassword;
+  res.render('login');
+});
 
-  console.log("BEFORE READING USER & PASS");
-  console.log(username);
-  console.log(password);
-  console.log("AFTER READING USER & PASS");
-  
-  userModel.find({ username: { $regex: username } }, function(err, result) {
-    if(err) throw err;
-    console.log(username);
+app.post('/veriifyLogin', function(req, res){
+  var user = req.body.user;
+  var pass = req.body.pass;
+
+  userModel.find({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
+    console.log("Result:")
+    console.log(result);
   });
 
-  userModel.find({ password: { $regex: password } }, function(err, result) {
-    if(err) throw err;
-    console.log(password);
+  /*
+  // List of users checker 
+  userModel.collection.find({}).toArray(function(err, result) {
+  if(err) throw err;
+  console.log("List of users");
+  console.log(result);
   });
   */
-  res.render('login');
 });
 
 app.post('/addUser', function(req, res) {
@@ -205,9 +203,7 @@ app.post('/addUser', function(req, res) {
     } else {
       console.log("Successfully added a new USER!");
       console.log(user); 
-     
       result = { success: true, message: "User created!" }
-
       res.send(result);
     }
   });

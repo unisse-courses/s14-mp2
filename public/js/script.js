@@ -29,7 +29,7 @@ $(document).ready(function (){
 		});
 	});
 
-	// POST call
+	// POST call [search post]
 	$('#searchPost').click(function() {
 		var title = $('#searchTitle').val();
 	
@@ -49,5 +49,20 @@ $(document).ready(function (){
 			  });
 		*/
 		});
+	});
+
+	//POST call [verify user]
+	$('#verifyLogin').click(function() {
+		var user = $('#logusername').val();
+		var pass = $('#logpassword').val();
+	
+		$.post('veriifyLogin', { user: user, pass: pass }, function(data, status) {
+			console.log(data);
+		});
+		/*
+		$.post('veriifyLogin', { pass: pass }, function(data, status) {
+			console.log(data);
+		});
+		*/
 	});
 });
