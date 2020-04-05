@@ -150,14 +150,13 @@ app.post('/searchPost', function(req, res) {
   var search = req.body.title;
   console.log(search);
 
-  postModel.find({ header: { $regex: search } }, function(err, result) {
+  postModel.find({ header: { $regex: search, $options:'i' } }, function(err, post) {
     if(err) throw err;
-    console.log(result);  // checker,del after
-    /*
+    console.log(post);  // checker,del after
+    
     res.render('feed', {
-      item: result,
+      item: post,
     });
-    */
   });
 });
 
@@ -187,10 +186,7 @@ app.post('/veriifyLogin', function(req, res){
 
     if(result.username == user && result.password == pass) { 
       console.log("ACCOUNT FOUND");
-      res.redirect('/myprofile',{
-        user: user,
-        pass:pass
-      });
+      res.redirect('myprofile');
       console.log("after redirect");
     }
 
