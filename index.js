@@ -175,19 +175,26 @@ app.get('/myprofile', function(req, res) {
 
 app.post('/veriifyLogin', function(req, res){
   // getting data from form
+  
   var user = req.body.user;
   var pass = req.body.pass;
-
+ 
+ 
   userModel.findOne({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
     if(err) throw err;
     console.log("Searching for account...");
     console.log(result);
 
-    if(result.username == user && result.password == pass) { // searching for the account
-      console.log("INSIDE IF STATEMENT");
-      res.redirect('/myprofile');
+    if(result.username == user && result.password == pass) { 
+      console.log("ACCOUNT FOUND");
+      res.redirect('/myprofile',{
+        user: user,
+        pass:pass
+      });
       console.log("after redirect");
     }
+
+
   });
 
   /*
