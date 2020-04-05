@@ -165,6 +165,10 @@ app.get('/login', function(req, res) {
   console.log("Read Login Successful!");
   res.render('login');
 });
+app.get('/register', function(req, res) {
+  console.log("Read Register Successful!");
+  res.render('register');
+});
 
 // Profile Page (Logged in)
 app.get('/myprofile', function(req, res) {

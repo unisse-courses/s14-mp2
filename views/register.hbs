@@ -25,24 +25,26 @@
   <section id="login" class="login-section" style="height: 1200px;">
     // script
   <div class="container">
-    <!-- LOGIN Section -->
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-auto  text-center">
-        <img src = "img/login.png" style="width:50px;height:50px;"></img>
-        <h2 class="text-white mb-5">Login</h2>
+   
 
-        <form class="form-inline d-flex flex-column" action = "veriifyLogin" method="POST" >
-            <input name = "user" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-0" id="logusername"  placeholder="USERNAME">
-            <input name = "pass" type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-3" id="logpassword"  placeholder="PASSWORD">
-            <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Login</button>
-            <a type="button"  style="color: azure;" id="reg" href="/register">No account yet? Click here.</a>
+    <!-- REGISTER Section -->
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center" style="margin-top: 2rem; margin-bottom:auto;">
+          <img src = "img/register.png" style="width:75px;height:75px;"></img>
+          <h2 class="text-white mb-1">Register</h2>
 
-            <div id="errmsg">
-            </div>
-        </form> 
+          <form class="form-inline d-flex" onsubmit="return" style="float: left;" >
+            <input type="text" class="form-control flex-fill mr-1 mr-sm-2 mb-3 mb-sm-0" id="email" style="width:600px" placeholder="Email">
+            <input type="text" class="form-control flex-fill mr-1 mr-sm-2 mb-3 mb-sm-0" id="username" style="width:600px" placeholder="Username">
+            <input type="password" class="form-control flex-fill mr-2 mr-sm-2 mb-3 mb-sm-0" id="password" style="width:600px" placeholder="Password">
+            <input type="password" class="form-control flex-fill mr-2 mr-sm-2 mb-3 mb-sm-0" id="regConfpassword" style="width:600px" placeholder="Confirm Password">
+            <button type="submit" id="Register"class ="btn btn-primary  btn-space mx-auto" value="submit">Register</button>
+          </form>          
+          <a type="button"  style="color: azure;" id="reg" href="/login">Have an account? Click here.</a>
+               
+        </div>
       </div>
     </div>
-  </div>
   </section>
 
   <!-- Contact Section -->
