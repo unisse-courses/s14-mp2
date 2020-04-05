@@ -57,7 +57,7 @@ $(document).ready(function (){
 		var pass = $('#logpassword').val();
 	
 		$.post('veriifyLogin', { user: user, pass: pass }, function(data, status) {
-			console.log(data);
+			
 		});
 	});
 });

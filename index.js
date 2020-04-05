@@ -163,7 +163,14 @@ app.post('/searchPost', function(req, res) {
 
 // Login
 app.get('/login', function(req, res) {
+  console.log("Read Login Successful!");
   res.render('login');
+});
+
+// Profile Page (Logged in)
+app.get('/myprofile', function(req, res) {
+  console.log("Read MyProfile Successful!");
+  res.render('myprofile');
 });
 
 app.post('/veriifyLogin', function(req, res){
@@ -171,29 +178,26 @@ app.post('/veriifyLogin', function(req, res){
   var user = req.body.user;
   var pass = req.body.pass;
 
-  userModel.find({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
-    
+  userModel.findOne({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
+    if(err) throw err;
+    console.log("Searching for account...");
     console.log(result);
-    /*
-    console.log("BEFORE RESULT[0]");
-    console.log(result[0].username);
-    console.log(result[0].password);
-    */
 
-    if(result[0].username == user && result[0].password == pass) {
+    if(result.username == user && result.password == pass) { // searching for the account
       console.log("INSIDE IF STATEMENT");
+      res.redirect('/myprofile');
+      console.log("after redirect");
     }
-    app.get('/myprofile', function(req, res) {
-      res.render('myprofile');
-    });
   });
 
+  /*
   // List of users checker 
   userModel.collection.find({}).toArray(function(err, result) {      
   if(err) throw err;
   console.log("List of users");
   console.log(result);
   });
+  */
 });
 
 // Adding user from form (Registration)
@@ -219,11 +223,6 @@ app.post('/addUser', function(req, res) {
       res.send(result);
     }
   });
-});
-
-// Profile Page (Logged in)
-app.get('/myprofile', function(req, res) {
-  res.render('myprofile');
 });
 
 // Profile Page (Logged in)
