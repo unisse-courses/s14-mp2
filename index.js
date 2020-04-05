@@ -189,7 +189,7 @@ app.post('/veriifyLogin', function(req, res){
   });
 
   // List of users checker 
-  userModel.collection.find({}).toArray(function(err, result) {
+  userModel.collection.find({}).toArray(function(err, result) {      
   if(err) throw err;
   console.log("List of users");
   console.log(result);
