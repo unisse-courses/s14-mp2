@@ -1,5 +1,4 @@
 <body id="page-top">
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top " id="mainNav" >
     <div class="container">
@@ -21,27 +20,25 @@
     </div>
   </nav>
 
-  <!-- Login Section -->
+  <!-- REGISTER Section -->
   <section id="login" class="login-section" style="height: 1200px;">
-    // script
-  <div class="container">
-   
-
-    <!-- REGISTER Section -->
+    <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center" style="margin-top: 2rem; margin-bottom:auto;">
           <img src = "img/register.png" style="width:75px;height:75px;"></img>
           <h2 class="text-white mb-1">Register</h2>
 
-          <form class="form-inline d-flex" onsubmit="return" style="float: left;" >
-            <input type="text" class="form-control flex-fill mr-1 mr-sm-2 mb-3 mb-sm-0" id="email" style="width:600px" placeholder="Email">
-            <input type="text" class="form-control flex-fill mr-1 mr-sm-2 mb-3 mb-sm-0" id="username" style="width:600px" placeholder="Username">
-            <input type="password" class="form-control flex-fill mr-2 mr-sm-2 mb-3 mb-sm-0" id="password" style="width:600px" placeholder="Password">
-            <input type="password" class="form-control flex-fill mr-2 mr-sm-2 mb-3 mb-sm-0" id="regConfpassword" style="width:600px" placeholder="Confirm Password">
-            <button type="submit" id="Register"class ="btn btn-primary  btn-space mx-auto" value="submit">Register</button>
+          <div style="color: red;">{{> messages}}</div>
+
+          <form class="form-inline d-flex" style="float: left;" action="/register" method="POST">
+            <input name="email"       id="email" type="text" class="form-control flex-fill mr-1 mr-sm-2 mb-3 mb-sm-0" style="width:600px" placeholder="Email">
+            <input name="username"    id="username" type="text" class="form-control flex-fill mr-1 mr-sm-2 mb-3 mb-sm-0" style="width:600px" placeholder="Username">
+            <input name="password"    id="password" type="password" class="form-control flex-fill mr-2 mr-sm-2 mb-3 mb-sm-0" style="width:600px" placeholder="Password">
+            <input name="confirmPass" id="confirmPass" type="password" class="form-control flex-fill mr-2 mr-sm-2 mb-3 mb-sm-0" style="width:600px" placeholder="Confirm Password">
+            <button type="submit"     id="Register"class ="btn btn-primary  btn-space mx-auto" value="submit">Register</button>
           </form>          
-          <a type="button"  style="color: azure;" id="reg" href="/login">Have an account? Click here.</a>
-               
+
+          <a type="button"  style="color: azure;" id="reg" href="/login">Have an account? Click here.</a> 
         </div>
       </div>
     </div>
@@ -51,10 +48,11 @@
   <section class="contact-section bg-black" id="contact">
     <div class="container">
       <div class="row">
+
         <div class="col-md-4 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
-			  <i class="fas fa-envelope text-primary mb-2"></i>
+              <i class="fas fa-envelope text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Enrico Luis Cuison</h4>
               <hr class="my-4">
               <div class="small text-black-50"> enrico_cuison@dlsu.edu.ph </div>
@@ -80,11 +78,12 @@
               <h4 class="text-uppercase m-0">Jacob Israel Salazar</h4>
               <hr class="my-4">
               <div class="small text-black-50"> jacob_salazar@dlsu.edu.ph </div>
+            </div>
           </div>
         </div>
       </div>
-	  
-	 <div class="social d-flex justify-content-center">
+
+      <div class="social d-flex justify-content-center">
         <a href="#" class="mx-2">
           <i class="fab fa-twitter"></i>
         </a>
@@ -95,7 +94,6 @@
           <i class="fab fa-github"></i>
         </a>
       </div>
-
     </div>
   </section>
 </body>

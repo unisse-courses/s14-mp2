@@ -1,43 +1,9 @@
-const express = require('express');
-const path = require('path');
-const exphbs = require('express-handlebars');
-const handlebars = require('handlebars');
-const bodyParser = require('body-parser');
+const router = require('express').Router();
+const userController = require('../controllers/userController');
+const { registerValidation, loginValidation } = require('../validators.js');
+const { isPublic, isPrivate } = require('../middlewares/checkAuth');
 
-const app = express();
-const port = 3000;
-const hostname = 'localhost';
-
-// additional connection options
-const options = { useUnifiedTopology: true };
-
-// Creating Collection [Featured]
-const userModel = require('./models/user');
-const postModel = require('./models/post');
-
-// Users
-var userArray = [
-  {
-    email: 'Jacob_salazar@dlsu.edu.ph',
-    username: 'Jacob_salazar',
-    password: 'dlsu1234'
-  },
-  {
-    email: 'jazzmine_ilagan@yahoo.com',
-    username: 'jazzmine07',
-    password: 'animeislife'
-  },
-  {
-    email: 'Enrico_Cuison@gmail.com',
-    username: 'Enrico_cuison',
-    password:  'dlsu1234'
-  },
-  {
-    email: 'admin@dlsu.edu.ph',
-    username: 'admin',
-    password: 'admin'
-  }
-]
+//const postModel = require('./models/post');
 
 // Posts
 var postArray = [
@@ -79,6 +45,7 @@ var postArray = [
   }
 ];
 
+/*
 // Inserting to DB
 userModel.collection.insertMany(userArray, function(err, res){
   if(err) throw err;
@@ -107,32 +74,15 @@ userModel.collection.insertMany(userArray, function(err, res){
     });      
   }
 });
+*/
 
-app.engine('hbs', exphbs({
-    extname: 'hbs', 
-    defaultView: 'main',
-    layoutsDir: path.join(__dirname, '/views/layouts'), 
-    partialsDir: path.join(__dirname, '/views/partials'),
-}));
-
-app.set('view engine', 'hbs');
-
-// Configuration for handling API endpoint data
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-// Home
-app.get('/', function(req, res) {
-    postModel.collection.find({}).toArray(function(err, result) {
-      if(err) throw err;
-      console.log("Read Home Successful!");
-
-      res.render('home', {
-        item: result,
-      });
-    });
+// Get homepage
+router.get('/', isPublic, (req, res) => {
+  console.log("Read home successful!");
+  res.render('home');
 });
 
+/*
 // View All Post
 app.get('/feed', function(req, res) { 
   postModel.collection.find({}).toArray(function(err, result) {
@@ -159,86 +109,35 @@ app.post('/searchPost', function(req, res) {
     });
   });
 });
+*/
 
-// Login
-app.get('/login', function(req, res) {
-  console.log("Read Login Successful!");
-  res.render('login');
-});
-app.get('/register', function(req, res) {
-  console.log("Read Register Successful!");
-  res.render('register');
-});
-
-// Profile Page (Logged in)
-app.get('/myprofile', function(req, res) {
-  console.log("Read MyProfile Successful!");
-  res.render('myprofile');
-});
-
-app.post('/veriifyLogin', function(req, res){
-  // getting data from form
-  
-  var user = req.body.user;
-  var pass = req.body.pass;
- 
- 
-  userModel.findOne({ username: { $regex: user }, password: { $regex: pass } }, function(err, result) {
-    if(err) throw err;
-    console.log("Searching for account...");
-    console.log(result);
-
-    if(result.username == user && result.password == pass) { 
-      console.log("ACCOUNT FOUND");
-      res.redirect('myprofile');
-      console.log("after redirect");
-    }
-
-
-  });
-
-  /*
-  // List of users checker 
-  userModel.collection.find({}).toArray(function(err, result) {      
-  if(err) throw err;
-  console.log("List of users");
-  console.log(result);
-  });
-  */
-});
-
-// Adding user from form (Registration)
-app.post('/addUser', function(req, res) {
-  var user = new userModel({
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password
-  });
-
-  user.save(function(err, user) {
-    var result;
-
-    if (err) {
-      console.log(err.errors);
-
-      result = { success: false, message: "User was not created!" }
-      res.send(result);
-    } else {
-      console.log("Successfully added a new USER!");
-      console.log(user); 
-      result = { success: true, message: "User created!" }
-      res.send(result);
-    }
+// Get login page
+router.get('/login', isPublic, (req, res) => {
+  console.log("Read login successful!");
+  res.render('login', {
+    pageTitle: 'Login',
   });
 });
 
-// Profile Page (Logged in)
-app.get('/donate', function(req, res) {
-  res.render('donate');
+// Logout
+router.get('/logout', isPrivate, userController.logoutUser);
+
+// Get register page
+router.get('/register', isPublic, (req, res) => {
+  console.log("Read register successful!");
+  res.render('register', {
+    pageTitle: 'Register',
+  });
 });
 
-app.use(express.static('public'));
-
-app.listen(port, function() { 
-    console.log(`Server running at http://${hostname}:${port}/`); 
+// Get myprofile page
+router.get('/myprofile', isPrivate, (req, res) => {
+  console.log("Read myprofile successful!");
+  res.render('myprofile', { username: req.session.username } );
 });
+
+// POST methods for form submissions
+router.post('/register', isPublic, registerValidation, userController.registerUser);
+router.post('/login', isPublic, loginValidation, userController.loginUser);
+
+module.exports = router;
