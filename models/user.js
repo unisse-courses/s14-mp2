@@ -11,29 +11,6 @@ const User = mongoose.model('users', userSchema);
 
 console.log("users")
 
-/*
-var userArray = [
-  {
-    email: 'Jacob_salazar@dlsu.edu.ph',
-    username: 'Jacob_salazar',
-    password: 'dlsu1234'
-  },
-  {
-    email: 'jazzmine_ilagan@yahoo.com',
-    username: 'jazzmine07',
-    password: 'animeislife'
-  },
-  {
-    email: 'Enrico_Cuison@gmail.com',
-    username: 'Enrico_cuison',
-    password:  'dlsu1234'
-  },
-  {
-    email: 'admin@dlsu.edu.ph',
-    username: 'admin',
-    password: 'admin'
-  }
-]*/
 
 exports.updateUser = function(user,next) {
 

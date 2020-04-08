@@ -82,10 +82,31 @@ for(i = 0; i < userArray.length; i++){
         
     userModel.create(user, function (err, result) {
       if (err) throw err;
+
+      console.log("========================================================" + i)
       console.log(result);
+      console.log("========================================================" + i)
 
+      console.log("\tCURRENT: "+ result._id);
+      
+      for (j =0 ; j<postArray.length;j ++){
+        var owner_id = result._id;
+    
+        const post = {
+          img: postArray[j].img,
+          header: postArray[j].header,
+          caption: postArray[j].caption,
+          tags: postArray[j].tags,
+          owner: owner_id
+        };
 
-
-    });  
+        postModel.createPost(post, function(err, postResult) {
+          if (err) throw err;
+          console.log("========================================================" + j)
+          console.log(postResult);
+          console.log("========================================================" + j)
+        })
+      } 
+    }); 
   });
 }
