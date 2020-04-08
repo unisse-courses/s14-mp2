@@ -38,6 +38,7 @@ $(document).ready(function (){
 	
 			var postList = $('#postList');
 			postList.empty(); // refresh results
+			postList.append(data);
 	
 			
 		/*

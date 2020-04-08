@@ -9,7 +9,9 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('users', userSchema);
 
-// Users
+console.log("users")
+
+/*
 var userArray = [
   {
     email: 'Jacob_salazar@dlsu.edu.ph',
@@ -31,29 +33,25 @@ var userArray = [
     username: 'admin',
     password: 'admin'
   }
-]
+]*/
 
-for(i = 0; i < userArray.length; i++){
-  console.log("Reading userArray:");
-  console.log(userArray[i].password);
-  const saltRounds = 10;
+exports.updateUser = function(user,next) {
 
-  const user = new User({
-    email: userArray[i].email,
-    username: userArray[i].username,
-    password: userArray[i].password
-  });
-
-  // Hash password
-	bcrypt.hash(userArray[i].password, saltRounds, (err, hashed) => {
-		user.password = hashed;
-        
-    user.save(function (err, result) {
-      if (err) throw err;
-      console.log(result);
-    });  
-  });
 }
+
+exports.getAll = function(next){
+  User.find({},function(err, result) {
+    const users = [];
+    
+    result.forEach(function(user){
+      users.push(user.toObject());
+    });
+    
+    next(err, users);
+  });
+};
+
+
 
 // Saving a user given the validated object
 exports.create = function(obj, next) {

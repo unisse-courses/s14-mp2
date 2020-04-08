@@ -1,3 +1,5 @@
+console.log("validators");
+
 const { body } = require('express-validator');
 const registerValidation = [
   // Email should not be empty and valid

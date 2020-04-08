@@ -1,14 +1,31 @@
-
-const router = require('express').Router();
-const userController = require('../controllers/userController');
-const { registerValidation, loginValidation } = require('../validators.js');
-const { isPublic, isPrivate } = require('../middlewares/checkAuth');
-
+const userModel = require('./models/user');
 const postModel = require('./models/post');
+const bcrypt = require('bcrypt');
 
-console.log("index main");
+// Users
+var userArray = [
+  {
+    email: 'Jacob_salazar@dlsu.edu.ph',
+    username: 'Jacob_salazar',
+    password: 'dlsu1234'
+  },
+  {
+    email: 'jazzmine_ilagan@yahoo.com',
+    username: 'jazzmine07',
+    password: 'animeislife'
+  },
+  {
+    email: 'Enrico_Cuison@gmail.com',
+    username: 'Enrico_cuison',
+    password:  'dlsu1234'
+  },
+  {
+    email: 'admin@dlsu.edu.ph',
+    username: 'admin',
+    password: 'admin'
+  }
+];
 
-// Posts
 var postArray = [
 	{
 	  img: 'img/taal_volcano.jpg',
@@ -48,112 +65,27 @@ var postArray = [
   }
 ];
 
-console.log("index.js");
+for(i = 0; i < userArray.length; i++){
+  console.log("Reading userArray:");
+  console.log(userArray[i].password);
+  const saltRounds = 10;
 
+  const user = {
+    email: userArray[i].email,
+    username: userArray[i].username,
+    password: userArray[i].password
+  };
 
-
-/*
-// Inserting to DB
-userModel.collection.insertMany(userArray, function(err, res){
-  if(err) throw err;
-  console.log("Insert Users Successful!");
-
-  for (i =0 ; i<postArray.length;i ++){
-  // assigns different post for different users... posts are distributed to the predefined users
-    if(i<3)
-      var owner_id = res.insertedIds[0];
-    else if (i>=3 && i<5)
-      var owner_id = res.insertedIds[1];
-    else
-      var owner_id = res.insertedIds[2];
-  
-    const post = new postModel({
-      img: postArray[i].img,
-      header: postArray[i].header,
-      caption: postArray[i].caption,
-      tags: postArray[i].tags,
-      owner: owner_id
-    });
-
-    post.save(function (err, result) {
+  // Hash password
+	bcrypt.hash(userArray[i].password, saltRounds, (err, hashed) => {
+		user.password = hashed;
+        
+    userModel.create(user, function (err, result) {
       if (err) throw err;
       console.log(result);
-    });      
-  }
-});
-*/
 
-// Get homepage
-router.get('/', isPublic, (req, res) => {
-  console.log("Read home successful!");
-  res.render('home');
-  console.log("render home");
-});
 
-/*
-// View All Post
-app.get('/feed', function(req, res) { 
-  postModel.collection.find({}).toArray(function(err, result) {
-    if(err) throw err;
-    console.log("Read View All Post Successful!");
 
-    res.render('feed', {
-      item: result,
-    });
+    });  
   });
-});
-*/
-// Search A Post
-app.post('/searchPost', function(req, res) {
-  var search = req.body.title;
-  console.log(search);
-  //make function find
-  postModel.find({ header: { $regex: search, $options:'i' } }, function(err, posts) {
-    if(err) throw err;
-    console.log(posts);  // checker,del after
-
-    res.render('partials/card', {item: posts}, function(err, html) {
-      res.send(html);
-    })
-    /*
-    res.render('feed', {
-      item: post,
-    });
-    */
-  });
-});
-
-
-// Get login page
-router.get('/login', isPublic, (req, res) => {
-  console.log("Read login successful!");
-  res.render('login', {
-    pageTitle: 'Login',
-  });
-  console.log("login");
-});
-
-// Logout
-router.get('/logout', isPrivate, userController.logoutUser);
-
-// Get register page
-router.get('/register', isPublic, (req, res) => {
-  console.log("Read register successful!");
-  res.render('register', {
-    pageTitle: 'Register',
-  });
-  console.log("register");
-});
-
-// Get myprofile page
-router.get('/myprofile', isPrivate, (req, res) => {
-  console.log("Read myprofile successful!");
-  res.render('myprofile', { username: req.session.username } );
-  console.log("myprofile");
-});
-
-// POST methods for form submissions
-router.post('/register', isPublic, registerValidation, userController.registerUser);
-router.post('/login', isPublic, loginValidation, userController.loginUser);
-
-module.exports = router;
+}
