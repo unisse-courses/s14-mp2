@@ -26,6 +26,7 @@ var userArray = [
   }
 ];
 
+// Posts
 var postArray = [
 	{
 	  img: 'img/taal_volcano.jpg',
@@ -66,8 +67,6 @@ var postArray = [
 ];
 
 for(i = 0; i < userArray.length; i++){
-  console.log("Reading userArray:");
-  console.log(userArray[i].password);
   const saltRounds = 10;
 
   const user = {
@@ -83,12 +82,9 @@ for(i = 0; i < userArray.length; i++){
     userModel.create(user, function (err, result) {
       if (err) throw err;
 
-      console.log("========================================================" + i)
-      console.log(result);
-      console.log("========================================================" + i)
+      //console.log("Users created");
+      //console.log(result);
 
-      console.log("\tCURRENT: "+ result._id);
-      
       for (j =0 ; j<postArray.length;j ++){
         var owner_id = result._id;
     
@@ -102,9 +98,8 @@ for(i = 0; i < userArray.length; i++){
 
         postModel.createPost(post, function(err, postResult) {
           if (err) throw err;
-          console.log("========================================================" + j)
-          console.log(postResult);
-          console.log("========================================================" + j)
+          //console.log("Post results");
+          //console.log(postResult);
         })
       } 
     }); 

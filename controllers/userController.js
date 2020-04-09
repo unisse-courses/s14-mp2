@@ -1,4 +1,3 @@
-
 const userModel = require('../models/user');
 const postModel = require('../models/post');
 const { validationResult } = require('express-validator');
@@ -30,7 +29,6 @@ exports.registerUser = (req, res) => {
 							res.redirect('/register');
 						} else {
               req.flash('success_msg', 'You are now registered! Login below.');
-              console.log("List of users [usermodel create usercontroller]");
               console.log(user);
 							res.redirect('/login');
 						}

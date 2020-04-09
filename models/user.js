@@ -3,19 +3,18 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
 	email: { type: String, required: true },
-	username: { type:String, required: true, min:5, max:15  },
-  password: { type:String, required: true, min:5, max:18 },
+	username: { type: String, required: true, min:5, max:15  },
+  password: { type: String, required: true, min:5, max:18 },
 });
 
 const User = mongoose.model('users', userSchema);
 
-console.log("users")
+// TODO
+//exports.updateUser = function(user,next) {
 
+//}
 
-exports.updateUser = function(user,next) {
-
-}
-
+// Getting all users
 exports.getAll = function(next){
   User.find({},function(err, result) {
     const users = [];
@@ -27,8 +26,6 @@ exports.getAll = function(next){
     next(err, users);
   });
 };
-
-
 
 // Saving a user given the validated object
 exports.create = function(obj, next) {
@@ -52,6 +49,3 @@ exports.getOne = function(query, next) {
     next(err, user);
   });
 };
-
-console.log("List of all users");
-console.log(User);
