@@ -1,6 +1,7 @@
 <title>My Profile</title>
 <body id="page-top">
-    <!-- Navigation -->
+  
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">Charity App - {{username}}</a>
@@ -30,7 +31,7 @@
     </div>
   </nav>
 
-  <!-- About Section -->
+  <!-- About Me Section -->
   <section id="about" class="about-section">
     <div class="container">
       <div class="row">
@@ -48,7 +49,7 @@
 			});
 			</script>
 			  <h2 class="text-white mb-4">Hello {{username}}! </h2>
-        <p class="text-white mb-4"> This is your profile page, you can edit this by clicking "edit". </p>
+        <p class="text-white mb-4"> This is your profile page, you can edit this by clicking "edit". *note: not yet working</p>
 			  <button id="edit">Edit</button>
         </div>
       </div>
@@ -58,6 +59,7 @@
   
   <!-- Projects Section -->
   <section id="projects" class="projects-section bg-light text-center">
+
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -67,71 +69,77 @@
       </div>
     </div>
 
-      
-      <div id="columns" style="text-align: left;">
-   
-        <figure class = "item1">
-          <img src="pics/taal_volcano.jpg">
-          <h2>Eruption of Taal Volcano 2020</h2>
-          <figcaption class="caption">n 12th of January 2020 (Sunday), the taal volcano started spewing ash. The Philippine Institute of Volcanology 
+    <div id="columns" style="text-align: left;">
+      <figure class = "item1">
+        <img src="img/taal_volcano.jpg">
+        <h2>Eruption of Taal Volcano 2020</h2>
+        <figcaption class="caption">On 12th of January 2020 (Sunday), the taal volcano started spewing ash. The Philippine Institute of Volcanology 
         and Seismology (Phivolcs) raised the alert status to level 2. That same day, the alert level was raised to level 4, 
         where there was frequent volcanic lightning activity. By nightfall, the ashfall already reached certain areas such 
         as Calabarzon and Metro Manila. We are in need of donations for those who are affected, no matter how small, will be deeply appreciated. <br><br>
         <p> #taaleruption #taalvolcano #naturalcalamity #volcano #philippines </p>
         </figcaption>
-      <!--REGISTER-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">  Donate Now</a>
-      </div> 
 
-      <!--EDIT-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
-      </div> 
+        <!--DONATE NOW-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
+        </div> 
 
-      <!--MODALS-->
+        <!--EDIT-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg"> Edit </a>
+        </div> 
 
-        <!--REGISTER MODAL-->
-         <div id="container">
-                  <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Donation Form</h4>
-                        </div>
-                        <div class="modal-body">
-              <form class="form-inline d-flex flex-column" action="" onsubmit= ""  >
-                <input type= "number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="Card No.">
-                <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="email" placeholder="Amount">
-                <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password1" placeholder="Password">
-                <button type="submit" class ="btn btn-primary btn-space mx-auto">Donate</button>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <!--DONATION FORM MODAL-->
+        <div id="container">
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h4 class="modal-title">Donation Form</h4>
+                </div>
+                
+                <div class="modal-body">
+                  <form class="form-inline d-flex flex-column" action="" onsubmit= ""  >
+                    <input type= "number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="Card No.">
+                    <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="email" placeholder="Amount">
+                    <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password1" placeholder="Password">
+                    <button type="submit" class ="btn btn-primary btn-space mx-auto">Donate</button>
+                  </form>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
               </div>
+            </div>
+          </div>
+        </div>
+
         <!--EDIT MODAL-->
         <div id="container">
           <div id="myModalEdit" class="modal fade" role="dialog">
             <div class="modal-dialog" >
               <div class="modal-content">
+
                 <div class="modal-header">
                   <h4 class="modal-title">Edit Form</h4>
                 </div>
+
                 <div class="modal-body">
                   <form class="form-inline d-flex">
                     <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
                     <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 445px;">Upload Image</label></p>
+                    
                     <div id="container">
                     </div>
+
                     <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
                     <textarea name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
                     <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
@@ -139,200 +147,189 @@
                     <button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
                   </form>
                 </div>
+
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
           </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10 col-lg-8 mx-auto text-center">
-            <img src = "pics/post.png" style="width:50px;height:50px;"></img>
-            <h2 class="text-white mb-5">Create A Post</h2>
+        </div>
+    
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto text-center">
+              <img src = "img/post.png" style="width:50px;height:50px;"></img>
+              <h2 class="text-white mb-5">Create A Post</h2>
+            </div>
           </div>
         </div>
-      </div>
-        </figure>
+      </figure>
     
           
-          <figure class = "item2">
-          <img src="pics/virus.jpg">
-          <h2> COVID-2019 </h2>
-            <figcaption class="caption"> As the number of confirmed cases continue to rise, the threat of the coronavirus continues to spread worldwide.
+      <figure class = "item2">
+        <img src="img/virus.jpg">
+        <h2> COVID-2019 </h2>
+        <figcaption class="caption"> As the number of confirmed cases continue to rise, the threat of the coronavirus continues to spread worldwide.
         China, leading with a total of 79,257 confirmed cases and 2,835 deaths. Several countries banned travel flights to China and now South Korea. 
         We are asking in kind donations to help the citizens of China and South Korea.  <br><br>
         <p> #ncov19 #covid19 #coronavirus #wuhanvirus </p> 
-      </figcaption>
-       <!--REGISTER-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">  Donate Now</a>
-      </div> 
+        </figcaption>
 
-      <!--EDIT-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
-      </div> 
-        
-            
-        </figure>
+        <!--DONATE NOW-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
+        </div> 
+
+        <!--EDIT-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg"> Edit </a>
+        </div> 
+      </figure>
           
-        <figure class = "item3">
-          <img src="pics/bushfire.jpg">
-          <h2> Australia Bushfire 2019-2020</h2>
-          <figcaption>Starting November 2019, fires started to erupt in New South Wales. The fire rapidly spread across all states and killed three 
+      <figure class = "item3">
+        <img src="img/bushfire.jpg">
+        <h2> Australia Bushfire 2019-2020</h2>
+        <figcaption>Starting November 2019, fires started to erupt in New South Wales. The fire rapidly spread across all states and killed three 
         volunteer firefighters. Thousands of people were forced to evacuate as the fire danger zone spreads. At the beginning of the new decade, 
         the fire continued to spread, raising the death toll to 23. As of February 13, the situation was said to be “contained”. We are appealing 
         to your kind heart by raising funds to recover for the affected families. <br><br>
         <p> #australiabushfire #bushfire #fire #SaveAustralia </p>
-      </figcaption>
+        </figcaption>
+          
+        <!--DONATE NOW-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
+        </div> 
+
+        <!--EDIT-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
+        </div> 
+      </figure>
         
-        <!--REGISTER-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">  Donate Now</a>
-      </div> 
-
-      <!--EDIT-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
-      </div> 
-
-
-        </figure>
-        
-          <figure class = "item4">
-            <img src="pics/panda.jpg">
-            <h2> Save Pandas </h2>
-            <figcaption>Pandas are bear-like creatures, distinguishable by their black and white color pattern. In 2016, the International Union for 
+      <figure class = "item4">
+        <img src="img/panda.jpg">
+        <h2> Save Pandas </h2>
+        <figcaption>Pandas are bear-like creatures, distinguishable by their black and white color pattern. In 2016, the International Union for 
         Conservation of Nature declassified pandas from “endangered” to “vulnerable”. There are about 1,864 pandas living in the wild, but still 
         at risk because of habitat loss. A large proportion of the panda's habitat has already been lost  to meet the needs of the area's booming 
         population. Donate now to help conserve pandas and their habitat.<br><br>
         <p> #panda #SavePandas #SaveAnimals </p>
-      </figcaption>
+        </figcaption>
         
-        <!--REGISTER-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">  Donate Now</a>
-      </div> 
+        <!--DONATE NOW-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
+        </div> 
 
-      <!--EDIT-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
-        <div id="slide">
+        <!--EDIT-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg"> Edit </a>
         </div>
-         <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
-      </div> 
-
-        </figure>
+      </figure>
           
-         <figure  class = "item5">
-           <img src="pics/elderly.jpg">
-           <h2> Home for the Aged </h2>
-           <figcaption>There are different circumstances for each elders living in home for the aged or elderly. Some were abandoned, some were rescued, 
+      <figure  class = "item5">
+        <img src="img/elderly.jpg">
+        <h2> Home for the Aged </h2>
+        <figcaption>There are different circumstances for each elders living in home for the aged or elderly. Some were abandoned, some were rescued, 
          some cannot live on their own. We often forget those who were there for us, who raised us, and gave us nothing but love. In partnership with 
          different home for ages, we are accepting donations to be distributed equally to these facilities.<br><br>
          <p> #HomeForTheAged #elderly #elders </p>
         </figcaption>
          
-         <!--REGISTER-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-        <div id="slide">
+        <!--DONATE NOW-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
         </div>
-         <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">  Donate Now</a>
-      </div> 
 
-      <!--EDIT-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
-      </div> 
-
-        </figure>
+        <!--EDIT-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg"> Edit </a>
+        </div> 
+      </figure>
           
-         <figure class = "item6">
-           <img src="pics/famine.jpg">
-           <h2> Famine in Africa </h2>
-           <figcaption>According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 
+      <figure class = "item6">
+        <img src="img/famine.jpg">
+        <h2> Famine in Africa </h2>
+        <figcaption>According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 
          million people are facing severe food shortages, with women and children bearing the brunt of the crisis. Half of the population of Zimbabwe 
          or 7.7 million people are facing its worst hunger emergency in a decade. Let us help the people who are starving, let us share our blessings 
          to them. Donate now.<br><br>
          <p> #famine #Africa #HelpAfrica</p></figcaption>
          
-         <!--REGISTER-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">  Donate Now</a>
-      </div> 
+        <!--DONATE NOW-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
+        </div> 
 
-      <!--EDIT-->
-      <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
-        <div id="slide">
-        </div>
-         <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">  Edit</a>
-      </div> 
-
-        </figure>
-        
-          
-  
-        </div>
+        <!--EDIT-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg"> Edit </a>
+        </div> 
+      </figure>
+    </div>
 
     <div>
-      <input type="button" class="btn btn-primary btn-space mx-auto" onclick="parent.location='NEWSFEED.html'" value="VIEW ALL >">
-
+      <input type="button" class="btn btn-primary btn-space mx-auto" onclick="parent.location='/feed'" value="VIEW ALL >">
     </div>
   </section>
 
-    <!-- Signup Section -->
-
+  <!-- Create Post Section -->
   <section id="create" class="login-section">
-
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
-          <img src = "pics/post.png" style="width:50px;height:50px;"></img>
+          <img src = "img/post.png" style="width:50px;height:50px;"></img>
           <h2 class="text-white mb-5">Create A Post</h2>
 
-         
-			<form class="form-inline d-flex">
-				<p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
-				<p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>
-				<div id="cont">
-				</div>
-				<input name="title" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-				<textarea name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
-				<input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
-				<input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
-				<button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
-			</form>
+          <form class="form-inline d-flex">
+            <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
+            <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>
+            
+            <div id="cont">
+            </div>
+
+            <input name="title" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
+            <textarea name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
+            <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
+            <button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
+          </form>
+
         </div>
       </div>
     </div>
   </section>
-  <div style="margin-bottom: 10rem;">
 
+  <div style="margin-bottom: 10rem;">
   </div>
   
-
-
-  <!-- Signup Section -->
+  <!-- Subscribe Section -->
   <section id="signup" class="signup-section">
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
-
           <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
           <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
 
@@ -349,7 +346,6 @@
   <!-- Contact Section -->
   <section class="contact-section bg-black" id="contact">
     <div class="container">
-
       <div class="row">
 
         <div class="col-md-4 mb-3 mb-md-0">
@@ -403,41 +399,25 @@
     </div>
   </section>
 
-  
-
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
       Copyright &copy; Your Website 2019
     </div>
   </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="js/grayscale.min.js"></script>
-
 </body>
+
 <script>
-  
-function upload(myFile)
-{
+  function upload(myFile)
+  {
+    var image = document.createElement("img");
+    var source = document.createAttribute("src");
+    var file = myFile.files[0];  
 
-	var image = document.createElement("img");
-	var source = document.createAttribute("src");
-	var file = myFile.files[0];  
+    var filename = file.name;
+    source.value = filename;
+    image.setAttributeNode(source);
 
-   	var filename = file.name;
-	source.value = filename;
-	image.setAttributeNode(source);
-
-
-	$("#cont").append(image)
-	
-}
+    $("#cont").append(image)	
+  }
 </script>
