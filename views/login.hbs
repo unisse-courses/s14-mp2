@@ -23,7 +23,7 @@
   </nav>
 
   <!-- Login Section -->
-  <section id="login" class="login-section" style="height: 1200px;">
+  <section id="login" class="login-section" style="height: 700px;">
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-lg-8 mx-auto  text-center">
@@ -31,8 +31,8 @@
         <h2 class="text-white mb-5">Login</h2>
         <div style="color: red;">{{> messages}}</div>
         <form class="form-inline d-flex flex-column" action="/login" method="POST" >
-            <input name = "username" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-0" id="logusername"  placeholder="USERNAME">
-            <input name = "password" type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-3" id="logpassword"  placeholder="PASSWORD">
+            <input name = "username" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-0" id="logusername"  placeholder="Username">
+            <input name = "password" type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-3" id="logpassword"  placeholder="Password">
             <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Login</button>
             <a type="button"  style="color: azure;" id="reg" href="/register">No account yet? Click here.</a>
 
