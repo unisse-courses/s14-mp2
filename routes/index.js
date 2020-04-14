@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
-const { registerValidation, loginValidation } = require('../validators.js');
+const { registerValidation, loginValidation, searchPostValidation } = require('../validators.js');
 const { isPublic, isPrivate } = require('../middlewares/checkAuth');
 
 // Get homepage
 router.get('/', isPublic, (req, res) => {
-  var param = "Save Pandas";
-  postController.getAllPosts(param, (posts) => {
-    res.render('home', {item: posts,})
-  });
+  //var param = "Save Pandas";
+  //postController.getAllPosts(param, (posts) => {
+    res.render('home');
+  //});
 });
 
 // View All Post
@@ -20,27 +20,8 @@ router.get('/feed', isPublic, (req, res) => {
   });
 });
 
-/*
 // Search A Post
-app.post('/searchPost', function(req, res) {
-  var search = req.body.title;
-  console.log(search);
-  //make function find
-  postModel.find({ header: { $regex: search, $options:'i' } }, function(err, posts) {
-    if(err) throw err;
-    console.log(posts);  // checker,del after
-
-    res.render('partials/card', {item: posts}, function(err, html) {
-      res.send(html);
-    })
-    /*
-    res.render('feed', {
-      item: post,
-    });
-    
-  });
-});
-*/
+router.post('/searchPost', isPublic, searchPostValidation, postController.searchPost);
 
 // Get login page
 router.get('/login', isPublic, (req, res) => {

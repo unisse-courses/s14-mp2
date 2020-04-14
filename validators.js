@@ -27,4 +27,9 @@ const loginValidation = [
   body('password').not().isEmpty().withMessage("Please enter password.")
 ];
 
-module.exports = { registerValidation, loginValidation };
+const searchPostValidation = [
+  // Search 
+  body('searchTitle').not().isEmpty().withMessage("Please enter what to search.")
+];
+
+module.exports = { registerValidation, loginValidation, searchPostValidation };

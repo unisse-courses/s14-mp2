@@ -35,22 +35,18 @@
   <section id="about" class="about-section">
     <div class="container">
       <div class="row">
-          <div id="profpic">
-				<input type="image" name="file" id="fileImage">
-				<input type="button" name="submit" id="submitImage" value="Upload">
+
+        <div id="profpic">
+				  <input type="image" name="file" id="fileImage">
+				  <input type="button" name="submit" id="submitImage" value="Upload">
+        </div>
+
+        <div id="biosection" class="col-lg-8 mx-3">
+          <div id="header"><h2 class="text-white mb-4">Hello {{username}}! </h2></div>
+          <div id="bio">
+            <p class="text-white mb-4"> This is your profile page, you can edit this by clicking "edit". *note: not yet working</p>
           </div>
-        <div class="col-lg-8 mx-3">
-			<script type="text/javascript">
-			$(document).ready(function(){
-				$(document).on("click", "#edit", function(){
-					var newBio = prompt("Enter new bio:", $(this).siblings(".text").text());
-					$(this).siblings(".text").text(newBio);
-				});
-			});
-			</script>
-			  <h2 class="text-white mb-4">Hello {{username}}! </h2>
-        <p class="text-white mb-4"> This is your profile page, you can edit this by clicking "edit". *note: not yet working</p>
-			  <button id="edit">Edit</button>
+          <button id="edit">Edit</button>
         </div>
       </div>
       <img src="img/ipad.png" class="img-fluid" alt="">  
@@ -405,9 +401,17 @@
       Copyright &copy; Your Website 2019
     </div>
   </footer>
-</body>
 
-<script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $(document).on("click", "#edit", function(){
+      var newBio = prompt("Enter new bio:", $("div#bio p").text());
+      $("div#bio p").text(newBio);
+    })
+  });
+  </script>
+
+  <script>
   function upload(myFile)
   {
     var image = document.createElement("img");
@@ -420,4 +424,5 @@
 
     $("#cont").append(image)	
   }
-</script>
+  </script>
+</body>
