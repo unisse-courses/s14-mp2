@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema({
   header: { type: String, required: true, min:1, max:15  },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
 	caption: { type: String, required: true, min:1, max:250 },
-  tag: { type: String, required: false, min: 1, max:100},
+  tag: {type: String, required: false, min: 1, max:100},
 });
 
 const Post = mongoose.model('posts', postSchema);
