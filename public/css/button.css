@@ -19,6 +19,7 @@
   #button-2 {
     position: relative;
     bottom: 30px;
+    top: 20px;
     left: 10px;
     overflow: hidden;
     cursor: pointer;

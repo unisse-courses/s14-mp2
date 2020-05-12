@@ -25,7 +25,7 @@ body {
    transition: opacity .4s ease-in-out;
    display: inline-block;
    page-break-inside: avoid;
-   height: 800px;
+   height: 650px;
  }
 
 
@@ -42,7 +42,7 @@ body {
   font-size: .9rem;
    color: #444;
    line-height: 1.5;
-   height: 400px;
+   height: 200px;
 
 
  }
