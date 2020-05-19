@@ -83,43 +83,41 @@
         where there was frequent volcanic lightning activity. By nightfall, the ashfall already reached certain areas such 
         as Calabarzon and Metro Manila. We are in need of donations for those who are affected, no matter how small, will be deeply appreciated. <br><br>
         <p> #taaleruption #taalvolcano #naturalcalamity #volcano #philippines </p>
-        </figcaption>
-
-        <!--DONATE NOW-->
-        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
-          <div id="slide">
-          </div>
-          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg"> Donate Now </a>
-        </div> 
+        </figcaption> 
 
         <!--EDIT-->
         <div class="button" id="button-2" data-toggle="modal" data-target="#myModalEdit">
           <div id="slide">
           </div>
-          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg"> Edit </a>
+          <a  data-toggle="modal" data-target="#myModalEdit" style="color: black; margin-bottom: 18px;" id="reg">Edit</a>
         </div> 
 
-        <!--DONATION FORM MODAL-->
+        <!--DELETE-->
+        <div class="button" id="button-2" data-toggle="modal" data-target="#myModal">
+          <div id="slide">
+          </div>
+          <a  data-toggle="modal" data-target="#myModal" style="color: black; margin-bottom: 18px;" id="reg">Delete</a>
+        </div>
+
+        <!--DELETE POST MODAL-->
         <div id="container">
           <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
               <div class="modal-content">
 
                 <div class="modal-header">
-                  <h4 class="modal-title">Donation Form</h4>
+                  <h4 class="modal-title" id="deletePost" style="text-align: center;">Delete Post?</h4>
                 </div>
                 
-                <div class="modal-body">
-                  <form class="form-inline d-flex flex-column" action="" onsubmit= ""  >
-                    <input type= "number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="Card No.">
-                    <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="email" placeholder="Amount">
-                    <input type="password" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="password1" placeholder="Password">
-                    <button type="submit" class ="btn btn-primary btn-space mx-auto">Donate</button>
-                  </form>
+                <div class="modal-body" style="text-align: center;">
+                  <h5>Are you sure that you want to permanently delete this post? </h5>
                 </div>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align: center;">Yes</button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align: center;">No</button>
                 </div>
 
               </div>
@@ -157,15 +155,6 @@
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-    
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-lg-8 mx-auto text-center">
-              <img src = "img/post.png" style="width:50px;height:50px;"></img>
-              <h2 class="text-white mb-5">Create A Post</h2>
             </div>
           </div>
         </div>

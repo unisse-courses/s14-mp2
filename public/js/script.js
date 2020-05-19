@@ -1,5 +1,5 @@
 $(document).ready(function (){
-
+	/*
     $('#Register').click(function() {
 		var email = $('#email').val();
 		var username = $('#username').val();
@@ -28,20 +28,15 @@ $(document).ready(function (){
 		  	}
 		});
 	});
+	*/
 
 	// POST call [search post]
 	$('#searchPost').click(function() {
 		var title = $('#searchTitle').val();
 		console.log(title);
 		
-
-
 		$.post('searchPost', { title: title }, function(data, status) {
 			console.log(data);
-			
-			var postList = $('#postList');
-			postList.empty(); // refresh results
-			postList.append(data);
 	
 			
 		/*

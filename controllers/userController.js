@@ -1,5 +1,4 @@
 const userModel = require('../models/user');
-const postModel = require('../models/post');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
@@ -9,7 +8,6 @@ exports.registerUser = (req, res) => {
 		const { email, username, password } = req.body;
 		userModel.getOne({ username: username }, (err, result) => {
 			if (result) {
-				console.log(result);
 				req.flash('error_msg', 'Username is already used. Try again.');
 				res.redirect('/register');
 			} else {

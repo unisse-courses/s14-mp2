@@ -6,41 +6,21 @@ const { isPublic, isPrivate } = require('../middlewares/checkAuth');
 
 // Get homepage
 router.get('/', isPublic, (req, res) => {
-  var param = "Save Pandas";
+  console.log("Read home successful!");
+  var param = "";
   postController.getAllPosts(param, (posts) => {
-    res.render('home', {item: posts,})
+    res.render('home', {item: posts})
   });
 });
 
 // View All Post
 router.get('/feed', isPublic, (req, res) => {
+  console.log("Read feed successful!");
   var param = "";
   postController.getAllPosts(param, (posts) => {
-    res.render('feed', { item: posts, })
+    res.render('feed', { item: posts})
   });
 });
-
-/*
-// Search A Post
-app.post('/searchPost', function(req, res) {
-  var search = req.body.title;
-  console.log(search);
-  //make function find
-  postModel.find({ header: { $regex: search, $options:'i' } }, function(err, posts) {
-    if(err) throw err;
-    console.log(posts);  // checker,del after
-
-    res.render('partials/card', {item: posts}, function(err, html) {
-      res.send(html);
-    })
-    /*
-    res.render('feed', {
-      item: post,
-    });
-    
-  });
-});
-*/
 
 // Get login page
 router.get('/login', isPublic, (req, res) => {
@@ -69,6 +49,7 @@ router.get('/donate', isPublic, (req, res) => {
 });
 
 // POST methods for form submissions
+router.post('/searchPost', isPublic, postController.searchPost);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
 
