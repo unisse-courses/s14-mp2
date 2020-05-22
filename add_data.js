@@ -29,6 +29,7 @@ var userArray = [
 // Posts
 var postArray = [
 	{
+    // 
 	  img: "img/taal_volcano.jpg",
 	  header: "Eruption of Taal 2020",
 	  caption: "On 12th of January 2020 (Sunday), the taal volcano started spewing ash. The Philippine Institute of Volcanology and Seismology (Phivolcs) raised the alert status to level 2. That same day, the alert level was raised to level 4,  where there was frequent volcanic lightning activity. By nightfall, the ashfall already reached certain areas such as Calabarzon and Metro Manila. We are in need of donations for those who are affected, no matter how small, will be deeply appreciated.",
@@ -72,26 +73,117 @@ var postArray = [
   }
 ];
 
-for(i = 0; i < userArray.length; i++){
+populate2();
+populate3();
+populate4();
+
+
+function populate2(){
   const saltRounds = 10;
+    const user = {
+      email: userArray[0].email,
+      username: userArray[0].username,
+      password: userArray[0].password
+    };
 
-  const user = {
-    email: userArray[i].email,
-    username: userArray[i].username,
-    password: userArray[i].password
-  };
+    bcrypt.hash(userArray[0].password, saltRounds, (err, hashed) => {
+      user.password = hashed;
+      userModel.create(user, function (err, result) {
+        if (err) throw err;
+       for(i=0;i<2;i++){
+        const post = {
+          img: postArray[i].img,
+          header: postArray[i].header,
+          caption: postArray[i].caption,
+          tags: postArray[i].tags,
+          owner: result._id
+        };
+    
+        postModel.createPost(post, function(err, postResult) {
+          if (err) throw err;
+        }) 
 
-  // Hash password
-	bcrypt.hash(userArray[i].password, saltRounds, (err, hashed) => {
-		user.password = hashed;
-        
-    userModel.create(user, function (err, result) {
-      if (err) throw err;
+       }
 
-      //console.log("Users created");
-      //console.log(result);
 
-      for (j = 0 ; j < postArray.length; j++){
+      }); // end here 
+    });
+}
+
+function populate3(){
+  const saltRounds = 10;
+    const user = {
+      email: userArray[1].email,
+      username: userArray[1].username,
+      password: userArray[1].password
+    };
+
+    bcrypt.hash(userArray[1].password, saltRounds, (err, hashed) => {
+      user.password = hashed;
+      userModel.create(user, function (err, result) {
+        if (err) throw err;
+       for(i=2;i<4;i++){
+        const post = {
+          img: postArray[i].img,
+          header: postArray[i].header,
+          caption: postArray[i].caption,
+          tags: postArray[i].tags,
+          owner: result._id
+        };
+    
+        postModel.createPost(post, function(err, postResult) {
+          if (err) throw err;
+        }) 
+
+       }
+
+
+      }); // end here 
+    });
+}
+
+
+
+function populate4(){
+  const saltRounds = 10;
+    const user = {
+      email: userArray[2].email,
+      username: userArray[2].username,
+      password: userArray[2].password
+    };
+
+    bcrypt.hash(userArray[2].password, saltRounds, (err, hashed) => {
+      user.password = hashed;
+      userModel.create(user, function (err, result) {
+        if (err) throw err;
+       for(i=4;i<6;i++){
+        const post = {
+          img: postArray[i].img,
+          header: postArray[i].header,
+          caption: postArray[i].caption,
+          tags: postArray[i].tags,
+          owner: result._id
+        };
+    
+        postModel.createPost(post, function(err, postResult) {
+          if (err) throw err;
+        }) 
+
+       }
+
+
+      }); // end here 
+    });
+}
+
+
+
+
+
+
+
+/*
+for (j = 0 ; j < postArray.length; j++){
         var owner_id = result._id;
     
         const post = {
@@ -104,10 +196,10 @@ for(i = 0; i < userArray.length; i++){
 
         postModel.createPost(post, function(err, postResult) {
           if (err) throw err;
-          //console.log("Post results");
-          //console.log(postResult);
         })
+        
       } 
-    }); 
-  });
-}
+
+
+
+*/
