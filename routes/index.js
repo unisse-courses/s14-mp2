@@ -49,7 +49,16 @@ router.get('/donate', isPublic, (req, res) => {
 });
 
 // POST methods for form submissions
-router.post('/searchPost', isPublic, postController.searchPost);
+router.post('/searchPost', isPublic, (req,res) => {
+  var param = req;
+  postController.searchPost(param, (posts) => {
+  res.render('feed',{item: posts})
+  });
+});
+
+
+
+
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
 

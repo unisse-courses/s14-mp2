@@ -1,6 +1,6 @@
 const userModel = require('./models/user');
 const postModel = require('./models/post');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');  
 
 // Users
 var userArray = [

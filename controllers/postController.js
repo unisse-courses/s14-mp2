@@ -45,6 +45,17 @@ exports.searchPost = (req, res) => {
       if (result) { // If posts are found!
         console.log("Search results:");
         console.log(result);
+        
+        const postObjects = [];
+    
+        result.forEach(function(doc) {
+          postObjects.push(doc.toObject());
+        });
+        
+        res(postObjects);
+
+
+
       } 
       else {  // No post found
         console.log("No post found!");
@@ -52,4 +63,5 @@ exports.searchPost = (req, res) => {
       }
     }
   });
+  
 };
