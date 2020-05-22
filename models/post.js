@@ -34,6 +34,10 @@ exports.getTitle = function(query, next) {
   });
 };
 
+// TODO: Find all post with a username 
+
+
+
 /*
 exports.getTitle = function(query, next) {
   Post.find({ header: { $regex: query, $options:'i' }}, function(err, posts) {
