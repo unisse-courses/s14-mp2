@@ -70,6 +70,27 @@ var postArray = [
 	  caption: "According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 million people are facing severe food shortages, with women and children bearing the brunt of the crisis. Half of the population of Zimbabwe or 7.7 million people are facing its worst hunger emergency in a decade. Let us help the people who are starving, let us share our blessings to them. Donate now.",
     tags: "#famine #Africa #HelpAfrica",
     //tags: ["#famine", "#Africa", "#HelpAfrica"], 
+  },
+  {
+	  img: "img/forest_fire_benguet.jpg",
+	  header: "Benguet Forest Fire 2020",
+	  caption: "The fire started February 11 in Barangay Adaoa and was controlled on February 15. Another forest fire blazed on February 19, in Sitio Nalseb, Barangay Ambassador, in Tublay, Benguet. A total of 165,620 trees and seedlings were damaged by the fire and left millions in damage. We are in need of donations for the affected families.",
+    tags: "#BenguetForestFire #ForestFire #fire #NaturalCalamity",
+    //tags: ["#BenguetForestFire", "#ForestFire", "#fire", "#NaturalCalamity"],
+  },
+  {
+	  img: "img/polar_bear.jpg",
+	  header: "Save Polar Bears",
+	  caption: "Polar bears are mammals that live on the sea ice of the Arctic Ocean. They have a thick layer of body fat and a water-repellent coat that insulates them from the cold air and water. Polar bears are classified as “vulnerable” species because of habitat loss caused by climate change. sea ice for their existence, and so we ask for your kindness, to help us preserve the polar bears. Any amount of donations will do.",
+    tags: "#PolarBears #SavePolarBears #SaveAnimals",
+    //tags: ["#PolarBears", "#SavePolarBears", "#SaveAnimals"],
+  },
+  {
+	  img: "img/orphans.jpg",
+	  header: "Help the Orphans",
+	  caption: "The Philippines has made significant economic progress in their globalization efforts. In terms of population growth, around 40% are living below the poverty level and 12% without any employment at all. Of the roughly 34 million children under the age of eighteen, more than 2 million are orphans. The children truly need our help, without parental support, who would help them but us?",
+    tags: "#orphans #orphanage #ChildSupport",
+    //tags: ["#orphans", "#orphanage", "#ChildSupport"],
   }
 ];
 
@@ -77,20 +98,19 @@ populate2();
 populate3();
 populate4();
 
-
 function populate2(){
   const saltRounds = 10;
-    const user = {
-      email: userArray[0].email,
-      username: userArray[0].username,
-      password: userArray[0].password
-    };
+  const user = {
+    email: userArray[0].email,
+    username: userArray[0].username,
+    password: userArray[0].password
+  };
 
-    bcrypt.hash(userArray[0].password, saltRounds, (err, hashed) => {
-      user.password = hashed;
-      userModel.create(user, function (err, result) {
-        if (err) throw err;
-       for(i=0;i<2;i++){
+  bcrypt.hash(userArray[0].password, saltRounds, (err, hashed) => {
+    user.password = hashed;
+    userModel.create(user, function (err, result) {
+      if (err) throw err;
+      for(i=0;i<3;i++){
         const post = {
           img: postArray[i].img,
           header: postArray[i].header,
@@ -98,31 +118,28 @@ function populate2(){
           tags: postArray[i].tags,
           owner: result._id
         };
-    
+      
         postModel.createPost(post, function(err, postResult) {
           if (err) throw err;
         }) 
-
-       }
-
-
-      }); // end here 
-    });
+      }
+    }); // end here 
+  });
 }
 
 function populate3(){
   const saltRounds = 10;
-    const user = {
-      email: userArray[1].email,
-      username: userArray[1].username,
-      password: userArray[1].password
-    };
+  const user = {
+    email: userArray[1].email,
+    username: userArray[1].username,
+    password: userArray[1].password
+  };
 
-    bcrypt.hash(userArray[1].password, saltRounds, (err, hashed) => {
-      user.password = hashed;
-      userModel.create(user, function (err, result) {
-        if (err) throw err;
-       for(i=2;i<4;i++){
+  bcrypt.hash(userArray[1].password, saltRounds, (err, hashed) => {
+    user.password = hashed;
+    userModel.create(user, function (err, result) {
+      if (err) throw err;
+      for(i=3;i<6;i++){
         const post = {
           img: postArray[i].img,
           header: postArray[i].header,
@@ -134,29 +151,24 @@ function populate3(){
         postModel.createPost(post, function(err, postResult) {
           if (err) throw err;
         }) 
-
-       }
-
-
-      }); // end here 
-    });
+      }
+    }); // end here 
+  });
 }
-
-
 
 function populate4(){
   const saltRounds = 10;
-    const user = {
-      email: userArray[2].email,
-      username: userArray[2].username,
-      password: userArray[2].password
-    };
+  const user = {
+    email: userArray[2].email,
+    username: userArray[2].username,
+    password: userArray[2].password
+  };
 
-    bcrypt.hash(userArray[2].password, saltRounds, (err, hashed) => {
-      user.password = hashed;
-      userModel.create(user, function (err, result) {
-        if (err) throw err;
-       for(i=4;i<6;i++){
+  bcrypt.hash(userArray[2].password, saltRounds, (err, hashed) => {
+    user.password = hashed;
+    userModel.create(user, function (err, result) {
+      if (err) throw err;
+      for(i=6;i<9;i++) {
         const post = {
           img: postArray[i].img,
           header: postArray[i].header,
@@ -168,19 +180,10 @@ function populate4(){
         postModel.createPost(post, function(err, postResult) {
           if (err) throw err;
         }) 
-
-       }
-
-
-      }); // end here 
-    });
+      }
+    }); // end here 
+  });
 }
-
-
-
-
-
-
 
 /*
 for (j = 0 ; j < postArray.length; j++){
@@ -199,7 +202,4 @@ for (j = 0 ; j < postArray.length; j++){
         })
         
       } 
-
-
-
 */

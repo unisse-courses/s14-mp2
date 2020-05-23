@@ -1,0 +1,18 @@
+{{#each item}}
+<figure class="item1"><img src={{img}}>
+    <h2>{{header}}</h2>
+    <figcaption class="caption"> {{caption}}
+    <p>{{tags}}</p>
+    </figcaption>
+
+    <div class="button" id="button-2" href="/editModal">
+        <div id="slide"></div>
+        <a href="/editModal" style="color: black;">Edit</a> 
+    </div> 
+
+    <div class="button" id="button-2" href="/deleteModal">
+        <div id="slide"></div>
+        <a href="/deleteModal" style="color: black;">Delete</a> 
+    </div>
+</figure>
+{{/each}}

@@ -18,10 +18,7 @@
             <a class="nav-link js-scroll-trigger" href="#projects">My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#create">Create Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/feed">View Posts</a>
+            <a class="nav-link js-scroll-trigger" href="/create">Create Post</a>
           </li>
 		  <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
@@ -74,43 +71,19 @@
       </div>
     </div>  
 
-     <div id="columns"  style="text-align: left;"  >
-      {{> card }}
-      {{> modal }}
+    <div id="columns"  style="text-align: left;">
+      {{> cardProfile }}
     </div>
 
   </section>
 
-  <!-- Create Post Section -->
-  <section id="create" class="login-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto text-center">
-          <img src = "img/post.png" style="width:50px;height:50px;"></img>
-          <h2 class="text-white mb-5">Create A Post</h2>
-
-          <form class="form-inline d-flex">
-            <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
-            <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>
-            
-            <div id="cont">
-            </div>
-
-            <input name="title" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-            <textarea name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
-            <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
-            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
-            <button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
-          </form>
-
-        </div>
-      </div>
+  <!-- Projects Section -->
+  <section class="projects-section bg-light text-center">
+    <div class="button" id="button-2" href="/create">
+      <a href="/create" style="color: black;">Create Post</a> 
     </div>
   </section>
 
-  <div style="margin-bottom: 10rem;">
-  </div>
-  
   <!-- Subscribe Section -->
   <section id="signup" class="signup-section">
     <div class="container">

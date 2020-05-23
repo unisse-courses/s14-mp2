@@ -22,10 +22,22 @@ router.get('/feed', isPublic, (req, res) => {
   });
 });
 
+// Get donate page
+router.get('/donate', isPublic, (req, res) => {
+  console.log("Read donation page successful!");
+  res.render('donate');
+});
+
 // Get login page
 router.get('/login', isPublic, (req, res) => {
   console.log("Read login successful!");
   res.render('login');
+});
+
+// Get create post page
+router.get('/create', isPrivate, (req, res) => {
+  console.log("Read create page successful!");
+  res.render('create', { username: req.session.username});
 });
 
 // Logout
@@ -40,15 +52,9 @@ router.get('/register', isPublic, (req, res) => {
 // Get myprofile page
 router.get('/myprofile', isPrivate, (req, res) => {
   console.log("Read myprofile successful!");
-  console.log("req parts");
   postController.getSavedPosts(req.session.user, (posts) => {
-    res.render('myprofile', { username: req.session.username,item: posts} );
+    res.render('myprofile', { username: req.session.username, item: posts});
   });
-});
-// Get donate page
-router.get('/donate', isPublic, (req, res) => {
-  console.log("Read donation page successful!");
-  res.render('donate');
 });
 
 // POST methods for form submissions
@@ -58,9 +64,6 @@ router.post('/searchPost', isPublic, (req,res) => {
   res.render('feed',{item: posts})
   });
 });
-
-
-
 
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);

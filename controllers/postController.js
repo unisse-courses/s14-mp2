@@ -14,21 +14,6 @@ exports.getAllPosts = (param, callback) =>{
   });
 };
 
-// Getting all users
-/*
-exports.getAll = function(query, next){
-  Post.find({ header: { $regex: query, $options:'i' }}, function(err, posts) {
-    const posts = [];
-    
-    result.forEach(function(post){
-      posts.push(post.toObject());
-    });
-    
-    next(err, posts);
-  });
-};
-*/
-
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
@@ -53,9 +38,6 @@ exports.searchPost = (req, res) => {
         });
         
         res(postObjects);
-
-
-
       } 
       else {  // No post found
         console.log("No post found!");
@@ -63,15 +45,13 @@ exports.searchPost = (req, res) => {
       }
     }
   });
-  
 };
 
 exports.getSavedPosts = (req, res) => {
   var query = req;
-  console.log("Search input by user: ");
   console.log(query);
 
-  postModel.getTitle({ owner: query}, (err, result) => {
+  postModel.getTitle({ owner: query }, (err, result) => {
     if (err) {
       throw err; 
     } 
@@ -88,10 +68,9 @@ exports.getSavedPosts = (req, res) => {
         });
         
         res(postObjects);
-
       } 
       else {  // No post found
-        req.flash('error_msg', 'No search results found. Try again.');
+        console.log("No such post for user found!");
       }
     }
   });

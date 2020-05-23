@@ -1,0 +1,110 @@
+<title>Donation Page</title>
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Charity App - {{username}}</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+		  <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About Me</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#projects">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/create">Create Post</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Create Post Section -->
+  <section id="create" class="login-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+          <img src = "img/post.png" style="width:50px;height:50px;"></img>
+          <h2 class="text-white mb-5">Create A Post</h2>
+
+          <form class="form-inline d-flex">
+            <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
+            <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>
+            
+            <div id="cont">
+            </div>
+
+            <input name="title" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
+            <textarea name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
+            <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
+            <input type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
+            <button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section bg-black" id="contact">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Enrico Luis Cuison</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> enrico_cuison@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Mari Jazzmine Ilagan</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> mari_ilagan@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Jacob Israel Salazar</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> jacob_salazar@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
