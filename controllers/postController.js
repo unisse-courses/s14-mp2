@@ -1,4 +1,5 @@
 const postModel = require('../models/post');
+const { validationResult } = require('express-validator');
 
 exports.getAllPosts = (param, callback) =>{
   postModel.getAll(param, (err, posts) => {
@@ -13,6 +14,8 @@ exports.getAllPosts = (param, callback) =>{
     callback(postObjects);
   });
 };
+
+
 
 // Searching post via title
 exports.searchPost = (req, res) => {
@@ -47,6 +50,9 @@ exports.searchPost = (req, res) => {
   });
 };
 
+
+
+
 exports.getSavedPosts = (req, res) => {
   var query = req;
   console.log(query);
@@ -75,4 +81,39 @@ exports.getSavedPosts = (req, res) => {
     }
   });
   
+};
+
+
+
+exports.generatePosts = (req, res) => {
+  const errors = validationResult(req);
+	if (errors.isEmpty()) {
+		const { image, header, caption, funds , tags } = req.body;
+    const post = {
+      img: req.body.image,
+      header: req.body.header,
+      caption: req.body.caption,
+      tags: req.body.tags,
+      owner: req.session.user
+    };
+    console.log(post);
+
+    console.log("you made it here!");
+
+    postModel.createPost(post, function(err, postResult) {
+      if (err) {
+        req.flash('error_msg', 'Could not create the posts. Please try again.');
+        res.redirect('/create');
+      } else {
+        req.flash('success_msg', 'New post generated!');
+        res.redirect('/myprofile');
+      }
+    }) 
+			}
+    else {
+      console.log("errorrrrs");
+		const messages = errors.array().map((item) => item.msg);
+		req.flash('error_msg', messages.join(' '));
+		res.redirect('/create');
+	}
 };

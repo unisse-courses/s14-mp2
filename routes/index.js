@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
-const { registerValidation, loginValidation } = require('../validators.js');
+const { registerValidation, loginValidation,postValidation } = require('../validators.js');
 const { isPublic, isPrivate } = require('../middlewares/checkAuth');
 
 // Get homepage
@@ -57,6 +57,9 @@ router.get('/myprofile', isPrivate, (req, res) => {
   });
 });
 
+// Post methods for create hbs
+
+
 // POST methods for form submissions
 router.post('/searchPost', isPublic, (req,res) => {
   var param = req;
@@ -67,5 +70,6 @@ router.post('/searchPost', isPublic, (req,res) => {
 
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
+router.post('/makePost',isPrivate,postValidation,postController.generatePosts);
 
 module.exports = router;

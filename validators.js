@@ -19,6 +19,19 @@ const registerValidation = [
       return true;
     })
 ];
+// we can add more validation factors if we want to
+const postValidation = [
+
+  body('image').not().isEmpty().withMessage("Please insert a photo"),
+  // Title should not be empty
+  body('header').not().isEmpty().withMessage("Please insert a caption"),
+  body('caption').not().isEmpty().withMessage("Please enter Title for the post."),  
+  // Password needs to be min 5 chars
+  body('tags').not().isEmpty().withMessage("Please enter Tags for the post."), 
+
+];
+
+
 
 const loginValidation = [
   // Username should not be empty
@@ -27,4 +40,4 @@ const loginValidation = [
   body('password').not().isEmpty().withMessage("Please enter password.")
 ];
 
-module.exports = { registerValidation, loginValidation };
+module.exports = { registerValidation, loginValidation,postValidation };
