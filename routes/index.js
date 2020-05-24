@@ -67,6 +67,9 @@ router.get('/post/edit/:id', isPrivate, (req, res) => {
   });
 });
 
+// Delete post
+router.get('/post/delete/:id', isPrivate, postController.delete);
+
 // POST methods for form submissions
 router.post('/searchPost', isPublic, (req,res) => {
   var param = req.params.id;
@@ -75,9 +78,9 @@ router.post('/searchPost', isPublic, (req,res) => {
   });
 });
 
-router.post('/editPost', isPrivate, postController.edit);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
-router.post('/makePost',isPrivate,postValidation,postController.generatePosts);
+router.post('/createPost',isPrivate, postValidation, postController.generatePosts);
+router.post('/editPost', isPrivate, postController.edit);
 
 module.exports = router;

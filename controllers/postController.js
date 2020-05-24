@@ -102,8 +102,7 @@ exports.generatePosts = (req, res) => {
 // Get post by ID
 exports.getID = (req, res) => {
   var id = req.params.id;
-  console.log("GETTING POSTID INSIDE POSTCONTROLLER");
-  console.log(id);
+
   postModel.getByID(id, (err, result) => {
     if (err) {
       console.log("Could not find post.");
@@ -117,9 +116,6 @@ exports.getID = (req, res) => {
 
 // Edit post 
 exports.edit = (req, res) => {
-  var id = req.params.id;
-  console.log("req.body._id");
-  console.log(req.body._id);
   const { header, caption, funds , tags } = req.body;
 
   var update = {
@@ -146,16 +142,17 @@ exports.edit = (req, res) => {
 
 // Delete post
 exports.delete = (req, res) => {
-  var id = req.param.id;
+  var id = req.params.id;
   console.log("deletepost object id:");
   console.log(id);
-  /*
-  postModel.delete(id, (err, result) => {
+  
+  postModel.remove(id, (err, result) => {
     if (err) {
       throw err; 
     } 
     else {
-      console.log("idk what im doing");
+      console.log("Successfully deleted!");
+      res.redirect('/myprofile');
     }
-  }); */
+  }); 
 };
