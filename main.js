@@ -17,6 +17,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
+
+
 // Sessions
 app.use(session({
   secret: 'somegibberishsecret',
@@ -48,6 +50,7 @@ app.engine('hbs', exphbs({
 }));
 
 app.set('view engine', 'hbs');
+
 
 // Configuration for handling API endpoint data
 app.use(bodyParser.json());

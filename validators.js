@@ -20,9 +20,19 @@ const registerValidation = [
     })
 ];
 // we can add more validation factors if we want to
+
+const loginValidation = [
+  // Username should not be empty
+  body('username').not().isEmpty().withMessage("Please enter username."),
+  // Password should not be empty
+  body('password').not().isEmpty().withMessage("Please enter password.")
+];
+
+
 const postValidation = [
 
-  body('image').not().isEmpty().withMessage("Please insert a photo"),
+
+  body('image').notEmpty().withMessage("Please insert a photo"),
   // Title should not be empty
   body('header').not().isEmpty().withMessage("Please insert a caption"),
   body('caption').not().isEmpty().withMessage("Please enter Title for the post."),  
@@ -31,13 +41,5 @@ const postValidation = [
 
 ];
 
-
-
-const loginValidation = [
-  // Username should not be empty
-  body('username').not().isEmpty().withMessage("Please enter username."),
-  // Password should not be empty
-  body('password').not().isEmpty().withMessage("Please enter password.")
-];
 
 module.exports = { registerValidation, loginValidation,postValidation };
