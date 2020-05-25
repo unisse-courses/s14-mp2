@@ -116,4 +116,68 @@ exports.generatePosts = (req, res) => {
 		req.flash('error_msg', messages.join(' '));
 		res.redirect('/create');
 	}
+<<<<<<< HEAD
+=======
+};
+
+// Get post by ID
+exports.getID = (req, res) => {
+  var id = req.params.id;
+  console.log("GETTING POSTID INSIDE POSTCONTROLLER");
+  console.log(id);
+  postModel.getByID(id, (err, result) => {
+    if (err) {
+      console.log("Could not find post.");
+      throw err;
+    } else {
+      var postObject = result.toObject();
+      res(postObject);
+    }
+  });
+};
+
+// Edit post 
+exports.edit = (req, res) => {
+  var id = req.params.id;
+  console.log("req.body._id");
+  console.log(req.body._id);
+  const { header, caption, funds , tags } = req.body;
+
+  var update = {
+    $set: { 
+      img: req.body.image,
+      header: req.body.header,
+      caption: req.body.caption,
+      tags: req.body.tags,
+      owner: req.session.user
+    } 
+  };
+ 
+  postModel.update(req.body._id, update, (err, result) => {
+    if (err) {
+      console.log("Something went wrong. Please try again.");
+      throw err;
+    } else {
+      console.log("Post updated!");
+      console.log(result);
+      res.redirect('/myprofile');
+    }
+  });
+};
+
+// Delete post
+exports.delete = (req, res) => {
+  var id = req.param.id;
+  console.log("deletepost object id:");
+  console.log(id);
+  /*
+  postModel.delete(id, (err, result) => {
+    if (err) {
+      throw err; 
+    } 
+    else {
+      console.log("idk what im doing");
+    }
+  }); */
+>>>>>>> parent of 4f6a3cb... delete post working
 };

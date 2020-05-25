@@ -59,7 +59,10 @@ router.get('/myprofile', isPrivate, (req, res) => {
 
 // Post methods for create hbs
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 4f6a3cb... delete post working
 // POST methods for form submissions
 router.post('/searchPost', isPublic, (req,res) => {
   var param = req;
@@ -68,6 +71,7 @@ router.post('/searchPost', isPublic, (req,res) => {
   });
 });
 
+router.post('/editPost', isPrivate, postController.edit);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
 router.post('/makePost',isPrivate,postValidation,postController.generatePosts);
