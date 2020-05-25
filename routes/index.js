@@ -59,10 +59,17 @@ router.get('/myprofile', isPrivate, (req, res) => {
 
 // Post methods for create hbs
 
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 4f6a3cb... delete post working
+// Getting id of the post user wants to edit
+router.get('/post/edit/:id', isPrivate, (req, res) => {
+  var id = req.params.id;
+  console.log("ID index.js");
+  console.log(id);
+  postController.getID(req, (post) => {
+    res.render('edit', { username: req.session.username, item: post });
+  });
+});
+
 // POST methods for form submissions
 router.post('/searchPost', isPublic, (req,res) => {
   var param = req;

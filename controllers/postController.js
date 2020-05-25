@@ -116,8 +116,7 @@ exports.generatePosts = (req, res) => {
 		req.flash('error_msg', messages.join(' '));
 		res.redirect('/create');
 	}
-<<<<<<< HEAD
-=======
+
 };
 
 // Get post by ID
@@ -179,5 +178,5 @@ exports.delete = (req, res) => {
       console.log("idk what im doing");
     }
   }); */
->>>>>>> parent of 4f6a3cb... delete post working
+
 };
