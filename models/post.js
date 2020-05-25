@@ -2,7 +2,7 @@ const mongoose = require('./connection');
 const userModel = require('../models/user');
 
 const postSchema = new mongoose.Schema({
-	img: { type: String, required:true },
+	img: { type: String,required:true },
   header: { type: String, required: true, min:1, max:15  },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true},
 	caption: { type: String, required: true, min:1, max:250 },
@@ -27,30 +27,21 @@ exports.getAll = (param, next) => {
   });
 };
 
-// Search post via header 
+// Search post via header (I based this  doon sa ginawa ni msis plus yung previous working natin dati, yung before siya gawing MVC)
 exports.getTitle = function(query, next) {
   Post.find(query, function(err, posts) {
     next(err, posts);
   });
 };
 
-// Get post by ID
-exports.getByID = function(query, next) {
-  Post.findById(query, function(err, post) {
-    next(err, post);
+// TODO: Find all post with a username 
+
+
+
+/*
+exports.getTitle = function(query, next) {
+  Post.find({ header: { $regex: query, $options:'i' }}, function(err, posts) {
+    next(err, posts);
   });
 };
-
-// Edit post
-exports.update = function(id, update, next) {
-  Post.findOneAndUpdate({_id: id}, update, { new: true }, function(err, post) {
-    next(err, post);
-  })
-};
-
-// Delete post
-exports.remove = function(query, next) {
-  Post.findByIdAndRemove(query, function(err, post){
-    next(err, post);
-  });
-};
+*/

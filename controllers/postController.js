@@ -1,7 +1,7 @@
 const postModel = require('../models/post');
 const { validationResult } = require('express-validator');
 
-//Getting all posts
+
 exports.getAllPosts = (param, callback) =>{
   postModel.getAll(param, (err, posts) => {
     if (err) throw err;
@@ -16,9 +16,13 @@ exports.getAllPosts = (param, callback) =>{
   });
 };
 
+
+
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
+  console.log("Search input by user: ");
+  console.log(query);
 
   postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
@@ -26,33 +30,11 @@ exports.searchPost = (req, res) => {
       throw err; 
     } 
     else {
-      if (result) { 
-        const postObjects = [];
-        result.forEach(function(doc) {
-          postObjects.push(doc.toObject());
-        });
-        res(postObjects);
-      } 
-      else { 
-        console.log("No post found!");
-        req.flash('error_msg', 'No search results found. Try again.');
-      }
-    }
-  });
-};
-
-// Getting owner's posts
-exports.getSavedPosts = (req, res) => {
-  var query = req;
-
-  postModel.getTitle({ owner: query }, (err, result) => {
-    if (err) {
-      throw err; 
-    } 
-    else {
-      if (result) {
-        console.log("Posts owned by user:");
+      // Successful query
+      if (result) { // If posts are found!
+        console.log("Search results:");
         console.log(result);
+        
         const postObjects = [];
     
         result.forEach(function(doc) {
@@ -62,25 +44,63 @@ exports.getSavedPosts = (req, res) => {
         res(postObjects);
       } 
       else {  // No post found
-        console.log("No posts yet!");
+        console.log("No post found!");
+        req.flash('error_msg', 'No search results found. Try again.');
       }
     }
   });
 };
 
-// Creating post
-exports.generatePosts = (req, res) => {
+
+
+
+exports.getSavedPosts = (req, res) => {
+  var query = req;
+  console.log(query);
+
+  postModel.getTitle({ owner: query }, (err, result) => {
+    if (err) {
+      throw err; 
+    } 
+    else {
+      // Successful query
+      if (result) { // If posts are found!
+        console.log("Search results:");
+        console.log(result);
+        
+        const postObjects = [];
+    
+        result.forEach(function(doc) {
+          postObjects.push(doc.toObject());
+        });
+        
+        res(postObjects);
+      } 
+      else {  // No post found
+        console.log("No such post for user found!");
+      }
+    }
+  });
+  
+};
+
+exports.generatePosts = (req,res) => {
+  console.log("value:");
+  console.log(req);
+  
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
-		const { image, header, caption, funds , tags } = req.body;
+    const { image, header, caption, funds , tags } = req.body;
+
+    var folder = "img/"+req.file.originalname;
     const post = {
-      img: req.body.image,
+      img: folder,
       header: req.body.header,
       caption: req.body.caption,
       tags: req.body.tags,
       owner: req.session.user
     };
-
+  
     postModel.createPost(post, function(err, postResult) {
       if (err) {
         req.flash('error_msg', 'Could not create the posts. Please try again.');
@@ -94,65 +114,9 @@ exports.generatePosts = (req, res) => {
     else {
       console.log("errorrrrs");
 		const messages = errors.array().map((item) => item.msg);
-		req.flash('error_msg', messages.join(' '));
+    console.log(messages);
+    req.flash('error_msg', messages.join(' '));
 		res.redirect('/create');
 	}
 };
 
-// Get post by ID
-exports.getID = (req, res) => {
-  var id = req.params.id;
-
-  postModel.getByID(id, (err, result) => {
-    if (err) {
-      console.log("Could not find post.");
-      throw err;
-    } else {
-      var postObject = result.toObject();
-      res(postObject);
-    }
-  });
-};
-
-// Edit post 
-exports.edit = (req, res) => {
-  const { header, caption, funds , tags } = req.body;
-
-  var update = {
-    $set: { 
-      img: req.body.image,
-      header: req.body.header,
-      caption: req.body.caption,
-      tags: req.body.tags,
-      owner: req.session.user
-    } 
-  };
- 
-  postModel.update(req.body._id, update, (err, result) => {
-    if (err) {
-      console.log("Something went wrong. Please try again.");
-      throw err;
-    } else {
-      console.log("Post updated!");
-      console.log(result);
-      res.redirect('/myprofile');
-    }
-  });
-};
-
-// Delete post
-exports.delete = (req, res) => {
-  var id = req.params.id;
-  console.log("deletepost object id:");
-  console.log(id);
-  
-  postModel.remove(id, (err, result) => {
-    if (err) {
-      throw err; 
-    } 
-    else {
-      console.log("Successfully deleted!");
-      res.redirect('/myprofile');
-    }
-  }); 
-};
