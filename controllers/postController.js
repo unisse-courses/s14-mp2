@@ -143,6 +143,8 @@ exports.edit = (req, res) => {
 // Delete post
 exports.delete = (req, res) => {
   var id = req.params.id;
+  console.log("deletepost object id:");
+  console.log(id);
   
   postModel.remove(id, (err, result) => {
     if (err) {

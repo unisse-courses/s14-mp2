@@ -60,7 +60,8 @@ router.get('/myprofile', isPrivate, (req, res) => {
 // Getting id of the post user wants to edit
 router.get('/post/edit/:id', isPrivate, (req, res) => {
   var id = req.params.id;
-
+  console.log("ID index.js");
+  console.log(id);
   postController.getID(req, (post) => {
     res.render('edit', { username: req.session.username, item: post });
   });
