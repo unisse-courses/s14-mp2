@@ -1,6 +1,7 @@
 const postModel = require('../models/post');
 const { validationResult } = require('express-validator');
 
+//Getting all posts
 exports.getAllPosts = (param, callback) =>{
   postModel.getAll(param, (err, posts) => {
     if (err) throw err;
@@ -15,13 +16,9 @@ exports.getAllPosts = (param, callback) =>{
   });
 };
 
-
-
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
-  console.log("Search input by user: ");
-  console.log(query);
 
   postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
@@ -29,20 +26,14 @@ exports.searchPost = (req, res) => {
       throw err; 
     } 
     else {
-      // Successful query
-      if (result) { // If posts are found!
-        console.log("Search results:");
-        console.log(result);
-        
+      if (result) { 
         const postObjects = [];
-    
         result.forEach(function(doc) {
           postObjects.push(doc.toObject());
         });
-        
         res(postObjects);
       } 
-      else {  // No post found
+      else { 
         console.log("No post found!");
         req.flash('error_msg', 'No search results found. Try again.');
       }
@@ -50,23 +41,18 @@ exports.searchPost = (req, res) => {
   });
 };
 
-
-
-
+// Getting owner's posts
 exports.getSavedPosts = (req, res) => {
   var query = req;
-  console.log(query);
 
   postModel.getTitle({ owner: query }, (err, result) => {
     if (err) {
       throw err; 
     } 
     else {
-      // Successful query
-      if (result) { // If posts are found!
-        console.log("Search results:");
+      if (result) {
+        console.log("Posts owned by user:");
         console.log(result);
-        
         const postObjects = [];
     
         result.forEach(function(doc) {
@@ -76,15 +62,13 @@ exports.getSavedPosts = (req, res) => {
         res(postObjects);
       } 
       else {  // No post found
-        console.log("No such post for user found!");
+        console.log("No posts yet!");
       }
     }
   });
-  
 };
 
-
-
+// Creating post
 exports.generatePosts = (req, res) => {
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
@@ -96,9 +80,6 @@ exports.generatePosts = (req, res) => {
       tags: req.body.tags,
       owner: req.session.user
     };
-    console.log(post);
-
-    console.log("you made it here!");
 
     postModel.createPost(post, function(err, postResult) {
       if (err) {
@@ -116,14 +97,12 @@ exports.generatePosts = (req, res) => {
 		req.flash('error_msg', messages.join(' '));
 		res.redirect('/create');
 	}
-
 };
 
 // Get post by ID
 exports.getID = (req, res) => {
   var id = req.params.id;
-  console.log("GETTING POSTID INSIDE POSTCONTROLLER");
-  console.log(id);
+
   postModel.getByID(id, (err, result) => {
     if (err) {
       console.log("Could not find post.");
@@ -137,9 +116,6 @@ exports.getID = (req, res) => {
 
 // Edit post 
 exports.edit = (req, res) => {
-  var id = req.params.id;
-  console.log("req.body._id");
-  console.log(req.body._id);
   const { header, caption, funds , tags } = req.body;
 
   var update = {
@@ -166,17 +142,15 @@ exports.edit = (req, res) => {
 
 // Delete post
 exports.delete = (req, res) => {
-  var id = req.param.id;
-  console.log("deletepost object id:");
-  console.log(id);
-  /*
-  postModel.delete(id, (err, result) => {
+  var id = req.params.id;
+  
+  postModel.remove(id, (err, result) => {
     if (err) {
       throw err; 
     } 
     else {
-      console.log("idk what im doing");
+      console.log("Successfully deleted!");
+      res.redirect('/myprofile');
     }
-  }); */
-
+  }); 
 };

@@ -1,4 +1,4 @@
-<title>Create Post</title>
+<title>Edit Post</title>
 <body id="page-top">
 
   <!-- Navigation -->
@@ -12,10 +12,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
 		  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/myprofile#about">About Me</a>
+            <a class="nav-link js-scroll-trigger" href="#about">About Me</a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/myprofile#projects">My Projects</a>
+            <a class="nav-link js-scroll-trigger" href="#projects">My Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/create">Create Post</a>
@@ -29,24 +29,26 @@
   </nav>
 
   <!-- Create Post Section -->
-  <section id="create" class="login-section">
+  <section id="edit" class="login-section">
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
           <img src = "img/post.png" style="width:50px;height:50px;"></img>
-          <h2 class="text-white mb-5">Create A Post</h2>
+          <h2 class="text-white mb-5">Edit Post</h2>
 
-          <form class="form-inline d-flex" action="/createPost" method="POST">
-            <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
-            <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>
+          <form class="form-inline d-flex" action="/editPost" method="POST">
+            <input name="_id" type="hidden" value="{{item._id}}">
+            <p><input name="image" type="file" value="{{item.img}}" style="display: none;"></p>
+            <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Replace Image</label></p>
+            
             <div id="cont">
             </div>
 
-            <input name="header" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-            <textarea name="caption" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
+            <input name="header"  type="text"   value="{{item.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
+            <input name="caption" type="text"   value="{{item.caption}}" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
             <input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
-            <input name = "tags" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
-            <button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
+            <input name = "tags"  type="text"   value="{{item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
+            <button type="submit" class ="btn btn-primary btn-space mx-auto">Save</button>
           </form>
 
         </div>
