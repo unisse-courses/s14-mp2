@@ -77,9 +77,32 @@ router.post('/searchPost', isPublic, (req,res) => {
   });
 });
 
+
+
+
+
+
+
+
+const multer  = require('multer')
+
+
+const storage = multer.diskStorage({
+
+ 
+  destination: './public/img/',
+  filename: function(req, file, cb){
+    cb(null,file.originalname);
+  }
+});
+
+const upload = multer({
+  storage: storage,
+}).single('image');
+
+router.post('/makePost', isPrivate, upload ,postController.generatePosts);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
-router.post('/createPost',isPrivate, postValidation, postController.generatePosts);
 router.post('/editPost', isPrivate, postController.edit);
 
 module.exports = router;

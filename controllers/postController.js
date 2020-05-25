@@ -69,18 +69,23 @@ exports.getSavedPosts = (req, res) => {
 };
 
 // Creating post
-exports.generatePosts = (req, res) => {
+exports.generatePosts = (req,res) => {
+  console.log("value:");
+  console.log(req);
+  
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
-		const { image, header, caption, funds , tags } = req.body;
+    const { image, header, caption, funds , tags } = req.body;
+
+    var folder = "img/"+req.file.originalname;
     const post = {
-      img: req.body.image,
+      img: folder,
       header: req.body.header,
       caption: req.body.caption,
       tags: req.body.tags,
       owner: req.session.user
     };
-
+  
     postModel.createPost(post, function(err, postResult) {
       if (err) {
         req.flash('error_msg', 'Could not create the posts. Please try again.');
@@ -94,10 +99,14 @@ exports.generatePosts = (req, res) => {
     else {
       console.log("errorrrrs");
 		const messages = errors.array().map((item) => item.msg);
-		req.flash('error_msg', messages.join(' '));
+    console.log(messages);
+    req.flash('error_msg', messages.join(' '));
 		res.redirect('/create');
 	}
 };
+
+
+
 
 // Get post by ID
 exports.getID = (req, res) => {
