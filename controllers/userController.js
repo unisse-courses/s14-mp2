@@ -3,6 +3,8 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
 exports.registerUser = (req, res) => {
+  console.log(JASKDHKJASHDKJASHDKJHSD);
+ 
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
 		const { email, username, password } = req.body;
