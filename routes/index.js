@@ -3,7 +3,7 @@ const userController = require('../controllers/userController');
 const postController = require('../controllers/postController');
 const { registerValidation, loginValidation,postValidation } = require('../validators.js');
 const { isPublic, isPrivate } = require('../middlewares/checkAuth');
-const path = require('path');
+
 // Get homepage
 router.get('/', isPublic, (req, res) => {
   console.log("Read home successful!");
@@ -45,7 +45,7 @@ router.get('/logout', isPrivate, userController.logoutUser);
 
 // Get register page
 router.get('/register', isPublic, (req, res) => {
-  console.log("Read register successful!") ;
+  console.log("Read register successful!");
   res.render('register');
 });
 
@@ -57,62 +57,30 @@ router.get('/myprofile', isPrivate, (req, res) => {
   });
 });
 
-// Post methods for create hbs
+// Getting id of the post user wants to edit
+router.get('/post/edit/:id', isPrivate, (req, res) => {
+  var id = req.params.id;
+  console.log("ID index.js");
+  console.log(id);
+  postController.getID(req, (post) => {
+    res.render('edit', { username: req.session.username, item: post });
+  });
+});
 
+// Delete post
+router.get('/post/delete/:id', isPrivate, postController.delete);
 
 // POST methods for form submissions
 router.post('/searchPost', isPublic, (req,res) => {
-  var param = req;
+  var param = req.params.id;
   postController.searchPost(param, (posts) => {
-  res.render('feed',{item: posts})
+  res.render('feed',{ item: posts })
   });
 });
-
-
-
-const multer  = require('multer')
-
-
-const storage = multer.diskStorage({
-
- 
-  destination: './public/img/',
-  filename: function(req, file, cb){
-    cb(null,file.originalname);
-  }
-});
-
-const upload = multer({
-  storage: storage,
-}).single('image');
 
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
-router.post('/makePost', isPrivate, upload ,postController.generatePosts);
-
-
-/*
-router.post('/makePost', (req, res) => {
-  upload(req, res, (err) => {
-    if(err){
-      console.log('error')
-      res.render('create', {
-        msg: err
-      });
-    } else {
-      if(req.file == undefined){
-        res.render('create', {
-          msg: 'Error: No File Selected!'
-        });
-      } else {
-        res.render('create', {
-          msg: 'File Uploaded!',
-          file: `uploads/${req.file.filename}`
-        });
-      }
-    }
-  });
-});
-*/
+router.post('/createPost',isPrivate, postValidation, postController.generatePosts);
+router.post('/editPost', isPrivate, postController.edit);
 
 module.exports = router;
