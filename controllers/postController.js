@@ -1,7 +1,6 @@
 const postModel = require('../models/post');
 const { validationResult } = require('express-validator');
 
-
 exports.getAllPosts = (param, callback) =>{
   postModel.getAll(param, (err, posts) => {
     if (err) throw err;
@@ -84,23 +83,23 @@ exports.getSavedPosts = (req, res) => {
   
 };
 
-exports.generatePosts = (req,res) => {
-  console.log("value:");
-  console.log(req);
-  
+
+
+exports.generatePosts = (req, res) => {
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
-    const { image, header, caption, funds , tags } = req.body;
-
-    var folder = "img/"+req.file.originalname;
+		const { image, header, caption, funds , tags } = req.body;
     const post = {
-      img: folder,
+      img: req.body.image,
       header: req.body.header,
       caption: req.body.caption,
       tags: req.body.tags,
       owner: req.session.user
     };
-  
+    console.log(post);
+
+    console.log("you made it here!");
+
     postModel.createPost(post, function(err, postResult) {
       if (err) {
         req.flash('error_msg', 'Could not create the posts. Please try again.');
@@ -114,9 +113,7 @@ exports.generatePosts = (req,res) => {
     else {
       console.log("errorrrrs");
 		const messages = errors.array().map((item) => item.msg);
-    console.log(messages);
-    req.flash('error_msg', messages.join(' '));
+		req.flash('error_msg', messages.join(' '));
 		res.redirect('/create');
 	}
 };
-
