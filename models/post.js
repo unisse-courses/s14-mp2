@@ -20,6 +20,13 @@ exports.createPost = function(obj, next) {
   });
 };
 
+// Getting featured post
+exports.getFeatured = (param, next) => {
+  Post.find({} , (err, posts) => {
+    next(err, posts);
+  }).limit(6);
+};
+
 // Getting all post
 exports.getAll = (param, next) => {
   Post.find({} , (err, posts) => {

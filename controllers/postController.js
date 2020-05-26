@@ -1,6 +1,21 @@
 const postModel = require('../models/post');
 const { validationResult } = require('express-validator');
 
+//Getting featured posts
+exports.getFeaturedPosts = (param, callback) =>{
+  postModel.getFeatured(param, (err, posts) => {
+    if (err) throw err;
+    
+    const postObjects = [];
+    
+    posts.forEach(function(doc) {
+      postObjects.push(doc.toObject());
+    });
+    
+    callback(postObjects);
+  });
+};
+
 //Getting all posts
 exports.getAllPosts = (param, callback) =>{
   postModel.getAll(param, (err, posts) => {

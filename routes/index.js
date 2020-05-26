@@ -7,8 +7,7 @@ const { isPublic, isPrivate } = require('../middlewares/checkAuth');
 // Get homepage
 router.get('/', isPublic, (req, res) => {
   console.log("Read home successful!");
-  var param = "";
-  postController.getAllPosts(param, (posts) => {
+  postController.getFeaturedPosts(req, (posts) => {
     res.render('home', {item: posts})
   });
 });
@@ -70,26 +69,14 @@ router.get('/post/edit/:id', isPrivate, (req, res) => {
 router.get('/post/delete/:id', isPrivate, postController.delete);
 
 // POST methods for form submissions
-router.post('/searchPost', isPublic, (req,res) => {
-  var param = req.params.id;
-  postController.searchPost(param, (posts) => {
+router.post('/searchPost', isPublic, (req, res) => {
+  postController.searchPost(req, (posts) => {
   res.render('feed',{ item: posts })
   });
 });
 
-
-
-
-
-
-
-
 const multer  = require('multer')
-
-
-const storage = multer.diskStorage({
-
- 
+const storage = multer.diskStorage({ 
   destination: './public/img/',
   filename: function(req, file, cb){
     cb(null,file.originalname);
