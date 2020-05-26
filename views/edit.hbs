@@ -45,7 +45,7 @@
             </div>
 
             <input name="header"  type="text"   value="{{item.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-            <input name="caption" type="text" value="{{item.caption}}" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px"></textarea>
+            <textarea name="caption" type="text" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px">{{item.caption}}</textarea>
             <input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
             <input name = "tags"  type="text"   value="{{item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">
             <button type="submit" class ="btn btn-primary btn-space mx-auto">Save</button>
