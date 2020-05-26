@@ -1,9 +1,23 @@
 {{#each item}}
-<figure class="item1"><img src={{img}}>
-    <h2>{{header}}</h2>
-    <figcaption class="caption"> {{caption}}
-    <p>{{tags}}</p>
+
+
+<figure class="item1">
+    
+    
+<a href="/post/viewOne/{{this._id}}"><img src={{img}} href="/post/edit/{{this._id}}"></a>
+
+    <h2 href="/post/edit/{{this._id}}">
+            <a href="/post/viewOne/{{this._id}}">{{header}}</a>
+    </h2>
+
+    <figcaption class="caption" href="/post/edit/{{this._id}}"> 
+            <a href="/post/viewOne/{{this._id}}">{{caption}}</a>
+
+    <p >  
+        <a href="/post/viewOne/{{this._id}}">{{tags}}</a>
+    </p>
     </figcaption>
+
 
     <div class="button" id="button-2" href="/donate">
         <div id="slide"></div>

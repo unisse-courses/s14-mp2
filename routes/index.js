@@ -63,6 +63,13 @@ router.get('/post/edit/:id', isPrivate, (req, res) => {
   });
 });
 
+// Getting id of the post user wants to view
+router.get('/post/viewOne/:id', isPublic, (req, res) => {
+  postController.getID(req, (post) => {
+    res.render('viewOne', { item: post });
+  });
+});
+
 // Getting id of the post user wants to delete
 //router.get('/post/delete/:id', isPrivate, postController.getID);
 

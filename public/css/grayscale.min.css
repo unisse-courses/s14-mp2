@@ -417,3 +417,65 @@ box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
     font-weight: 800;
     color: white;
 }
+
+a{
+    color: black;
+}
+
+
+#vOnediv{
+    background-color: rgb(255, 255, 255);
+    height: auto;
+    padding-bottom: 30px;
+}
+
+#v1{
+    margin: 30px;
+}
+#v2{
+    float: left;
+    width: 450px;
+    height: 380px;
+}
+
+#hV{
+    font-weight: 800;
+    max-width:20rem;
+    font-size:2rem;
+    font-family:'Nunito';
+    float: left;
+    margin-left: 30px;
+    text-align: left;
+
+}
+#cV{
+    text-align: left;
+    margin-left: 30px;
+}
+#botV{
+    width: 500px;
+    height: 100px;
+}
+#imgV{
+    float: left;
+    width: 400px;
+    height: 350px;
+}
+#totalAmountV{
+    text-align: left;
+    float: left;
+    margin-left: 30px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.292);
+
+}
+#bottomdiv{
+    width: 250px;
+    height: 100px;
+    float: right;
+}
+#bottomdiv2{
+    width: 250px;
+    height: 100px;
+    float: left;
+}
