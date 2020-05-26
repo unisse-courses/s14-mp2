@@ -1,0 +1,121 @@
+<title>Feed</title>
+<body>
+  <!-- <script src = "../public/js/script.js"></script> -->
+
+  <!-- About Section -->
+  <section id="vAll" class="vAll-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">Helping is caring</h2>
+          <p class="text-white-50">The best way to not feel hopeless is to get up and do something. Don’t wait for good things to happen to you. If you go out and make some good things happen, you will fill the world with hope, you will fill yourself with hope.<br>- Barack Obama</p>
+        </div>
+      </div>
+      <img src="img/ipad.png" class="img-fluid" alt="">
+    </div>
+  </section>
+
+
+  <!-- Search A Post -->
+  <section id="login" class="login-section" style="height: 300px; background:rgb(249, 249, 249);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto  text-center">
+          <h2 class="text-black mb-1">Search Post</h2>
+          <div style="color: red;">{{> messages}}</div>
+          <form class="form-inline d-flex" action="/searchPost" method="POST">
+            <input name="searchTitle" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" placeholder="Search here...">
+            <button type="submit"  id="searchHeader" class ="btn btn-primary btn-space mx-auto" value="submit">Search</button>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- VIEW ALL POSTS -->
+  <section id="projects" class="projects-section bg-light text-center">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-black mb-4"> Newsfeed </h2>
+          <p class="text-black-50">List of charities of which you could help with.</p>
+        </div>
+    </div>
+    <div id="columns"  style="text-align: left;">
+      {{> card }}
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup" class="signup-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+
+          <form class="form-inline d-flex">
+            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
+            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section bg-black" id="contact">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Enrico Luis Cuison</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> enrico_cuison@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Mari Jazzmine Ilagan</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> mari_ilagan@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Jacob Israel Salazar</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> jacob_salazar@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+	  
+    </div>
+  </section>
+</body>

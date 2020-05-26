@@ -1,0 +1,78 @@
+<title>Login</title>
+<body id="page-top">
+
+  <!-- Login Section -->
+  <section id="login" class="login-section" style="height: 700px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-auto  text-center">
+        <img src = "img/login.png" style="width:50px;height:50px;"></img>
+        <h2 class="text-white mb-5">Login</h2>
+        <div style="color: red;">{{> messages}}</div>
+        <form class="form-inline d-flex flex-column" action="/login" method="POST" >
+            <input name = "username" type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-0" id="logusername"  placeholder="Username">
+            <input name = "password" type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-2 mb-sm-3" id="logpassword"  placeholder="Password">
+            <button type="submit" class ="btn btn-primary btn-space mx-auto" value="submit">Login</button>
+            <a type="button"  style="color: azure;" id="reg" href="/register">No account yet? Click here.</a>
+
+            <div id="errmsg">
+            </div>
+        </form> 
+      </div>
+    </div>
+  </div>
+  </section>
+
+ <!-- Contact Section -->
+  <section class="contact-section bg-black" id="contact">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Enrico Luis Cuison</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> enrico_cuison@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Mari Jazzmine Ilagan</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> mari_ilagan@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-envelope text-primary mb-2"></i>
+              <h4 class="text-uppercase m-0">Jacob Israel Salazar</h4>
+              <hr class="my-4">
+              <div class="small text-black-50"> jacob_salazar@dlsu.edu.ph </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
