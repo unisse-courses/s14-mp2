@@ -33,16 +33,11 @@
     <div class="container">
       <div class="row">
 
-          <div id="profpic">
-            
-          </div>
+        <div id="profpic"></div>
 
         <div id="biosection" class="col-lg-8 mx-3"> 
           <div id="header"><h2 class="text-white mb-4">Hello {{username}}! </h2></div>
           <div id="bio">
-
-            
-
             <p class="text-white mb-4"> This is your profile page, you can edit this by clicking "edit". *note: is now working but not yet saved</p>
             <button id="edit" class ="btn btn-primary btn-space mx-auto" data-toggle="modal" data-target="#myModalEditProfile">Edit</button>
           </div>
@@ -65,9 +60,9 @@
                     <form class="form-inline d-flex" action="" method="POST"> 
                       <p><input type="file"   accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
                     <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 445px;">Upload Image</label></p>
-                      <textarea type="text" name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px;" >{{this.bio}}</textarea>
+                      <textarea type="text" name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Bio" style="width:800px;" >{{this.bio}}</textarea>
                       
-                      <button type="submit" class ="btn btn-primary btn-space mx-auto">Update Bio</button>
+                      <button type="submit" class ="btn btn-primary btn-space mx-auto">Save</button>
                     </form>
                   </div>
                 <div class="modal-footer">

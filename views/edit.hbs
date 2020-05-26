@@ -41,14 +41,14 @@
             <p><input name="image" type="file" value="{{item.img}}" style="display: none;"></p>
             <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Replace Image</label></p>
             
-            <div id="cont">
-            </div>
+            <div id="cont"></div>
 
             <input name="header"  type="text"   value="{{item.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
             <textarea name="caption" type="text" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px">{{item.caption}}</textarea>
             <input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
             <input name = "tags"  type="text"   value="{{item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">
-            <button type="submit" class ="btn btn-primary btn-space mx-auto">Save</button>
+            <button type="submit" class="btn btn-primary btn-space mx-auto">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           </form>
 
         </div>

@@ -5,72 +5,33 @@
     <p>{{tags}}</p>
     </figcaption>
 
-    <div class="button" id="button-2"  data-toggle="modal" data-target="#myModalEdit">
+    <div class="button" id="button-2" href="/post/edit/{{this._id}}">
         <div id="slide"></div>
-        <a  style="color: black;" data-toggle="modal" data-target="#myModalEdit">Edit</a>
+        <a href="/post/edit/{{this._id}}" style="color: black;">Edit</a>
     </div> 
 
-    <div class="button" id="button-2" href="/post/delete/{{this._id}}" data-toggle="modal" data-target="#myModalDelete">
+    <div class="button" id="button-2" href="/post/delete/{{this._id}}">
         <div id="slide"></div>
         <a href="/post/delete/{{this._id}}" style="color: black;" data-toggle="modal" data-target="#myModalDelete">Delete</a> 
     </div>
 </figure>
-
-
-
-<div id="myModalEdit" class="modal fade" role="dialog">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-
-                <div class="modal-header">
-                  <h4 class="modal-title">Edit Form</h4>
-                </div>
-
-                <div id="container" value="{{this.img}}">
-                    <!-- CONTAINER FOR POST PIC -->
-                </div>
-
-                <div class="modal-body">
-                  <form class="form-inline d-flex"> 
-                    <input name="_id" type="hidden" value="{{this._id}}" action="/editPost" method="POST">
-
-                    <p><input type="file"   accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
-                    <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 445px;">Upload Image</label></p>
-                    
-                   
-
-                    <input type="text" value="{{this.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-                    <textarea type="text" name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px;" >{{this.caption}}</textarea>
-                    <input type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
-                    <input type="text"   value="{{this.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
-                    <button type="submit" class ="btn btn-primary btn-space mx-auto">Post</button>
-                  </form>
-                </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="myModalDelete" class="modal fade" role="dialog">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title"  >Delete Post?</h4>
-                </div>
-                <p style="margin-left: 20px; margin-top: 20px; margin-right:20px;">Are you sure you want to delete this post? Once deleted, you cannot undo your action.</p>
-                    <div class="modal-body">
-                    <form class="form-inline flex-column" action="/postDelete" method="POST">
-                        <button type="submit" class="btn btn-primary" style="margin-bottom:10px">DELETE</button>
-                                  
-                        <button type="submit" class ="btn btn-default" data-dismiss="modal">CANCEL</button>
-                    </form>
-                    </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
 {{/each}}
+
+<div id="myModalDelete" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Post?</h4>
+      </div>
+      <p style="margin-left: 20px; margin-top: 20px; margin-right:20px;">Are you sure you want to delete this post? Once deleted, you cannot undo your action.</p>
+      <div class="modal-body">
+        <form class="form-inline flex-column" action="/postDelete" method="POST">
+          <input name="_id" type="hidden" value="{{item._id}}">
+          <button type="submit" href="/post/delete/{{this._id}}" class="btn btn-primary" style="margin-bottom:10px">DELETE</button>
+          <button type="submit" class ="btn btn-default" data-dismiss="modal">CANCEL</button>
+        </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>

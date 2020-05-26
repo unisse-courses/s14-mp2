@@ -126,7 +126,8 @@ exports.generatePosts = (req,res) => {
 // Get post by ID
 exports.getID = (req, res) => {
   var id = req.params.id;
-
+  console.log("id postcontrolelr");
+  console.log(id);
   postModel.getByID(id, (err, result) => {
     if (err) {
       console.log("Could not find post.");

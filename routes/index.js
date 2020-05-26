@@ -58,12 +58,13 @@ router.get('/myprofile', isPrivate, (req, res) => {
 
 // Getting id of the post user wants to edit
 router.get('/post/edit/:id', isPrivate, (req, res) => {
-  var id = req.params.id;
-
   postController.getID(req, (post) => {
     res.render('edit', { username: req.session.username, item: post });
   });
 });
+
+// Getting id of the post user wants to delete
+//router.get('/post/delete/:id', isPrivate, postController.getID);
 
 // Delete post
 router.get('/post/delete/:id', isPrivate, postController.delete);
@@ -91,5 +92,6 @@ router.post('/makePost', isPrivate, upload ,postController.generatePosts);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
 router.post('/editPost', isPrivate, postController.edit);
+//router.post('/deletePost', isPrivate, postController.delete);
 
 module.exports = router;
