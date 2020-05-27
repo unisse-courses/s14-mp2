@@ -62,7 +62,7 @@ exports.loginUser = (req, res) => {
               req.session.user = user._id;
               req.session.username = user.username;
               console.log(req.session);
-              res.redirect('/myprofile');
+              res.redirect('/profile');
             } else {  // If passwords don't match
               req.flash('error_msg', 'Password does not match. Please try again.');
               res.redirect('/login');

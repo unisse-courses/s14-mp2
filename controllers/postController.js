@@ -107,7 +107,7 @@ exports.generatePosts = (req,res) => {
         res.redirect('/create');
       } else {
         req.flash('success_msg', 'New post generated!');
-        res.redirect('/myprofile');
+        res.redirect('/profile');
       }
     }) 
 			}
@@ -120,14 +120,10 @@ exports.generatePosts = (req,res) => {
 	}
 };
 
-
-
-
 // Get post by ID
 exports.getID = (req, res) => {
   var id = req.params.id;
-  console.log("id postcontrolelr");
-  console.log(id);
+
   postModel.getByID(id, (err, result) => {
     if (err) {
       console.log("Could not find post.");
@@ -160,7 +156,7 @@ exports.edit = (req, res) => {
     } else {
       console.log("Post updated!");
       console.log(result);
-      res.redirect('/myprofile');
+      res.redirect('/profile');
     }
   });
 };
@@ -175,7 +171,7 @@ exports.delete = (req, res) => {
     } 
     else {
       console.log("Successfully deleted!");
-      res.redirect('/myprofile');
+      res.redirect('/profile');
     }
   }); 
 };

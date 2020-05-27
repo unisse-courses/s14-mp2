@@ -1,49 +1,34 @@
 <title>{{item.header}}</title>
 <body id="page-top">
-
-  
-
   <head>
-
   </head>
 
-  <!-- Edit Post Section -->
+  <!-- View A Post -->
   <section id="edit" class="login-section">
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-10 mx-auto text-center" id="vOnediv">
-            
-            
-            <div id="v1">
-                <img id="imgV" src={{item.img}} >
-                <div id="v2">
-                    <h id="hV">{{item.header}}</h> <br><br><br>
-                    <figcaption class="caption" id="cV">{{item.caption}}</figcaption><br><br>
-                    <p>{{item.tags}}</p>
+          <div id="v1">
+            <img id="imgV" src={{item.img}}>
+            <div id="v2">
+              <h id="hV">{{item.header}}</h> <br><br><br>
+              <figcaption class="caption" id="cV">{{item.caption}}</figcaption><br><br>
+              <p>{{item.tags}}</p>
 
-                <div id="botV">
-                    
-                    <div id="bottomdiv2"><br>
-                        <p1 id="totalAmountV">Total amount donated </p1>
-                    </div>
-                    <div id="bottomdiv">
-                        <div class="button" id="button-2" href="/donate" style="float:right; margin-right:60px;">
-
-                            <div id="slide"></div>
-                            <a href="/donate" style="color: black; ;">Donate Now</a> 
-                        </div> 
-                    </div>
-                    
-                </div>    
-                    
+              <div id="botV">  
+                <div id="bottomdiv2"><br>
+                  <p1 id="totalAmountV">Total amount donated </p1>
                 </div>
 
-                
-                
+                <div id="bottomdiv">
+                  <div class="button" id="button-2" href="/post/donate/{{item._id}}" style="float:right; margin-right:60px;">
+                   <div id="slide"></div>
+                    <a href="/post/donate/{{item._id}}" style="color: black;">Donate Now</a> 
+                  </div> 
+                </div>
+              </div>     
             </div>
-            
-              
-
+          </div>
         </div>
       </div>
     </div>
