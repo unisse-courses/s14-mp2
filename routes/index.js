@@ -107,10 +107,11 @@ const upload = multer({
   storage: storage,
 }).single('image');
 
+
 router.post('/makePost', isPrivate, upload, postController.generatePosts);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
-router.post('/post/edit', isPrivate, postController.edit);
-router.post('/profile/edit', isPrivate, userController.edit);
+router.post('/post/edit', isPrivate, upload,postController.edit);
+router.post('/profile/edit', isPrivate, upload,userController.edit);
 
 module.exports = router;

@@ -139,9 +139,11 @@ exports.getID = (req, res) => {
 exports.edit = (req, res) => {
   const { header, caption, funds , tags } = req.body;
 
+  var folder = "img/"+req.file.originalname;
+
   var update = {
     $set: { 
-      img: req.body.image,
+      img: folder,
       header: req.body.header,
       caption: req.body.caption,
       tags: req.body.tags,
