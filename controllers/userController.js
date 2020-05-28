@@ -95,16 +95,15 @@ exports.logoutUser = (req, res) => {
 
 // Get user by ID
 exports.getID = (req, res) => {
-  var id = req.params.id;
-  console.log("userID in usercontroller");
-  console.log(id);
-  userModel.getByID(id, (err, result) => {
+  var id = req;
+
+  userModel.getById(id, (err, result) => {
     if (err) {
       console.log("Could not find user.");
       throw err;
     } else {
-      var userObject = result.toObject();
-      res(userObject);
+      //var userObject = result.toObject();
+      res(result);
     }
   });
 };
@@ -112,16 +111,16 @@ exports.getID = (req, res) => {
 // Edit profile 
 exports.edit = (req, res) => {
   const { img, bio } = req.body;
-
+  console.log(req.body.image);
   var update = {
     $set: { 
       img: req.body.image,
-      bio: req.body.header,
+      bio: req.body.bio,
       owner: req.session.user
     } 
   };
  
-  userModel.update(req.body._id, update, (err, result) => {
+  userModel.update(req.session.user, update, (err, result) => {
     if (err) {
       console.log("Something went wrong. Please try again.");
       throw err;

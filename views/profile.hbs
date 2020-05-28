@@ -12,10 +12,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
 		  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About Me</a>
+            <a class="nav-link js-scroll-trigger" href="/profile#about">About Me</a>
           </li>
 		  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">My Projects</a>
+            <a class="nav-link js-scroll-trigger" href="/profile#projects">My Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/post/create">Create Post</a>
@@ -33,13 +33,18 @@
     <div class="container">
       <div class="row">
 
-        <div id="profpic">{{this.dp}}</div>
+        <div id="profpic">
+          <img src = "{{dp}}" style="width:200px; height:200px;"></img>
+        </div>
 
         <div id="biosection" class="col-lg-8 mx-3"> 
           <div id="header"><h2 class="text-white mb-4">Hello {{username}}! </h2></div>
           <div id="bio">
             <p class="text-white mb-4"> {{bio}} </p>
-            <button id="edit" class ="btn btn-primary btn-space mx-auto" href="/profile/edit/{{this._id}}">Edit</button>
+            <div class="button" id="button-2" href="/profile/edit/{{this._id}}">
+              <div id="slide"></div>
+              <a href="/profile/edit/{{this._id}}" style="color: black;">Edit</a>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 const mongoose = require('./connection');
-const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
 	email: { type: String, required: true },
@@ -43,4 +42,11 @@ exports.getOne = function(query, next) {
   User.findOne(query, function(err, user) {
     next(err, user);
   });
+};
+
+// Edit bio/dp
+exports.update = function(id, update, next) {
+  User.findOneAndUpdate({_id: id}, update, { new: true }, function(err, post) {
+    next(err, post);
+  })
 };

@@ -54,16 +54,21 @@ router.get('/logout', isPrivate, userController.logoutUser);
 // Get profile page
 router.get('/profile', isPrivate, (req, res) => {
   console.log("Read profile successful!");
+  var owner; 
+  userController.getID(req.session.user, (user) => {
+    owner = user;
+  });
+  
   postController.getSavedPosts(req.session.user, (posts) => {
-    res.render('profile', { username: req.session.username, item: posts });
+    res.render('profile', { username: req.session.username, item: posts, dp: owner.dp, bio: owner.bio, _id: req.session.user });
   });
 });
 
 // Get profile page
 router.get('/profile/edit/:id', isPrivate, (req, res) => {
   console.log("Read edit profile successful!");
-  userController.getID(req, (user) => {
-    res.render('bio', { username: req.session.username, profile: user });
+  userController.getID(req.session.user, (result) => {
+    res.render('bio', { username: req.session.username, bio: result.bio, dp: result.dp });
   });
 });
 
