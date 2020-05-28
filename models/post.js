@@ -1,12 +1,11 @@
 const mongoose = require('./connection');
-const userModel = require('../models/user');
 
 const postSchema = new mongoose.Schema({
-	img: { type: String, required:true },
-  header: { type: String, required: true, min:1, max:15  },
+	img: { type: String, required: true },
+  header: { type: String, required: true, min:1, max:15 },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true},
 	caption: { type: String, required: true, min:1, max:250 },
-  tags: {type: String, required: false, min: 1, max:100},
+  tags: {type: String, required: false, min: 1, max:100 },
 });
 
 const Post = mongoose.model('posts', postSchema);

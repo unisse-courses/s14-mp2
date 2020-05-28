@@ -7,3 +7,4 @@ const donateSchema = new mongoose.Schema({
 });
 
 const Donation = mongoose.model('donate', donateSchema);
+

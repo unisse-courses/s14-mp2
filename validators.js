@@ -28,18 +28,13 @@ const loginValidation = [
   body('password').not().isEmpty().withMessage("Please enter password.")
 ];
 
-
 const postValidation = [
-
-
   body('image').notEmpty().withMessage("Please insert a photo"),
   // Title should not be empty
-  body('header').not().isEmpty().withMessage("Please insert a caption"),
-  body('caption').not().isEmpty().withMessage("Please enter Title for the post."),  
-  // Password needs to be min 5 chars
+  body('header').not().isEmpty().withMessage("Please enter title"),
+  body('caption').not().isEmpty().withMessage("Please enter description for the post."),  
+  // Tags should not be empty
   body('tags').not().isEmpty().withMessage("Please enter Tags for the post."), 
-
 ];
 
-
-module.exports = { registerValidation, loginValidation,postValidation };
+module.exports = { registerValidation, loginValidation, postValidation };

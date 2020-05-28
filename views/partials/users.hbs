@@ -1,0 +1,12 @@
+{{#each profile}}
+  <div id="profpic" onerror="this.src='../img/user.png'">
+    <img src={{dp}}>
+  </div>
+  <div id="biosection" class="col-lg-8 mx-3"> 
+    <div id="header"><h2 class="text-white mb-4">Hello {{username}}! </h2></div>
+      <div id="bio">
+        <p class="text-white mb-4"> {{bio}} </p>
+        <button id="edit" class ="btn btn-primary btn-space mx-auto" href="/profile/edit/{{this._id}}">Edit</button>
+    </div>
+  </div>
+{{/each}}

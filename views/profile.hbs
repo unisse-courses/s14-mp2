@@ -18,7 +18,7 @@
             <a class="nav-link js-scroll-trigger" href="#projects">My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/create">Create Post</a>
+            <a class="nav-link js-scroll-trigger" href="/post/create">Create Post</a>
           </li>
 		  <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
@@ -33,43 +33,18 @@
     <div class="container">
       <div class="row">
 
-        <div id="profpic"></div>
+        <div id="profpic">{{this.dp}}</div>
 
         <div id="biosection" class="col-lg-8 mx-3"> 
           <div id="header"><h2 class="text-white mb-4">Hello {{username}}! </h2></div>
           <div id="bio">
-            <p class="text-white mb-4"> This is your profile page, you can edit this by clicking "edit". *note: is now working but not yet saved</p>
-            <button id="edit" class ="btn btn-primary btn-space mx-auto" data-toggle="modal" data-target="#myModalEditProfile">Edit</button>
+            <p class="text-white mb-4"> {{bio}} </p>
+            <button id="edit" class ="btn btn-primary btn-space mx-auto" href="/profile/edit/{{this._id}}">Edit</button>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
-  <!-- MODAL -->
-  <div id="myModalEditProfile" class="modal fade" role="dialog">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-
-                <div class="modal-header">
-                  <h4 class="modal-title">{{username}}</h4>
-                </div>
-                  <div class="modal-body">
-                    <form class="form-inline d-flex" action="" method="POST"> 
-                      <p><input type="file"   accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
-                    <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 445px;">Upload Image</label></p>
-                      <textarea type="text" name="description" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Bio" style="width:800px;" >{{this.bio}}</textarea>
-                      
-                      <button type="submit" class ="btn btn-primary btn-space mx-auto">Save</button>
-                    </form>
-                  </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
   
   <!-- Projects Section -->
   <section id="projects" class="projects-section bg-light text-center">
@@ -78,7 +53,7 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2 class="text-black mb-4">My Projects</h2>
-          <p class="text-black-50">Here is a featured list of charities of which you could help with.</p>
+          <p class="text-black-50">Here is a list of your projects.</p>
         </div>
       </div>
     </div>  
@@ -89,10 +64,10 @@
 
   </section>
 
-  <!-- Projects Section -->
+  <!-- Create Project Section -->
   <section class="projects-section bg-light text-center">
-    <div class="button" id="button-2" href="/create">
-      <a href="/create" style="color: black;">Create Post</a> 
+    <div class="button" id="button-2" href="/post/create">
+      <a href="/post/create" style="color: black;">Create Post</a> 
     </div>
   </section>
 

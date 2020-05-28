@@ -59,8 +59,16 @@ router.get('/profile', isPrivate, (req, res) => {
   });
 });
 
+// Get profile page
+router.get('/profile/edit/:id', isPrivate, (req, res) => {
+  console.log("Read edit profile successful!");
+  userController.getID(req, (user) => {
+    res.render('bio', { username: req.session.username, profile: user });
+  });
+});
+
 // Get create post page
-router.get('/create', isPrivate, (req, res) => {
+router.get('/post/create', isPrivate, (req, res) => {
   console.log("Read create page successful!");
   res.render('create', { username: req.session.username });
 });
@@ -94,9 +102,10 @@ const upload = multer({
   storage: storage,
 }).single('image');
 
-router.post('/makePost', isPrivate, upload ,postController.generatePosts);
+router.post('/makePost', isPrivate, upload, postController.generatePosts);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
 router.post('/post/edit', isPrivate, postController.edit);
+router.post('/profile/edit', isPrivate, userController.edit);
 
 module.exports = router;

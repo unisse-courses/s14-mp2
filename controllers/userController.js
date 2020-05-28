@@ -2,6 +2,7 @@ const userModel = require('../models/user');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 
+// Register User
 exports.registerUser = (req, res) => {
   console.log(JASKDHKJASHDKJASHDKJHSD);
  
@@ -43,6 +44,7 @@ exports.registerUser = (req, res) => {
 	}
 };
 
+// Login
 exports.loginUser = (req, res) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -81,6 +83,7 @@ exports.loginUser = (req, res) => {
   }
 };
 
+// Logout
 exports.logoutUser = (req, res) => {
   if (req.session) {
     req.session.destroy(() => {
@@ -88,4 +91,44 @@ exports.logoutUser = (req, res) => {
       res.redirect('/login');
     });
   }
+};
+
+// Get user by ID
+exports.getID = (req, res) => {
+  var id = req.params.id;
+  console.log("userID in usercontroller");
+  console.log(id);
+  userModel.getByID(id, (err, result) => {
+    if (err) {
+      console.log("Could not find user.");
+      throw err;
+    } else {
+      var userObject = result.toObject();
+      res(userObject);
+    }
+  });
+};
+
+// Edit profile 
+exports.edit = (req, res) => {
+  const { img, bio } = req.body;
+
+  var update = {
+    $set: { 
+      img: req.body.image,
+      bio: req.body.header,
+      owner: req.session.user
+    } 
+  };
+ 
+  userModel.update(req.body._id, update, (err, result) => {
+    if (err) {
+      console.log("Something went wrong. Please try again.");
+      throw err;
+    } else {
+      console.log("Profile updated!");
+      console.log(result);
+      res.redirect('/profile');
+    }
+  });
 };
