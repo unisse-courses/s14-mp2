@@ -81,7 +81,8 @@ router.get('/post/create', isPrivate, (req, res) => {
 // Getting id of the post user wants to edit
 router.get('/post/edit/:id', isPrivate, (req, res) => {
   postController.getID(req, (post) => {
-    res.render('edit', { username: req.session.username, item: post });
+    var tags = post.tags.join(" ");
+    res.render('edit', { username: req.session.username, item: post, Tags: tags });
   });
 });
 
@@ -94,6 +95,9 @@ router.post('/post/search', isPublic, (req, res) => {
   res.render('feed', { item: posts })
   });
 });
+
+
+
 
 const multer  = require('multer')
 const storage = multer.diskStorage({ 
@@ -108,10 +112,10 @@ const upload = multer({
 }).single('image');
 
 
-router.post('/makePost', isPrivate, upload, postController.generatePosts);
+router.post('/makePost', isPrivate,upload, postController.generatePosts);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
 router.post('/login', isPublic, loginValidation, userController.loginUser);
-router.post('/post/edit', isPrivate, upload,postController.edit);
+router.post('/post/edit', isPrivate, upload, postController.edit);
 router.post('/profile/edit', isPrivate, upload,userController.edit);
 
 module.exports = router;

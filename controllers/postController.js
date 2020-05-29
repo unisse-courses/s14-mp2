@@ -93,11 +93,16 @@ exports.generatePosts = (req,res) => {
     const { image, header, caption, funds , tags } = req.body;
 
     var folder = "img/"+req.file.originalname;
+
+    if (req.body.tags != ""){
+      var tagsArray = getTags(req.body.tags);
+    }
+
     const post = {
       img: folder,
       header: req.body.header,
       caption: req.body.caption,
-      tags: req.body.tags,
+      tags: tagsArray,
       owner: req.session.user
     };
   
@@ -141,12 +146,16 @@ exports.edit = (req, res) => {
 
   var folder = "img/"+req.file.originalname;
 
+  if (req.body.tags != ""){
+    var tagsArray = getTags(req.body.tags);
+  }
+
   var update = {
     $set: { 
       img: folder,
       header: req.body.header,
       caption: req.body.caption,
-      tags: req.body.tags,
+      tags: tagsArray,
       owner: req.session.user
     } 
   };
@@ -177,3 +186,17 @@ exports.delete = (req, res) => {
     }
   }); 
 };
+
+
+
+function getTags(searchText) {
+  var regexp = /#([^\s#]+)/gm
+  result = searchText.match(regexp);
+  if (result) {
+      result = result.map(function(s){ return s.trim();});
+      console.log(result);
+      return result;
+  } else {
+      return false;
+  }
+}
