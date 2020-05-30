@@ -92,10 +92,7 @@
         border-bottom:.25rem solid #000000
     }
 }
-#profpic
-{
-	border-style: dotted;
-}
+
 .masthead
 {
     position:relative;
@@ -372,12 +369,21 @@ footer
 
 
 #profpic {
-border: 1px solid #ddd;
+border: 1px solid #64a19d;
 border-radius: 4px;
 padding: 5px;
-width: 213px;
-height: 213px;
+width: 250px;
+height: 250px;
+
+max-width: 100%;
+max-height: 100%;
 margin-left: 100px;
+}
+
+#profpic img{
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 #profpic:hover
@@ -390,12 +396,10 @@ box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 #cont img
 {
     
-    margin-left: 15px;
-    background-color: rgba(255, 255, 255, 0.733);
-    width: 700px;
-    height: 500px;
-    padding: 20px ;
-    border:3px solid #ffffff
+    width: 713px;
+    margin-left: 8px;
+    margin-bottom: 20px;
+    border: solid #64a19d 5px;
 }
 
 #errmsg
@@ -435,10 +439,10 @@ a{
 #v2{
     float: left;
     width: 450px;
-    height: 380px;
+    height: auto;
 }
-
-#hV{
+#hVdiv{
+    height: auto;
     font-weight: 800;
     max-width:20rem;
     font-size:2rem;
@@ -446,6 +450,9 @@ a{
     float: left;
     margin-left: 30px;
     text-align: left;
+}
+#hV{
+   
 
 }
 #cV{
@@ -478,4 +485,13 @@ a{
     width: 250px;
     height: 100px;
     float: left;
+}
+
+.profpic
+{
+    border-radius: 1000px;
+    height: 35px;
+    width: 35px;
+    background-color: black;
+    border: solid #64a19d 1px;
 }

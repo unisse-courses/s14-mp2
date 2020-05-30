@@ -4,7 +4,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Charity App - {{username}}</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="profpic" src="{{dp}}"> {{username}}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -34,16 +34,16 @@
       <div class="row">
 
         <div id="profpic">
-          <img src = "{{dp}}" style="width:200px; height:200px;"></img>
+          <img src = "{{dp}}"></img>
         </div>
 
-        <div id="biosection" class="col-lg-8 mx-3"> 
+        <div id="biosection" class="col-lg-8 mx-1"> 
           <div id="header"><h2 class="text-white mb-4">Hello {{username}}! </h2></div>
           <div id="bio">
-            <p class="text-white mb-4"> {{bio}} </p>
-            <div class="button" id="button-2" href="/profile/edit/{{this._id}}">
-              <div id="slide"></div>
-              <a href="/profile/edit/{{this._id}}" style="color: black;">Edit</a>
+            <p class="text-white mb-5"> {{bio}} </p>
+            <div class="button" id="button-2" style="background-color:#64a19d79; float:right;" href="/profile/edit/{{this._id}}">
+              <div id="slide" ></div>
+              <a href="/profile/edit/{{this._id}}" style="color: white;width:150px; height:40px; line-height:40px; text-align: center;">Edit Profile</a>
             </div>
           </div>
         </div>

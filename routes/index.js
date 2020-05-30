@@ -75,7 +75,14 @@ router.get('/profile/edit/:id', isPrivate, (req, res) => {
 // Get create post page
 router.get('/post/create', isPrivate, (req, res) => {
   console.log("Read create page successful!");
-  res.render('create', { username: req.session.username });
+  var owner; 
+  userController.getID(req.session.user, (user) => {
+    owner = user;
+  });
+  
+  postController.getSavedPosts(req.session.user, (posts) => {
+    res.render('create', { username: req.session.username, item: posts, dp: owner.dp, bio: owner.bio, _id: req.session.user });
+  });
 });
 
 // Getting id of the post user wants to edit
