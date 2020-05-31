@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 
 // Register User
 exports.registerUser = (req, res) => {
-  console.log(JASKDHKJASHDKJASHDKJHSD);
- 
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
 		const { email, username, password } = req.body;
