@@ -51,7 +51,7 @@ var postArray = [
 	  img: "img/elderly.jpg",
 	  header:  "Home for the Aged",
 	  caption: "According to the World Food Programme (WFP), because of the years of drought, widespread flooding and economic disarray, 45 million people are facing severe food shortages, with women and children bearing the brunt of the crisis. Half of the population of Zimbabwe or 7.7 million people are facing its worst hunger emergency in a decade. Let us help the people who are starving, let us share our blessings to them. Donate now.",
-    tags: ["#famine", "#Africa", "#HelpAfrica"],
+    tags: ["#HomeForTheAged", "#elderly"],
   }, 
   {
 	  img: "img/panda.jpg",

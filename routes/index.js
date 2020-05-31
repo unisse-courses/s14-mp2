@@ -55,6 +55,7 @@ router.get('/logout', isPrivate, userController.logoutUser);
 router.get('/profile', isPrivate, (req, res) => {
   console.log("Read profile successful!");
   var owner; 
+
   userController.getID(req.session.user, (user) => {
     owner = user;
   });
@@ -64,7 +65,7 @@ router.get('/profile', isPrivate, (req, res) => {
   });
 });
 
-// Get profile page
+// Get edit profile page
 router.get('/profile/edit/:id', isPrivate, (req, res) => {
   console.log("Read edit profile successful!");
   userController.getID(req.session.user, (result) => {
@@ -75,36 +76,28 @@ router.get('/profile/edit/:id', isPrivate, (req, res) => {
 // Get create post page
 router.get('/post/create', isPrivate, (req, res) => {
   console.log("Read create page successful!");
-  var owner; 
+
   userController.getID(req.session.user, (user) => {
-    owner = user;
-  });
-  
-  postController.getSavedPosts(req.session.user, (posts) => {
-    res.render('create', { username: req.session.username, item: posts, dp: owner.dp, bio: owner.bio, _id: req.session.user });
+    res.render('create', { username: req.session.username, dp: user.dp });
   });
 });
 
 // Getting id of the post user wants to edit
 router.get('/post/edit/:id', isPrivate, (req, res) => {
+  var owner; 
+  
+  userController.getID(req.session.user, (user) => {
+    owner = user;
+  });
+
   postController.getID(req, (post) => {
     var tags = post.tags.join(" ");
-    res.render('edit', { username: req.session.username, item: post, Tags: tags });
+    res.render('edit', { username: req.session.username, item: post, Tags: tags, dp: owner.dp });
   });
 });
 
 // Delete post
 router.get('/post/delete/:id', isPrivate, postController.delete);
-
-// POST methods for form submissions
-router.post('/post/search', isPublic, (req, res) => {
-  postController.searchPost(req, (posts) => {
-  res.render('feed', { item: posts })
-  });
-});
-
-
-
 
 const multer  = require('multer')
 const storage = multer.diskStorage({ 
@@ -118,6 +111,12 @@ const upload = multer({
   storage: storage,
 }).single('image');
 
+// POST methods for form submissions
+router.post('/post/search', isPublic, (req, res) => {
+  postController.searchPost(req, (posts) => {
+  res.render('feed', { item: posts })
+  });
+});
 
 router.post('/makePost', isPrivate,upload, postController.generatePosts);
 router.post('/register', isPublic, registerValidation, userController.registerUser);
