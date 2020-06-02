@@ -3,9 +3,14 @@
     <h2>{{header}}</h2>
     <figcaption class="caption"> {{caption}}
     </figcaption>
-    <p >  
-        <a  style="color: #64a19d;">{{tags}}</a>
-    </p>
+
+
+    <div id="tagDiv">
+        <p >  
+            {{#tags}} {{.}} {{/tags}}
+        </p>
+    </div>
+    
 
     <div class="button" id="button-2" href="/post/edit/{{this._id}}">
         <div id="slide" href="/post/edit/{{this._id}}"></div>

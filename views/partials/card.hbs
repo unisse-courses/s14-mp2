@@ -8,7 +8,12 @@
         <a href="/post/view/{{this._id}}">{{caption}}</a>
     </figcaption><br>
 
-    <p> <a style="color: #64a19d;">{{tags}}</a></p>
+    <div id="tagDiv">
+        <p >
+            {{#tags}} {{.}} {{/tags}}
+        </p>
+    </div>
+    
 
     <div class="button" id="button-2" href="/post/donate/{{this._id}}">
         <div id="slide" href="/post/donate/{{this._id}}"></div>

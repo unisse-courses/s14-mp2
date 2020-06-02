@@ -514,3 +514,11 @@ a{
     border: solid black 4px;
     border-radius: 50px;
 }
+
+#tagDiv{
+}
+
+#tagDiv p{
+    display: inline-block;
+    color: #64a19d;
+}

@@ -26,6 +26,7 @@ body {
    display: inline-block;
    page-break-inside: avoid;
    height: auto;
+   width: auto;
    
  }
 
