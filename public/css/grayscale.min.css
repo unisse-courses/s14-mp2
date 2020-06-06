@@ -547,3 +547,30 @@ a{
     text-align: left;
     margin-left: 5px;
 }
+#donationForm{
+    width:224px ;
+    height: 250px;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    margin-right: .6rem;
+    margin-left: .6rem;
+    margin-bottom: 1rem;
+}
+#donationinfo
+{
+    width: 712px;
+    margin-top: 1rem;
+    margin-bottom: .2rem;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: .6rem;
+    margin-right: .6rem;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 700;
+}
+#BDO{
+    width: 180;
+}
