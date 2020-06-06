@@ -91,6 +91,9 @@ exports.generatePosts = (req,res) => {
     const { image, header, caption, funds , tags, nameBDO,
     numBDO, nameBPI, numBPI, nameMETRO, numMETRO } = req.body;
 
+    console.log('File REQ');
+    console.log(req.file);
+
     var folder = "img/"+req.file.originalname;
 
     if (req.body.tags != ""){
