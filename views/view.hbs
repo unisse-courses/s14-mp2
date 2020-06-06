@@ -1,5 +1,6 @@
 <title>{{item.header}}</title>
 <body id="page-top">
+
   <!-- View A Post -->
   <section id="edit" class="login-section">
     <div class="container">
@@ -16,16 +17,6 @@
               <figcaption class="caption" id="cV">{{item.caption}} <br><br> <p style="color: #64a19d;">{{#item.tags}} {{.}} {{/item.tags}}</p> </figcaption>
               <br><br>
 
-
-              <div id="botV">  
-                <div id="bottomdiv2"><br>
-                  <p1 id="totalAmountV">Total amount donated: </p1>
-                  <br>
-                  <!-- edit this for total amount -->
-                  <p1 id="totalAmountV">P10000000</p1>
-                  <!---->
-                </div>
-
                 <div id="bottomdiv">
                   <div class="button" id="button-2" data-toggle="modal" data-target="#myModal" style="float:right; margin-right:60px;">
                    <div id="slide" data-toggle="modal" data-target="#myModal"></div>
@@ -39,51 +30,53 @@
       </div>
     </div>
   </section>
-<div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title">Donation Channels</h4>
-                      </div>
-                      <div class="modal-body">
-						<div class="form-inline d-flex flex-column" >
-                            <p>You are donating to <p1 style="font-weight: 700;">{{item.header}}</p1>.</p>
-                            <p>Below are the donation channels: </p>
-                            <div id="channeldiv">
-                                <p id="channelhead"> <img id="channelicon" src="../img/BDO.png" alt="">Banco De Oro</p>
-                                <div id="details">
-                                    <p1 id="channeldetails">Account Name: Enrico Cuison <!--{Account name from db}}--></p1><br>
-                                    <p1 id="channeldetails">Account Number: 651698191 <!--{Account number from db}}--></p1>
-                                </div>
-                            </div>
-                            <div id="channeldiv">
-                                <p id="channelhead"> <img id="channelicon" src="../img/BPI.png" alt="">Bank of the Philippine Islands</p>
-                                
-                                <div id="details">
-                                    <p1 id="channeldetails">Account Name: Enrico Cuison</p1><br>
-                                    <p1 id="channeldetails">Account Number: 651698191</p1>
-                                </div>
-                            </div>
-                            <div id="channeldiv">
-                                <p id="channelhead"> <img id="channelicon" src="../img/METROBANK.jpg" alt="">Metrobank</p>
-                                <div id="details">
-                                    <p1 id="channeldetails">Account Name: Enrico Cuison</p1><br>
-                                    <p1 id="channeldetails">Account Number: 651698191</p1>
-                                </div>
-                                
-                            </div>
 
-                           
-                            
-                            
-						</div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
+  <!-- Donation -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Donation Channels</h4>
+        </div>
+
+        <div class="modal-body">
+				  <div class="form-inline d-flex flex-column" >
+            <p>You are donating to <p1 style="font-weight: 700;">{{item.header}}</p1>.</p>
+            <p>Below are the donation channels: </p>
+            <div id="channeldiv">
+              <p id="channelhead"> <img id="channelicon" src="../img/BDO.png" alt="">Banco De Oro</p>
+                <div id="details">
+                  <p1 id="channeldetails">Account Name: Enrico Cuison <!--{Account name from db}}--></p1><br>
+                  <p1 id="channeldetails">Account Number: 651698191 <!--{Account number from db}}--></p1>
                 </div>
+            </div>
+
+            <div id="channeldiv">
+              <p id="channelhead"> <img id="channelicon" src="../img/BPI.png" alt="">Bank of the Philippine Islands</p>
+                <div id="details">
+                  <p1 id="channeldetails">Account Name: Enrico Cuison</p1><br>
+                  <p1 id="channeldetails">Account Number: 651698191</p1>
+                </div>
+            </div>
+
+            <div id="channeldiv">
+              <p id="channelhead"> <img id="channelicon" src="../img/METROBANK.jpg" alt="">Metrobank</p>
+              <div id="details">
+                <p1 id="channeldetails">Account Name: Enrico Cuison</p1><br>
+                <p1 id="channeldetails">Account Number: 651698191</p1>
+              </div>
+            </div>
+
+					</div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Contact Section -->
   <section class="contact-section bg-black" id="contact">
     <div class="container">

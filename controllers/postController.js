@@ -85,12 +85,11 @@ exports.getSavedPosts = (req, res) => {
 
 // Creating post
 exports.generatePosts = (req,res) => {
-  console.log("value:");
-  console.log(req);
   
   const errors = validationResult(req);
 	if (errors.isEmpty()) {
-    const { image, header, caption, funds , tags } = req.body;
+    const { image, header, caption, funds , tags, nameBDO,
+    numBDO, nameBPI, numBPI, nameMETRO, numMETRO } = req.body;
 
     var folder = "img/"+req.file.originalname;
 
