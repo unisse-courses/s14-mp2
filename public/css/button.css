@@ -13,6 +13,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+
+   
     
   }
 
@@ -20,7 +22,7 @@
     position: relative;
     bottom: 30px;
     top: 20px;
-    left: 10px;
+    left: 0px;
     overflow: hidden;
     cursor: pointer;
     
