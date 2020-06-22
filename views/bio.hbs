@@ -10,6 +10,7 @@
         <h2 class="text-white mb-4">Edit Profile</h2>
         <form class="form-inline d-flex" enctype="multipart/form-data" action="/profile/edit" method="POST">
             <input name="_id" type="hidden" value="{{_id}}">
+            <input name="image1" type="hidden" value="{{this.dp}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0">
            <div id="cont">
                 <img src="{{dp}}" style="height: 500px; width:500px; margin-left:110px">
             </div>

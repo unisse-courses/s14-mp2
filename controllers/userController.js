@@ -108,13 +108,19 @@ exports.getID = (req, res) => {
 
 // Edit profile 
 exports.edit = (req, res) => {
-  const { img, bio } = req.body;
-
+  const { image1, bio } = req.body;
+  console.log("DP:" +req.body.image1);
   console.log('File REQ');
   console.log(req.file);
-
-  var folder = "img/"+req.file.originalname;
-  console.log(folder);
+  var n = null;
+  var folder="";
+  if(req.file != n){
+    folder = "img/"+req.file.originalname;
+ }else{
+    folder = req.body.image1;
+ }  
+ 
+ console.log(folder);
   var update = {
     $set: { 
       dp: folder,

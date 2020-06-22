@@ -188,9 +188,21 @@ exports.getID = (req, res) => {
 
 // Edit post 
 exports.edit = (req, res) => {
-  const { header, caption, funds , tags } = req.body;
+  const { image1 , header, caption, funds , tags } = req.body;
 
-  var folder = "img/"+req.file.originalname;
+  console.log("IMAGE: " +req.body.image1);
+  console.log("HEADER: " +req.body.header);
+  console.log("REQ SUCCESS");
+
+ 
+  var n = null;
+  var folder= "";
+
+  if(req.file != n){
+     folder = "img/"+req.file.originalname;
+  }else{
+     folder = req.body.image1;
+  }
 
   if (req.body.tags != ""){
     var tagsArray = getTags(req.body.tags);
