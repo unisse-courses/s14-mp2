@@ -188,13 +188,13 @@ exports.getID = (req, res) => {
 
 // Edit post 
 exports.edit = (req, res) => {
-  const { image1 , header, caption, funds , tags } = req.body;
+  const { image1 , header, caption, funds , tags, BdoName, 
+    BdoNum, BpiName, BpiNum, MbName, MbNum } = req.body;
 
   console.log("IMAGE: " +req.body.image1);
   console.log("HEADER: " +req.body.header);
   console.log("REQ SUCCESS");
 
- 
   var n = null;
   var folder= "";
 
@@ -219,7 +219,7 @@ exports.edit = (req, res) => {
       BPIaccName: req.body.BpiName,
       BPIaccNum: req.body.BpiNum,
       MBaccName: req.body.MbName,
-      MBaccNum: req.body.MbName,
+      MBaccNum: req.body.MbNum,
       owner: req.session.user
     } 
   };
@@ -227,7 +227,8 @@ exports.edit = (req, res) => {
   postModel.update(req.body._id, update, (err, result) => {
     if (err) {
       console.log("Something went wrong. Please try again.");
-      throw err;
+      req.flash('error_msg', 'Could not edit post. Please try again.');
+      res.redirect('/profile');
     } else {
       console.log("Post updated!");
       console.log(result);
