@@ -85,8 +85,14 @@ exports.getSavedPosts = (req, res) => {
 
 // Creating post
 exports.generatePosts = (req,res) => {
-  
   const errors = validationResult(req);
+  var BDOtempName = "";
+  var BDOtempNum = "";
+  var BPItempName = "";
+  var BPItempNum = "";
+  var MBtempName = "";
+  var MBtempNum = "";
+
 	if (errors.isEmpty()) {
     const { image, header, caption, funds , tags, nameBDO,
     numBDO, nameBPI, numBPI, nameMETRO, numMETRO } = req.body;
@@ -100,18 +106,56 @@ exports.generatePosts = (req,res) => {
       var tagsArray = getTags(req.body.tags);
     }
 
-    const post = {
-      img: folder,
-      header: req.body.header,
-      caption: req.body.caption,
-      tags: tagsArray,
-      owner: req.session.user
-    };
+    if(nameBDO == "" || numBDO == "" || nameBPI == "" || numBPI == "" || nameMETRO == "" || numMETRO == "")
+    {
+      if(nameBDO == "" || numBDO == ""){
+        BDOtempName = "None";
+        BDOtempNum = "None";
+      }
+      else{
+        BDOtempName = req.body.nameBDO;
+        BDOtempNum = req.body.numBDO;
+      }
+
+      if(req.body.nameBPI == "" || req.body.numBPI == ""){
+        BPItempName = "None";
+        BPItempNum = "None";
+      }
+      else{
+        BPItempName = req.body.nameBPI;
+        BPItempNum = req.body.numBPI;
+      }
+
+      if(req.body.nameMETRO == "" || req.body.numMETRO == ""){
+        MBtempName = "None";
+        MBtempNum = "None";
+      }
+      else{
+        MBtempName = "None";
+        MBtempNum = "None";
+      }
+    }
+    else {
+      var post = {
+        img: folder,
+        header: req.body.header,
+        caption: req.body.caption,
+        tags: tagsArray,
+        BDOaccName: req.body.nameBDO,
+        BDOaccNum: req.body.numBDO,
+        BPIaccName: req.body.nameBPI,
+        BPIaccNum: req.body.numBPI,
+        MBaccName: req.body.nameMETRO,
+        MBaccNum: req.body.numMETRO,
+        owner: req.session.user
+      };
+    }
   
     postModel.createPost(post, function(err, postResult) {
       if (err) {
-        req.flash('error_msg', 'Could not create the posts. Please try again.');
-        res.redirect('/create');
+        req.flash('error_msg', 'Could not create post. Please try again.');
+        res.redirect('/post/create');
+        //console.log(err);
       } else {
         req.flash('success_msg', 'New post generated!');
         res.redirect('/profile');
@@ -120,10 +164,10 @@ exports.generatePosts = (req,res) => {
 			}
     else {
       console.log("errorrrrs");
-		const messages = errors.array().map((item) => item.msg);
-    console.log(messages);
-    req.flash('error_msg', messages.join(' '));
-		res.redirect('/create');
+      const messages = errors.array().map((item) => item.msg);
+      console.log(messages);
+      req.flash('error_msg', messages.join(' '));
+      res.redirect('/create');
 	}
 };
 
@@ -158,6 +202,12 @@ exports.edit = (req, res) => {
       header: req.body.header,
       caption: req.body.caption,
       tags: tagsArray,
+      BDOaccName: req.body.BdoName,
+      BDOaccNum: req.body.BdoNum,
+      BPIaccName: req.body.BpiName,
+      BPIaccNum: req.body.BpiNum,
+      MBaccName: req.body.MbName,
+      MBaccNum: req.body.MbName,
       owner: req.session.user
     } 
   };
@@ -188,8 +238,6 @@ exports.delete = (req, res) => {
     }
   }); 
 };
-
-
 
 function getTags(searchText) {
   var regexp = /#([^\s#]+)/gm

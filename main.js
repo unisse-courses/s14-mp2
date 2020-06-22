@@ -7,7 +7,6 @@ const mongoose = require('./models/connection');
 
 // Routes imports
 const indexRouter = require('./routes/index');
-const postRouter = require('./routes/postRoute');
 
 const app = express();
 const port = 3000;
