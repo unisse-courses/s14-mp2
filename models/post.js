@@ -6,12 +6,12 @@ const postSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true},
 	caption: { type: String, required: true, min:1, max:250 },
   tags: [{  type: String, required: false }],
-  BDOaccName: { type: String, required: false, default: "None" },
-  BDOaccNum: { type: String, required: false, default: "None" },
-  BPIaccName: { type: String, required: false, default: "None" },
-  BPIaccNum: { type: String, required: false, default: "None" },
-  MBaccName: { type: String, required: false, default: "None" },
-  MBaccNum: { type: String, required: false, default: "None" }
+  BDOaccName: { type: String, required: false, default: "N/A" },
+  BDOaccNum: { type: String, required: false, default: "N/A" },
+  BPIaccName: { type: String, required: false, default: "N/A" },
+  BPIaccNum: { type: String, required: false, default: "N/A" },
+  MBaccName: { type: String, required: false, default: "N/A" },
+  MBaccNum: { type: String, required: false, default: "N/A" }
 });
 
 const Post = mongoose.model('posts', postSchema);

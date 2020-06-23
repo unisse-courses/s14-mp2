@@ -86,14 +86,9 @@ exports.getSavedPosts = (req, res) => {
 // Creating post
 exports.generatePosts = (req,res) => {
   const errors = validationResult(req);
-  var BDOtempName = "";
-  var BDOtempNum = "";
-  var BPItempName = "";
-  var BPItempNum = "";
-  var MBtempName = "";
-  var MBtempNum = "";
 
-	if (errors.isEmpty()) {
+  if (errors.isEmpty())
+  {
     const { image, header, caption, funds , tags, nameBDO,
     numBDO, nameBPI, numBPI, nameMETRO, numMETRO } = req.body;
 
@@ -106,36 +101,7 @@ exports.generatePosts = (req,res) => {
       var tagsArray = getTags(req.body.tags);
     }
 
-    if(nameBDO == "" || numBDO == "" || nameBPI == "" || numBPI == "" || nameMETRO == "" || numMETRO == "")
-    {
-      if(nameBDO == "" || numBDO == ""){
-        BDOtempName = "None";
-        BDOtempNum = "None";
-      }
-      else{
-        BDOtempName = req.body.nameBDO;
-        BDOtempNum = req.body.numBDO;
-      }
-
-      if(req.body.nameBPI == "" || req.body.numBPI == ""){
-        BPItempName = "None";
-        BPItempNum = "None";
-      }
-      else{
-        BPItempName = req.body.nameBPI;
-        BPItempNum = req.body.numBPI;
-      }
-
-      if(req.body.nameMETRO == "" || req.body.numMETRO == ""){
-        MBtempName = "None";
-        MBtempNum = "None";
-      }
-      else{
-        MBtempName = "None";
-        MBtempNum = "None";
-      }
-    }
-    else {
+    if(nameBDO != "" && numBDO != "" && nameBPI != "" && numBPI != "" && nameMETRO != "" && numMETRO != ""){
       var post = {
         img: folder,
         header: req.body.header,
@@ -150,24 +116,174 @@ exports.generatePosts = (req,res) => {
         owner: req.session.user
       };
     }
+    else {
+      if(nameBDO == "" || numBDO == ""){
+        console.log("BDO is blank");
+        if(nameBPI == "" || numBPI == ""){
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: "N/A",
+            BDOaccNum: "N/A",
+            BPIaccName: "N/A",
+            BPIaccNum: "N/A",
+            MBaccName: req.body.nameMETRO,
+            MBaccNum: req.body.numMETRO,
+            owner: req.session.user
+          };
+        }
+        else if(nameMETRO == "" || numMETRO == ""){
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: "N/A",
+            BDOaccNum: "N/A",
+            BPIaccName: req.body.nameBPI,
+            BPIaccNum: req.body.numBPI,
+            MBaccName: "N/A",
+            MBaccNum: "N/A",
+            owner: req.session.user
+          };
+        }
+        else{
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: "N/A",
+            BDOaccNum: "N/A",
+            BPIaccName: req.body.nameBPI,
+            BPIaccNum: req.body.numBPI,
+            MBaccName: req.body.nameMETRO,
+            MBaccNum: req.body.numMETRO,
+            owner: req.session.user
+          };
+        }
+      }
+
+      if(nameBPI == "" || numBPI == ""){
+        console.log("BPI is blank");
+        if(nameBDO == "" || numBDO == ""){
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: "N/A",
+            BDOaccNum: "N/A",
+            BPIaccName: "N/A",
+            BPIaccNum: "N/A",
+            MBaccName: req.body.nameMETRO,
+            MBaccNum: req.body.numMETRO,
+            owner: req.session.user
+          };
+        }
+        else if(nameMETRO == "" || numMETRO == ""){
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: req.body.nameBDO,
+            BDOaccNum: req.body.numBDO,
+            BPIaccName: "N/A",
+            BPIaccNum: "N/A",
+            MBaccName: "N/A",
+            MBaccNum: "N/A",
+            owner: req.session.user
+          };
+        }
+        else{
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: req.body.nameBDO,
+            BDOaccNum: req.body.numBDO,
+            BPIaccName: "N/A",
+            BPIaccNum: "N/A",
+            MBaccName: req.body.nameMETRO,
+            MBaccNum: req.body.numMETRO,
+            owner: req.session.user
+          };
+        }
+      }
+
+      if(nameMETRO == "" || numMETRO == ""){
+        console.log("Metrobank is blank");
+        if(nameBDO == "" || numBDO == ""){
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: "N/A",
+            BDOaccNum: "N/A",
+            BPIaccName: req.body.nameBPI,
+            BPIaccNum: req.body.numBPI,
+            MBaccName: "N/A",
+            MBaccNum: "N/A",
+            owner: req.session.user
+          };
+        }
+        else if(nameBPI == "" || numBPI == ""){
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: req.body.nameBDO,
+            BDOaccNum: req.body.numBDO,
+            BPIaccName: "N/A",
+            BPIaccNum: "N/A",
+            MBaccName: "N/A",
+            MBaccNum: "N/A",
+            owner: req.session.user
+          };
+        }
+        else {
+          var post = {
+            img: folder,
+            header: req.body.header,
+            caption: req.body.caption,
+            tags: tagsArray,
+            BDOaccName: req.body.nameBDO,
+            BDOaccNum: req.body.numBDO,
+            BPIaccName: req.body.nameBPI,
+            BPIaccNum: req.body.numBPI,
+            MBaccName: "N/A",
+            MBaccNum: "N/A",
+            owner: req.session.user
+          };
+        }
+      }
+    }
   
     postModel.createPost(post, function(err, postResult) {
-      if (err) {
+      if(err){
+        console.log(err);
         req.flash('error_msg', 'Could not create post. Please try again.');
         res.redirect('/post/create');
-        //console.log(err);
-      } else {
+      }
+      else {
         req.flash('success_msg', 'New post generated!');
         res.redirect('/profile');
+        console.log(postResult);
       }
     }) 
-			}
-    else {
-      console.log("errorrrrs");
-      const messages = errors.array().map((item) => item.msg);
-      console.log(messages);
-      req.flash('error_msg', messages.join(' '));
-      res.redirect('/create');
+	}
+  else {
+    console.log("errorrrrs");
+    const messages = errors.array().map((item) => item.msg);
+    console.log(messages);
+    req.flash('error_msg', messages.join(' '));
+    res.redirect('/create');
 	}
 };
 
