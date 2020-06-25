@@ -186,9 +186,29 @@ const upload = multer({
 
 // POST methods for form submissions
 router.post('/post/search', (req, res) => {
-  postController.searchPost(req, (posts) => {
-  res.render('feed', { item: posts })
-  });
+  if(req.session.user) {
+    var owner; 
+
+    userController.getID(req.session.user, (user) => {
+      owner = user;
+    });
+
+    postController.searchPost(req, (posts) => {
+      res.render('feed', { 
+        item: posts,
+        username: req.session.username, 
+        dp: owner.dp,
+        _id: req.session.user
+      })
+    });
+  }
+  else {
+    postController.searchPost(req, (posts) => {
+      res.render('feed', { 
+        item: posts
+      })
+    });
+  }
 });
 
 router.post('/makePost', loggedIn, upload, postController.generatePosts);
