@@ -34,8 +34,29 @@ exports.getAllPosts = (param, callback) =>{
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
-
+/*
   postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
+    if (err) {
+      req.flash('error_msg', 'Something happened! Please try again.');
+      throw err; 
+    } 
+    else {
+      if (result) { 
+        const postObjects = [];
+        result.forEach(function(doc) {
+          postObjects.push(doc.toObject());
+        });
+        res(postObjects);
+      } 
+      else { 
+        console.log("No post found!");
+        req.flash('error_msg', 'No search results found. Try again.');
+      }
+    }
+  });
+*/
+
+  postModel.getTitle({ tags: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
       req.flash('error_msg', 'Something happened! Please try again.');
       throw err; 
