@@ -56,18 +56,39 @@ exports.searchPost = (req, res) => {
   });
 */
 
-  postModel.getTitle({ tags: {$regex: query, $options:'i'}}, (err, result) => {
+  postModel.getTitle( { tags: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
       req.flash('error_msg', 'Something happened! Please try again.');
       throw err; 
     } 
     else {
       if (result) { 
-        const postObjects = [];
+        var postObjects = [];
         result.forEach(function(doc) {
-          postObjects.push(doc.toObject());
+          postObjects.push(doc.toObject()); //pushing tag searches
         });
-        res(postObjects);
+          postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
+            if (err) {
+              req.flash('error_msg', 'Something happened! Please try again.');
+              throw err; 
+            } 
+            else {
+              if (result) { 
+              
+                result.forEach(function(doc) {
+                  postObjects.push(doc.toObject()); // pushing title searches
+                });
+              } 
+              else { 
+                console.log("No post found!");
+                req.flash('error_msg', 'No search results found. Try again.');
+              }
+            }
+          });
+
+          const uniqueset= new Set(postObjects); //filters duplicate results
+          const backtoArray = [...uniqueset]; //convert back to array
+        res(backtoArray);
       } 
       else { 
         console.log("No post found!");

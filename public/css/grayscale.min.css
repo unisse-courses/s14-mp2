@@ -479,6 +479,7 @@ a{
 
 }
 #bottomdiv{
+    margin-top: 40px;
     width: 250px;
     height: 100px;
     float: right;
@@ -516,6 +517,11 @@ a{
 }
 
 #tagDiv{
+    height: 60px;
+    
+}
+.caption{
+    height: 200px;
 }
 
 #tagDiv p{
