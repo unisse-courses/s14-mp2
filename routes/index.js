@@ -211,10 +211,10 @@ router.post('/post/search', (req, res) => {
   }
 });
 
-router.post('/makePost', loggedIn, upload, postController.generatePosts);
+router.post('/makePost', loggedIn, upload, postValidation, postController.generatePosts);
 router.post('/register', loggedOut, registerValidation, userController.registerUser);
 router.post('/login', loggedOut, loginValidation, userController.loginUser);
-router.post('/post/edit', loggedIn, upload, postController.edit);
+router.post('/post/edit', loggedIn, upload, postValidation, postController.edit);
 router.post('/profile/edit', loggedIn, upload,userController.edit);
 
 module.exports = router;

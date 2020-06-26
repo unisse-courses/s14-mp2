@@ -2,9 +2,9 @@ const mongoose = require('./connection');
 
 const postSchema = new mongoose.Schema({
 	img: { type: String, required: true },
-  header: { type: String, required: true, min:1, max:15 },
+  header: { type: String, required: true, min:5, max:15 },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true},
-	caption: { type: String, required: true, min:1, max:250 },
+	caption: { type: String, required: true, min:5, max:250 },
   tags: [{  type: String, required: false }],
   BDOaccName: { type: String, required: false, default: "N/A" },
   BDOaccNum: { type: String, required: false, default: "N/A" },

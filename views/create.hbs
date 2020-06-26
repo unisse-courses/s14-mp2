@@ -6,8 +6,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
-          <img src = "img/post.png" style="width:50px;height:50px;"></img>
-          <h2 class="text-white mb-5">Create Post</h2>
+          <img src = "img/post.png" style="width:45px;height:45px;"></img>
+          <h2 class="text-white mb-3">Create Post</h2>
           <div style="color: red;">{{> messages}}</div>
           <form class="form-inline d-flex" enctype="multipart/form-data" action="/makePost" method="POST"   >
             <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
@@ -16,13 +16,13 @@
             <div id="cont">
             </div>
 
-            <input name="header" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-            <textarea name="caption" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description" style="width:800px"></textarea>
-            <input name= "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
+            <input name="header" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title (max. of 30 characters)" >
+            <textarea name="caption" id="desc" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" placeholder="Description (max. of 500 characters)" style="width:800px"></textarea>
+            <!--<input name= "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">-->
             <input name= "tags" type="text" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" placeholder="#Tags" style="width: 800px;">
 
             <div id="donationinfo">
-              Below are the accredited banks associated with this website. Atleast one donation channel must be filled out. Make sure that the Account Number and Account Name is correct. Otherwise, all donations will be lost.
+              Below are the accredited banks associated with this website. At least one donation channel must be filled out. Make sure that the Account Number and Account Name is correct. Otherwise, all donations will be lost.
             </div>
 
             <div id="donationForm">

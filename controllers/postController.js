@@ -34,27 +34,6 @@ exports.getAllPosts = (param, callback) =>{
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
-/*
-  postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
-    if (err) {
-      req.flash('error_msg', 'Something happened! Please try again.');
-      throw err; 
-    } 
-    else {
-      if (result) { 
-        const postObjects = [];
-        result.forEach(function(doc) {
-          postObjects.push(doc.toObject());
-        });
-        res(postObjects);
-      } 
-      else { 
-        console.log("No post found!");
-        req.flash('error_msg', 'No search results found. Try again.');
-      }
-    }
-  });
-*/
 
   postModel.getTitle( { tags: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
@@ -157,6 +136,23 @@ exports.generatePosts = (req,res) => {
         MBaccNum: req.body.numMETRO,
         owner: req.session.user
       };
+    }
+    else if(nameBDO == "" && numBDO == "" && nameBPI == "" && numBPI == "" && nameMETRO == "" && numMETRO == ""){
+      var post = {
+        img: folder,
+        header: req.body.header,
+        caption: req.body.caption,
+        tags: tagsArray,
+        BDOaccName: req.body.nameBDO,
+        BDOaccNum: req.body.numBDO,
+        BPIaccName: req.body.nameBPI,
+        BPIaccNum: req.body.numBPI,
+        MBaccName: req.body.nameMETRO,
+        MBaccNum: req.body.numMETRO,
+        owner: req.session.user
+      };
+      req.flash('error_msg', 'Please enter at least 1 bank account details.');
+      res.redirect('/post/create');
     }
     else {
       if(nameBDO == "" || numBDO == ""){
@@ -321,11 +317,10 @@ exports.generatePosts = (req,res) => {
     }) 
 	}
   else {
-    console.log("errorrrrs");
     const messages = errors.array().map((item) => item.msg);
     console.log(messages);
     req.flash('error_msg', messages.join(' '));
-    res.redirect('/create');
+    res.redirect('/post/create');
 	}
 };
 

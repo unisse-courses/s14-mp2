@@ -9,7 +9,7 @@ exports.registerUser = (req, res) => {
 		const { email, username, password } = req.body;
 		userModel.getOne({ username: username }, (err, result) => {
 			if (result) {
-				req.flash('error_msg', 'Username is already used. Try again.');
+				req.flash('error_msg', 'Username is already taken. Try again.');
 				res.redirect('/register');
 			} else {
         const saltRounds = 10;

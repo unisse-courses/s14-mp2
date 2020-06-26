@@ -7,7 +7,8 @@
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
           <img src = "img/post.png" style="width:50px;height:50px;"></img>
-          <h2 class="text-white mb-5">Edit Post</h2>
+          <h2 class="text-white mb-4">Edit Post</h2>
+          <div style="color: red;">{{> messages}}</div>
 
           <form class="form-inline d-flex" enctype="multipart/form-data" action="/post/edit" method="POST">
             <input name="_id" type="hidden" value="{{item._id}}">
@@ -18,7 +19,7 @@
 
             <input name="header"  type="text"   value="{{item.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
             <textarea name="caption" type="text" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px">{{item.caption}}</textarea>
-            <input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">
+            <!--<input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">-->
             <input name = "tags"  type="text"   value="{{item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">
             
             <div id="donationinfo">
