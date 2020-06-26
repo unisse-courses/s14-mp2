@@ -8,7 +8,7 @@
         <div class="col-md-10 col-lg-8 mx-auto text-center">
           <img src = "img/post.png" style="width:50px;height:50px;"></img>
           <h2 class="text-white mb-4">Edit Post</h2>
-          <div style="color: red;">{{> messages}}</div>
+          <div style="color: #FFE300;">{{> messages}}</div>
 
           <form class="form-inline d-flex" enctype="multipart/form-data" action="/post/edit" method="POST">
             <input name="_id" type="hidden" value="{{item._id}}">

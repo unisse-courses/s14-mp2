@@ -8,7 +8,7 @@
         <div class="col-md-10 col-lg-8 mx-auto text-center">
           <img src = "img/post.png" style="width:50px;height:50px;"></img>
           <h2 class="text-white mb-3">Create Post</h2>
-          <div style="color: rgb(253, 124, 124);">{{> messages}}</div>
+          <div style="color: #FFE300;">{{> messages}}</div>
           <form class="form-inline d-flex" enctype="multipart/form-data" action="/makePost" method="POST"   >
             <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
             <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>
@@ -42,7 +42,7 @@
             </div>
             
             <button type="submit" class="btn btn-primary btn-space" style="margin:15px; margin-left:250px">Post</button>
-            <a href="/profile#projects" class="btn btn-space btn-default" style="background-color: rgba(255, 86, 86, 0.809);margin:15px; margin-right:200px;">Cancel</a>
+            <a href="/profile#projects" class="btn btn-space btn-default" style="background-color: rgba(255, 86, 86, 0.809);margin:15px; margin-right:200px;"><span style="color: white;">Cancel</span></a>
           </form>
 
         </div>
