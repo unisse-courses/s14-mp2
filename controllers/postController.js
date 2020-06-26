@@ -34,7 +34,7 @@ exports.getAllPosts = (param, callback) =>{
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
-
+  var postObjects = [];
   postModel.getTitle( { tags: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
       req.flash('error_msg', 'Something happened! Please try again.');
@@ -42,30 +42,30 @@ exports.searchPost = (req, res) => {
     } 
     else {
       if (result) { 
-        var postObjects = [];
+        
         result.forEach(function(doc) {
           postObjects.push(doc.toObject()); //pushing tag searches
         });
-          postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
-            if (err) {
-              req.flash('error_msg', 'Something happened! Please try again.');
-              throw err; 
-            } 
-            else {
-              if (result) { 
-              
-                result.forEach(function(doc) {
-                  postObjects.push(doc.toObject()); // pushing title searches
-                });
-              } 
-              else { 
-                console.log("No post found!");
-                req.flash('error_msg', 'No search results found. Try again.');
-              }
-            }
-          });
-
-          const uniqueset= new Set(postObjects); //filters duplicate results
+          
+      } 
+      else { 
+        console.log("No post found!");
+        req.flash('error_msg', 'No search results found. Try again.');
+      }
+    }
+  });
+  postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
+    if (err) {
+      req.flash('error_msg', 'Something happened! Please try again.');
+      throw err; 
+    } 
+    else {
+      if (result) { 
+      
+        result.forEach(function(doc) {
+          postObjects.push(doc.toObject()); // pushing title searches
+        });
+        const uniqueset= new Set(postObjects); //filters duplicate results
           const backtoArray = [...uniqueset]; //convert back to array
         res(backtoArray);
       } 
@@ -75,6 +75,7 @@ exports.searchPost = (req, res) => {
       }
     }
   });
+
 };
 
 // Getting owner's posts
@@ -411,7 +412,9 @@ function getTags(searchText) {
   if (result) {
       result = result.map(function(s){ return s.trim();});
       console.log(result);
-      return result;
+
+      const toArr = [...result];
+      return toArr;
   } else {
       return false;
   }

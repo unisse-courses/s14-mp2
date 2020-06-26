@@ -6,9 +6,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
-          <img src = "img/post.png" style="width:45px;height:45px;"></img>
+          <img src = "img/post.png" style="width:50px;height:50px;"></img>
           <h2 class="text-white mb-3">Create Post</h2>
-          <div style="color: red;">{{> messages}}</div>
+          <div style="color: rgb(253, 124, 124);">{{> messages}}</div>
           <form class="form-inline d-flex" enctype="multipart/form-data" action="/makePost" method="POST"   >
             <p><input type="file"  accept="image/*" name="image" id="file"  onchange="upload(this);" style="display: none;"></p>
             <p><label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Upload Image</label></p>

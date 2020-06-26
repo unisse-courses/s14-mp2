@@ -20,8 +20,7 @@
             <input name="header"  type="text"   value="{{item.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
             <textarea name="caption" type="text" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px">{{item.caption}}</textarea>
             <!--<input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">-->
-            <input name = "tags"  type="text"   value="{{item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">
-            
+            <input name = "tags"  type="text"   value="{{#item.tags}} {{.}} {{/item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">           
             <div id="donationinfo">
               Below are the accredited banks associated with this website. Atleast one donation channel must be filled out. Make sure that the Account Number and Account Name is correct. Otherwise, all donations may be lost.
             </div>
@@ -43,7 +42,7 @@
             
           </div>
             <button type="submit" class="btn btn-primary btn-space" style="margin:15px; margin-left:250px">Save</button>
-            <a href="/profile#projects" class="btn btn-space btn-default" style="background-color: rgba(255, 86, 86, 0.809);margin:15px; margin-right:200px;">Cancel</a>
+            <a href="/profile#projects" class="btn btn-space btn-default" style="background-color: rgba(255, 86, 86, 0.809);margin:15px; margin-right:200px;"> <span style="color: white;">Cancel</span> </a>
           </form>
         </div>
       </div>
