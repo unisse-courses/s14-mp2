@@ -34,19 +34,25 @@ exports.getAllPosts = (param, callback) =>{
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
-  var postObjects = [];
-  postModel.getTitle( { tags: {$regex: query, $options:'i'}}, (err, result) => {
+  //var postObjects = [];
+  
+  postModel.getTitle({ header: {$regex: query, $options:'i'}}, { tags: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
       req.flash('error_msg', 'Something happened! Please try again.');
       throw err; 
     } 
     else {
       if (result) { 
-        
+        const postObjects = [];
+    
         result.forEach(function(doc) {
-          postObjects.push(doc.toObject()); //pushing tag searches
+          postObjects.push(doc.toObject());
         });
-          
+        
+        res(postObjects);
+        //result.forEach(function(doc) {
+        //  postObjects.push(doc.toObject()); //pushing tag searches
+        //});
       } 
       else { 
         console.log("No post found!");
@@ -54,6 +60,7 @@ exports.searchPost = (req, res) => {
       }
     }
   });
+/*
   postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
       req.flash('error_msg', 'Something happened! Please try again.');
@@ -61,7 +68,6 @@ exports.searchPost = (req, res) => {
     } 
     else {
       if (result) { 
-      
         result.forEach(function(doc) {
           postObjects.push(doc.toObject()); // pushing title searches
         });
@@ -75,7 +81,7 @@ exports.searchPost = (req, res) => {
       }
     }
   });
-
+  */
 };
 
 // Getting owner's posts

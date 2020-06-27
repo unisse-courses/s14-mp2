@@ -39,9 +39,9 @@ exports.getAll = (param, next) => {
   });
 };
 
-// Search post via header 
-exports.getTitle = function(query, next) {
-  Post.find(query, function(err, posts) {
+// Search post via header & tags
+exports.getTitle = function(header, tags, next) {
+  Post.find({ $or: [ header, tags ]}, function(err, posts) {
     next(err, posts);
   });
 };
