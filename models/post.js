@@ -34,7 +34,7 @@ exports.getFeatured = (param, next) => {
 
 // Getting all post
 exports.getAll = (param, next) => {
-  Post.find({} , (err, posts) => {
+  Post.find({}, (err, posts) => {
     next(err, posts);
   });
 };
@@ -42,6 +42,14 @@ exports.getAll = (param, next) => {
 // Search post via header & tags
 exports.getTitle = function(header, tags, next) {
   Post.find({ $or: [ header, tags ]}, function(err, posts) {
+    next(err, posts);
+    console.log(err);
+  });
+};
+
+// Getting posts owned by users 
+exports.savedPosts = function(query, next) {
+  Post.find(query, function(err, posts) {
     next(err, posts);
   });
 };

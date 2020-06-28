@@ -114,7 +114,7 @@ router.get('/profile', loggedIn, (req, res) => {
   userController.getID(req.session.user, (user) => {
     owner = user;
   });
-  
+
   postController.getSavedPosts(req.session.user, (posts) => {
     res.render('profile', { 
       username: req.session.username, 

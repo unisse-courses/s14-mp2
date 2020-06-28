@@ -34,7 +34,6 @@ exports.getAllPosts = (param, callback) =>{
 // Searching post via title
 exports.searchPost = (req, res) => {
   var query = req.body.searchTitle;
-  //var postObjects = [];
   
   postModel.getTitle({ header: {$regex: query, $options:'i'}}, { tags: {$regex: query, $options:'i'}}, (err, result) => {
     if (err) {
@@ -50,9 +49,6 @@ exports.searchPost = (req, res) => {
         });
         
         res(postObjects);
-        //result.forEach(function(doc) {
-        //  postObjects.push(doc.toObject()); //pushing tag searches
-        //});
       } 
       else { 
         console.log("No post found!");
@@ -60,42 +56,18 @@ exports.searchPost = (req, res) => {
       }
     }
   });
-/*
-  postModel.getTitle({ header: {$regex: query, $options:'i'}}, (err, result) => {
-    if (err) {
-      req.flash('error_msg', 'Something happened! Please try again.');
-      throw err; 
-    } 
-    else {
-      if (result) { 
-        result.forEach(function(doc) {
-          postObjects.push(doc.toObject()); // pushing title searches
-        });
-        const uniqueset= new Set(postObjects); //filters duplicate results
-          const backtoArray = [...uniqueset]; //convert back to array
-        res(backtoArray);
-      } 
-      else { 
-        console.log("No post found!");
-        req.flash('error_msg', 'No search results found. Try again.');
-      }
-    }
-  });
-  */
 };
 
 // Getting owner's posts
 exports.getSavedPosts = (req, res) => {
   var query = req;
 
-  postModel.getTitle({ owner: query }, (err, result) => {
+  postModel.savedPosts({ owner: query }, (err, result) => {
     if (err) {
       throw err; 
     } 
     else {
       if (result) {
-        console.log("Posts owned by user:");
-        console.log(result);
         const postObjects = [];
     
         result.forEach(function(doc) {
@@ -119,9 +91,6 @@ exports.generatePosts = (req,res) => {
   {
     const { image, header, caption, funds , tags, nameBDO,
     numBDO, nameBPI, numBPI, nameMETRO, numMETRO } = req.body;
-
-    console.log('File REQ');
-    console.log(req.file);
 
     var folder = "img/"+req.file.originalname;
 
@@ -325,7 +294,6 @@ exports.generatePosts = (req,res) => {
 	}
   else {
     const messages = errors.array().map((item) => item.msg);
-    console.log(messages);
     req.flash('error_msg', messages.join(' '));
     res.redirect('/post/create');
 	}
@@ -337,7 +305,6 @@ exports.getID = (req, res) => {
 
   postModel.getByID(id, (err, result) => {
     if (err) {
-      console.log("Could not find post.");
       throw err;
     } else {
       var postObject = result.toObject();
@@ -350,10 +317,6 @@ exports.getID = (req, res) => {
 exports.edit = (req, res) => {
   const { image1 , header, caption, funds , tags, BdoName, 
     BdoNum, BpiName, BpiNum, MbName, MbNum } = req.body;
-
-  console.log("IMAGE: " +req.body.image1);
-  console.log("HEADER: " +req.body.header);
-  console.log("REQ SUCCESS");
 
   var n = null;
   var folder= "";
@@ -386,12 +349,9 @@ exports.edit = (req, res) => {
  
   postModel.update(req.body._id, update, (err, result) => {
     if (err) {
-      console.log("Something went wrong. Please try again.");
       req.flash('error_msg', 'Could not edit post. Please try again.');
       res.redirect('/profile');
     } else {
-      console.log("Post updated!");
-      console.log(result);
       res.redirect('/profile');
     }
   });
@@ -406,7 +366,6 @@ exports.delete = (req, res) => {
       throw err; 
     } 
     else {
-      console.log("Successfully deleted!");
       res.redirect('/profile');
     }
   }); 
