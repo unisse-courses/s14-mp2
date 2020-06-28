@@ -1,25 +1,25 @@
-{{#each item}}
-<figure class="item1"><img src={{img}}>
-    <h2>{{header}}</h2>
-    <figcaption class="caption"> {{caption}}
-    </figcaption>
+{{#if item}}
+    {{#each item}}
+    <figure class="item1"><img src={{img}}>
+        <h2>{{header}}</h2>
+        <figcaption class="caption"> {{caption}}
+        </figcaption>
 
+        <div id="tagDiv">
+            <p>{{#tags}} {{.}} {{/tags}}</p>
+        </div>
 
-    <div id="tagDiv">
-        <p >  
-            {{#tags}} {{.}} {{/tags}}
-        </p>
-    </div>
-    
+        <div class="button" id="button-2" href="/post/edit/{{this._id}}">
+            <div id="slide" href="/post/edit/{{this._id}}"></div>
+            <a href="/post/edit/{{this._id}}" style="color: black;width:150px; height:40px; line-height:40px; text-align: center;">Edit</a>
+        </div> 
 
-    <div class="button" id="button-2" href="/post/edit/{{this._id}}">
-        <div id="slide" href="/post/edit/{{this._id}}"></div>
-        <a href="/post/edit/{{this._id}}" style="color: black;width:150px; height:40px; line-height:40px; text-align: center;">Edit</a>
-    </div> 
-
-    <div class="button" id="button-2" href="/post/delete/{{this._id}}">
-        <div id="slide" href="/post/delete/{{this._id}}"></div>
-        <a href="/post/delete/{{this._id}}" style="color: black; width:150px; height:40px; line-height:40px; text-align: center;">Delete</a> 
-    </div>
-</figure>
-{{/each}}
+        <div class="button" id="button-2" href="/post/delete/{{this._id}}">
+            <div id="slide" href="/post/delete/{{this._id}}"></div>
+            <a href="/post/delete/{{this._id}}" style="color: black; width:150px; height:40px; line-height:40px; text-align: center;">Delete</a> 
+        </div>
+    </figure>
+    {{/each}}
+{{else}}
+    <h5>No posts yet!</h5>
+{{/if}}
