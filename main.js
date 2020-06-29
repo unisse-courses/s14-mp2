@@ -4,23 +4,22 @@ const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('./models/connection');
+const { envPort, sessionKey } = require('./config');
 
 // Routes imports
 const indexRouter = require('./routes/index');
 
 const app = express();
-const port = 3000;
+const port = envPort || 3000;
 const hostname = 'localhost';
 
 const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
-
-
 // Sessions
 app.use(session({
-  secret: 'somegibberishsecret',
+  secret: sessionKey,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   resave: false,
   saveUninitialized: true,

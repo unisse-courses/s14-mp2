@@ -1,4 +1,4 @@
-# Charity App (S14)
+# Charity Express (S14)
 This is an online charity management web application. Users can register and create posts to provide help and raise money for those in need.
 
 ## Heroku Deployment

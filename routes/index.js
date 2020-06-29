@@ -9,17 +9,10 @@ router.get('/', (req, res) => {
   console.log("Read home successful!");
 
   if(req.session.user) {  // if there's a user
-    var owner; 
-
-    userController.getID(req.session.user, (user) => {
-      owner = user;
-    });
-
     postController.getFeaturedPosts(req, (posts) => {
       res.render('home', { 
         item: posts,
         username: req.session.username, 
-        dp: owner.dp,
         _id: req.session.user
       })
     });
@@ -38,17 +31,10 @@ router.get('/feed', (req, res) => {
   console.log("Read feed successful!");
 
   if(req.session.user) {
-    var owner; 
-
-    userController.getID(req.session.user, (user) => {
-      owner = user;
-    });
-
     postController.getAllPosts(req, (posts) => {
       res.render('feed', { 
         item: posts,
         username: req.session.username, 
-        dp: owner.dp,
         _id: req.session.user
       })
     });
@@ -67,17 +53,10 @@ router.get('/post/view/:id', (req, res) => {
   console.log("Read view successful!");
 
   if(req.session.user) {
-    var owner; 
-
-    userController.getID(req.session.user, (user) => {
-      owner = user;
-    });
-
     postController.getID(req, (post) => {
       res.render('view', { 
         item: post,
         username: req.session.username, 
-        dp: owner.dp,
         _id: req.session.user  
       });
     });
@@ -145,26 +124,18 @@ router.get('/post/create', loggedIn, (req, res) => {
   userController.getID(req.session.user, (user) => {
     res.render('create', { 
       username: req.session.username, 
-      dp: user.dp 
     });
   });
 });
 
 // Getting id of the post user wants to edit
 router.get('/post/edit/:id', loggedIn, (req, res) => {
-  var owner; 
-  
-  userController.getID(req.session.user, (user) => {
-    owner = user;
-  });
-
   postController.getID(req, (post) => {
     var tags = post.tags.join(" ");
     res.render('edit', { 
       username: req.session.username, 
       item: post, 
       Tags: tags, 
-      dp: owner.dp 
     });
   });
 });
@@ -187,17 +158,10 @@ const upload = multer({
 // POST methods for form submissions
 router.post('/post/search', (req, res) => {
   if(req.session.user) {
-    var owner; 
-
-    userController.getID(req.session.user, (user) => {
-      owner = user;
-    });
-
     postController.searchPost(req, (posts) => {
       res.render('feed', { 
         item: posts,
         username: req.session.username, 
-        dp: owner.dp,
         _id: req.session.user
       })
     });

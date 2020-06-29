@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const databaseURL = 'mongodb://localhost:27017/charitydb';
+const { dbURL } = require('../config');
 
 const options = {
   useNewUrlParser: true,
@@ -7,5 +7,5 @@ const options = {
   useFindAndModify: false 
 };
 
-mongoose.connect(databaseURL, options);
+mongoose.connect(dbURL, options);
 module.exports = mongoose;
