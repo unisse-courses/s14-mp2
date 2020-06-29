@@ -20,7 +20,7 @@ var userArray = [
     password:  'dlsu1234',
   },
   {
-    email: '	miss.unisse@dlsu.edu.ph',
+    email: 'miss.unisse@dlsu.edu.ph',
     username: 'unisse_chua',
     password: 'dlsu1234',
   }
@@ -214,6 +214,7 @@ function populate4(){
 }
 
 function populate5(){
+  const saltRounds = 10;
   const user = {
     email: userArray[3].email,
     username: userArray[3].username,
