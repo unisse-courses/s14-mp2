@@ -20,9 +20,9 @@ var userArray = [
     password:  'dlsu1234',
   },
   {
-    email: 'admin@dlsu.edu.ph',
-    username: 'admin',
-    password: 'admin',
+    email: '	miss.unisse@dlsu.edu.ph',
+    username: 'unisse_chua',
+    password: 'dlsu1234',
   }
 ];
 
@@ -106,6 +106,7 @@ var postArray = [
 populate2();
 populate3();
 populate4();
+populate5();
 
 function populate2(){
   const saltRounds = 10;
@@ -212,21 +213,17 @@ function populate4(){
   });
 }
 
-/*
-for (j = 0 ; j < postArray.length; j++){
-        var owner_id = result._id;
-    
-        const post = {
-          img: postArray[j].img,
-          header: postArray[j].header,
-          caption: postArray[j].caption,
-          tags: postArray[j].tags,
-          owner: owner_id
-        };
+function populate5(){
+  const user = {
+    email: userArray[3].email,
+    username: userArray[3].username,
+    password: userArray[3].password
+  };
 
-        postModel.createPost(post, function(err, postResult) {
-          if (err) throw err;
-        })
-        
-      } 
-*/
+  bcrypt.hash(userArray[3].password, saltRounds, (err, hashed) => {
+    user.password = hashed;
+    userModel.create(user, function (err, result) {
+      if (err) throw err;
+    }); // end here 
+  });
+}
