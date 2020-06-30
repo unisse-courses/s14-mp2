@@ -35,14 +35,15 @@ const postValidation = [
 
   // Title should not be empty
   body('header').not().isEmpty().withMessage("Please enter title.")
-  .isLength({ max: 30 }).withMessage("Title has exceeded the character limit."),
+  .isLength({ max: 50 }).withMessage("Title has exceeded the character limit."),
 
   // Description should not be empty
   body('caption').not().isEmpty().withMessage("Please enter description.")
   .isLength({ max: 500 }).withMessage("Description has exceeded the character limit."), 
 
   // Tags should not be empty
-  body('tags').not().isEmpty().withMessage("Please enter tags."), 
+  body('tags').not().isEmpty().withMessage("Please enter tags.")
+  .isLength({ max: 75 }).withMessage("Tags has exceeded the character limit."), 
 ];
 
 module.exports = { registerValidation, loginValidation, postValidation };
