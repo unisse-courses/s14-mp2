@@ -2,7 +2,7 @@
 This is an online charity management web application. Users can register and create posts to provide help and raise money for those in need.
 
 ## Heroku Deployment
-Link: 
+Link: https://charity-express.herokuapp.com/
 
 ### Local Setup
 1. Clone this repository: `git clone https://github.com/unisse-courses/s14-mp2`
