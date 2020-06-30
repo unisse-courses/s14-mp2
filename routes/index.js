@@ -92,15 +92,14 @@ router.get('/profile', loggedIn, (req, res) => {
 
   userController.getID(req.session.user, (user) => {
     owner = user;
-  });
-
-  postController.getSavedPosts(req.session.user, (posts) => {
-    res.render('profile', { 
-      username: req.session.username, 
-      item: posts, 
-      dp: owner.dp, 
-      bio: owner.bio, 
-      _id: req.session.user 
+    postController.getSavedPosts(req.session.user, (posts) => {
+      res.render('profile', { 
+        username: req.session.username, 
+        _id: req.session.user,
+        item: posts, 
+        dp: owner.dp, 
+        bio: owner.bio 
+      });
     });
   });
 });
