@@ -1,6 +1,6 @@
 {{#if item}}
-    {{#each item}}
     <div id="columns" style="text-align: left;">
+    {{#each item}}
         <figure class="item1"><img src={{img}}>
             <h2>{{header}}</h2>
             <figcaption class="caption"> {{caption}}
@@ -20,8 +20,8 @@
                 <a href="/post/delete/{{this._id}}" style="color: black; width:150px; height:40px; line-height:40px; text-align: center;">Delete</a> 
             </div>
         </figure>
+        {{/each}}
     </div>
-    {{/each}}
 {{else}}
     <div class="container" style="text-align: center; padding-top:50px; padding-bottom:50px"><h4>NO POST YET!</h4></div>
 {{/if}}
