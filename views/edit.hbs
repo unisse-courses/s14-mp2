@@ -17,10 +17,10 @@
             <p><input   type="file"  name="image" accept="image/*" value="{{item.img}}"  id="file"  onchange="upload(this);" style="display: none;" ></p>
             <label type="button" class ="btn btn-primary btn-space mx-2" for="file" style="cursor: pointer; width: 715px;">Replace Image</label>
 
-            <input name="header"  type="text"   value="{{item.header}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
-            <textarea name="caption" type="text" cols="30" rows="10" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px">{{item.caption}}</textarea>
+            <input name="header"  type="text"   value="{{item.header}}" maxlength="50" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="title" placeholder="Title" >
+            <textarea name="caption" type="text" cols="30" rows="10" maxlength="500" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" style="width:800px">{{item.caption}}</textarea>
             <!--<input name = "funds" type="number" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="goal" placeholder="Target Funds (Optional)" style="width: 800px;">-->
-            <input name = "tags"  type="text"   value="{{#item.tags}} {{.}} {{/item.tags}}" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">           
+            <input name = "tags"  type="text"   value="{{#item.tags}} {{.}} {{/item.tags}}" maxlength="75" class="form-control flex-fill mr-auto mr-sm-2 mb-3 mb-sm-0" id="tags" style="width: 800px;">           
             <div id="donationinfo">
               Below are the accredited banks associated with this website. Atleast one donation channel must be filled out. Make sure that the Account Number and Account Name is correct. Otherwise, all donations may be lost.
             </div>

@@ -29,7 +29,7 @@ exports.createPost = function(obj, next) {
 exports.getFeatured = (param, next) => {
   Post.find({} , (err, posts) => {
     next(err, posts);
-  }).limit(6);
+  }).limit(9);
 };
 
 // Getting all post
